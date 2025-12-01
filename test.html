@@ -1,0 +1,1379 @@
+<style>
+  body {
+    background-image: url("https://estimation.properties/uploads/landings/default_0.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+
+  .HEADER {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 20px;
+    height: 65px;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    z-index: 9999999 !important;
+  }
+
+  .FOOTER {
+    z-index: 99999 !important;
+    position: relative;
+  }
+  #fc-custom-survey {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, sans-serif;
+  }
+
+  .fc-survey-container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 700px;
+    width: 90%;
+    flex-direction: column;
+    display: flex;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  .fc-survey-slides {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fc-survey-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .fc-survey-slide.fc-active {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .fc-survey-slide.fc-slide-out-left {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .fc-survey-slide.fc-slide-out-right {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  .fc-survey-slide.fc-slide-in-left {
+    animation: fc-slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .fc-survey-slide.fc-slide-in-right {
+    animation: fc-slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes fc-slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fc-slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .fc-slide-headline {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .fc-slide-subheadline {
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 24px;
+    opacity: 0.9;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .fc-slide-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Two-column layout for slide 2 */
+  .fc-slide-2-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  .fc-slide-2-map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .fc-slide-2-map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+
+  .fc-slide-2-form-container {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .fc-slide-2-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .fc-slide-2-map-container {
+      height: 300px;
+    }
+  }
+
+  /* Grid layout for slide 3 - 2x2 fields */
+  .fc-slide-3-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .fc-slide-3-grid-container .fc-form-group {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .fc-slide-3-grid-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+  }
+
+  .fc-form-group {
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .fc-form-group:has(.pac-container) {
+    z-index: 10002;
+  }
+
+  /* Grid layout for first slide */
+  .fc-slide-1-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 0;
+  }
+
+  .fc-slide-1-grid-container .fc-form-group {
+    margin-bottom: 0;
+  }
+
+  .fc-slide-1-grid-container .fc-button-group {
+    margin-top: 0;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: auto;
+  }
+
+  @media (min-width: 768px) {
+    .fc-slide-1-grid-container {
+      grid-template-columns: 4fr 1fr auto;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .fc-slide-1-grid-container .fc-form-group:first-child {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .fc-slide-1-grid-container .fc-form-group:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .fc-slide-1-grid-container .fc-button-group {
+      grid-column: 3;
+      grid-row: 1;
+      margin-top: 0;
+      align-self: end;
+      display: flex;
+    }
+
+    .fc-slide-1-grid-container .fc-button-group .fc-btn {
+      white-space: nowrap;
+      margin-top: 0;
+    }
+  }
+
+  .fc-form-label {
+    display: block;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .fc-form-input,
+  .fc-form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255);
+    color: #555;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .fc-form-input:focus,
+  .fc-form-select:focus {
+    outline: none;
+    border-color: #fff;
+    background: rgba(255, 255, 255);
+  }
+
+  .fc-form-input::placeholder {
+    color: #555;
+  }
+
+  .fc-form-select {
+    cursor: pointer;
+  }
+
+  .fc-form-select option {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .fc-button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    justify-content: flex-end;
+  }
+
+  .fc-slide-2-form-container .fc-button-group {
+    justify-content: flex-end;
+  }
+
+  .fc-btn {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    height: 48px;
+  }
+
+  .fc-btn-primary {
+    background: #bd1b2b;
+    color: #ffffff;
+  }
+
+  .fc-btn-primary:hover {
+    background: #a01625;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(189, 27, 43, 0.4);
+  }
+
+  .fc-btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .fc-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .fc-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .fc-thank-you-slide {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .fc-thank-you-slide .fc-slide-headline {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .fc-thank-you-slide .fc-slide-subheadline {
+    font-size: 18px;
+  }
+
+  /* Google Autocomplete styling */
+  .pac-container {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    margin-top: 4px !important;
+    z-index: 10001 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+  }
+
+  .pac-item {
+    color: #ffffff !important;
+    padding: 12px 16px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+  }
+
+  .pac-item:first-child {
+    border-top: none !important;
+  }
+
+  .pac-item:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .pac-item-selected,
+  .pac-item-selected:hover {
+    background: rgba(189, 27, 43, 0.4) !important;
+  }
+
+  .pac-matched {
+    color: #bd1b2b !important;
+    font-weight: 600 !important;
+  }
+
+  .pac-icon {
+    margin-right: 8px !important;
+  }
+
+  .pac-item-query {
+    color: #ffffff !important;
+  }
+
+  /* Ensure autocomplete is always on top and clickable */
+  body > .pac-container {
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Fix for any nested pac-containers */
+  .fc-survey-container .pac-container,
+  .fc-form-group .pac-container {
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+  }
+
+  #fc-slide-3 .fc-btn {
+    min-width: 50%;
+  }
+
+  #fc-slide-3 .fc-button-group {
+    display: grid;
+    gap: 18px;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .error-text {
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .fc-slide-2-map-container {
+      height: 200px !important;
+    }
+
+    #fc-slide-2 .fc-button-group {
+      display: grid !important;
+      grid-template-columns: 1fr;
+    }
+
+    #fc-slide-3 .fc-button-group {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .fc-form-input,
+    .fc-form-select {
+      padding: 6px 12px !important;
+      font-size: 14px !important;
+    }
+    .fc-btn {
+      height: auto;
+    }
+    #fc-slide-2 .fc-slide-headline {
+      font-size: 18px !important;
+    }
+  }
+</style>
+<div id="fc-custom-survey"></div>
+<script>
+  const survey_data = [
+    {
+      id: 1,
+      headline: "Découvrez la valeur marchande de votre propriété!",
+      subheadline: "Entrez votre adresse et obtenez instantanément la valeur",
+      fields: [
+        {
+          type: "text",
+          name: "address",
+          placeholder: "Entrez votre adresse",
+        },
+        {
+          type: "text",
+          name: "apartment",
+          placeholder: "Apt #",
+        },
+      ],
+      buttons: [
+        {
+          text: "Suivant",
+          type: "suivant",
+        },
+      ],
+    },
+    {
+      id: 2,
+      headline: "Votre maison a été trouvée!",
+      subheadline: "Où aimeriez-vous recevoir votre rapport d'évaluation?",
+      locaton_image: "https://via.placeholder.com/150",
+      fields: [
+        {
+          type: "text",
+          name: "lead_name",
+          placeholder: "Votre nom",
+        },
+        {
+          type: "email",
+          name: "lead_email",
+          placeholder: "Votre courriel",
+        },
+        {
+          type: "tel",
+          name: "lead_phone",
+          placeholder: "Votre téléphone",
+        },
+        {
+          type: "dropdown",
+          name: "deadline",
+          placeholder: "--Délais de vente--",
+          options: [
+            {
+              label: "Immédiatement",
+              value: "Immédiatement",
+            },
+            {
+              label: "1-3 Mois",
+              value: "1-3 Mois",
+            },
+            {
+              label: "3-6 Mois",
+              value: "3-6 Mois",
+            },
+            {
+              label: "6-12 Mois",
+              value: "6-12 Mois",
+            },
+            {
+              label: "Plus que 12 Mois",
+              value: "Plus que 12 Mois",
+            },
+            {
+              label: "Par curiosité",
+              value: "Par curiosité",
+            },
+            {
+              label: "Refinancement",
+              value: "Refinancement",
+            },
+            {
+              label: "Je ne veux pas vendre",
+              value: "Je ne veux pas vendre",
+            },
+          ],
+        },
+      ],
+      buttons: [
+        {
+          text: "RETOUR",
+          type: "back",
+        },
+        {
+          text: "OBTENIR LA VALEUR",
+          type: "suivant",
+        },
+      ],
+    },
+    {
+      id: 3,
+      headline: "A few additional details",
+      subheadline: "",
+      fields: [
+        {
+          type: "dropdown",
+          label: "Year of acquisition",
+          name: "year_of_acquisition",
+          placeholder: "--Année d'aquisition--",
+          options: [
+            {
+              label: "2025",
+              value: "2025",
+            },
+            {
+              label: "2024",
+              value: "2024",
+            },
+            {
+              label: "2023",
+              value: "2023",
+            },
+            {
+              label: "2022",
+              value: "2022",
+            },
+            {
+              label: "2021",
+              value: "2021",
+            },
+            {
+              label: "2020",
+              value: "2020",
+            },
+            {
+              label: "2019",
+              value: "2019",
+            },
+            {
+              label: "2018",
+              value: "2018",
+            },
+            {
+              label: "2017",
+              value: "2017",
+            },
+            {
+              label: "2016",
+              value: "2016",
+            },
+            {
+              label: "2015",
+              value: "2015",
+            },
+            {
+              label: "2014",
+              value: "2014",
+            },
+            {
+              label: "2013",
+              value: "2013",
+            },
+            {
+              label: "2012",
+              value: "2012",
+            },
+            {
+              label: "2011",
+              value: "2011",
+            },
+            {
+              label: "2010",
+              value: "2010",
+            },
+            {
+              label: "2009",
+              value: "2009",
+            },
+            {
+              label: "2008",
+              value: "2008",
+            },
+            {
+              label: "2007",
+              value: "2007",
+            },
+            {
+              label: "2006",
+              value: "2006",
+            },
+            {
+              label: "2005",
+              value: "2005",
+            },
+            {
+              label: "2004",
+              value: "2004",
+            },
+            {
+              label: "2003",
+              value: "2003",
+            },
+            {
+              label: "2002",
+              value: "2002",
+            },
+            {
+              label: "2001",
+              value: "2001",
+            },
+            {
+              label: "2000",
+              value: "2000",
+            },
+            {
+              label: "1999",
+              value: "1999",
+            },
+            {
+              label: "1998",
+              value: "1998",
+            },
+            {
+              label: "1997",
+              value: "1997",
+            },
+            {
+              label: "1996",
+              value: "1996",
+            },
+            {
+              label: "1995",
+              value: "1995",
+            },
+            {
+              label: "1994",
+              value: "1994",
+            },
+            {
+              label: "1993",
+              value: "1993",
+            },
+            {
+              label: "1992",
+              value: "1992",
+            },
+            {
+              label: "1991",
+              value: "1991",
+            },
+            {
+              label: "1990",
+              value: "1990",
+            },
+            {
+              label: "1989",
+              value: "1989",
+            },
+            {
+              label: "1988",
+              value: "1988",
+            },
+            {
+              label: "1987",
+              value: "1987",
+            },
+            {
+              label: "1986",
+              value: "1986",
+            },
+            {
+              label: "1985",
+              value: "1985",
+            },
+            {
+              label: "1984",
+              value: "1984",
+            },
+            {
+              label: "1983",
+              value: "1983",
+            },
+            {
+              label: "1982",
+              value: "1982",
+            },
+            {
+              label: "1981",
+              value: "1981",
+            },
+            {
+              label: "1980",
+              value: "1980",
+            },
+          ],
+        },
+        {
+          type: "dropdown",
+          label: "Type of property",
+          name: "type_of_property",
+          placeholder: "--Type de propriété--",
+          options: [
+            {
+              label: "Maison unifamiliale détachée",
+              value: "Maison unifamiliale détachée",
+            },
+            {
+              label: "Maison jumelée",
+              value: "Maison jumelée",
+            },
+            {
+              label: "Appartement en copropriété",
+              value: "Appartement en copropriété",
+            },
+            {
+              label: "Maison en rangée",
+              value: "Maison en rangée",
+            },
+            {
+              label: "Plex",
+              value: "Plex",
+            },
+          ],
+        },
+        {
+          type: "text",
+          label: "Purchase price",
+          name: "purchase_price",
+          placeholder: "Prix d'aquisition",
+        },
+        {
+          type: "number",
+          label: "Number of bedrooms",
+          name: "number_of_bedrooms",
+          placeholder: "Nombre de chambre",
+        },
+      ],
+      buttons: [
+        {
+          text: "OBTENIR LA VALEUR",
+          type: "suivant",
+        },
+        {
+          text: "Retour",
+          type: "back",
+        },
+      ],
+    },
+    {
+      id: 4,
+      headline: "Thank you for your time!",
+      subheadline: "We will send you your report by email shortly.",
+    },
+  ];
+
+  class SurveyApp {
+    constructor() {
+      this.currentSlide = 0;
+      this.formData = {};
+      this.autocomplete = null;
+      this.placeImage = null;
+      this.placeLocation = null;
+      this.init();
+    }
+
+    init() {
+      this.createSurveyContainer();
+      this.loadGoogleMapsAPI();
+    }
+
+    createSurveyContainer() {
+      const container = document.getElementById("fc-custom-survey");
+      container.innerHTML = `
+      <div class="fc-survey-container">
+        <div class="fc-survey-slides" id="fc-survey-slides"></div>
+      </div>
+    `;
+      this.renderSlides();
+    }
+
+    renderSlides() {
+      const slidesContainer = document.getElementById("fc-survey-slides");
+      slidesContainer.innerHTML = "";
+
+      survey_data.forEach((slide, index) => {
+        const slideElement = document.createElement("div");
+        slideElement.className = `fc-survey-slide ${
+          index === 0 ? "fc-active" : ""
+        }`;
+        slideElement.id = `fc-slide-${slide.id}`;
+
+        let slideHTML = "";
+
+        if (slide.headline) {
+          slideHTML += `<h2 class="fc-slide-headline">${slide.headline}</h2>`;
+        }
+
+        if (slide.subheadline) {
+          slideHTML += `<p class="fc-slide-subheadline">${slide.subheadline}</p>`;
+        }
+
+        // Special layout for slide 2 - two columns (map + form)
+        if (slide.id === 2) {
+          slideHTML += `<div class="fc-slide-2-container">`;
+
+          // Map container on the left
+          slideHTML += `<div class="fc-slide-2-map-container">`;
+          if (this.placeLocation) {
+            const { lat, lng } = this.placeLocation;
+            const apiKey = this.getGoogleAPIKey();
+            const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${lat},${lng}&zoom=18&maptype=satellite`;
+            slideHTML += `<iframe src="${mapUrl}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+          } else {
+            slideHTML += `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: rgba(255, 255, 255, 0.5);">Map will appear here</div>`;
+          }
+          slideHTML += `</div>`;
+
+          // Form container on the right
+          slideHTML += `<div class="fc-slide-2-form-container">`;
+          if (slide.fields && slide.fields.length > 0) {
+            slideHTML += `<form class="fc-survey-form" id="fc-form-${slide.id}">`;
+            slide.fields.forEach((field) => {
+              slideHTML += this.renderField(field, slide.id);
+            });
+            slideHTML += `</form>`;
+          }
+
+          if (slide.buttons && slide.buttons.length > 0) {
+            slideHTML += `<div class="fc-button-group">`;
+            slide.buttons.forEach((button) => {
+              // Both buttons on slide 2 should be primary (red)
+              const btnClass =
+                slide.id === 2
+                  ? "fc-btn-primary"
+                  : button.type === "suivant"
+                  ? "fc-btn-primary"
+                  : "fc-btn-secondary";
+              slideHTML += `<button type="button" class="fc-btn ${btnClass}" data-action="${button.type}">${button.text}</button>`;
+            });
+            slideHTML += `</div>`;
+          }
+          slideHTML += `</div>`;
+          slideHTML += `</div>`;
+        } else if (slide.fields && slide.fields.length > 0) {
+          // Special grid layout for slide 1
+          if (slide.id === 1) {
+            slideHTML += `<form class="fc-survey-form" id="fc-form-${slide.id}">`;
+            slideHTML += `<div class="fc-slide-1-grid-container">`;
+            slide.fields.forEach((field) => {
+              slideHTML += this.renderField(field, slide.id);
+            });
+
+            if (slide.buttons && slide.buttons.length > 0) {
+              slideHTML += `<div class="fc-button-group">`;
+              slide.buttons.forEach((button) => {
+                const btnClass =
+                  button.type === "suivant"
+                    ? "fc-btn-primary"
+                    : "fc-btn-secondary";
+                slideHTML += `<button type="button" class="fc-btn ${btnClass}" data-action="${button.type}">${button.text}</button>`;
+              });
+              slideHTML += `</div>`;
+            }
+            slideHTML += `</div>`;
+            slideHTML += `</form>`;
+          } else if (slide.id === 3) {
+            // Special 2x2 grid layout for slide 3
+            slideHTML += `<form class="fc-survey-form" id="fc-form-${slide.id}">`;
+            slideHTML += `<div class="fc-slide-3-grid-container">`;
+            slide.fields.forEach((field) => {
+              slideHTML += this.renderField(field, slide.id);
+            });
+            slideHTML += `</div>`;
+            slideHTML += `</form>`;
+
+            if (slide.buttons && slide.buttons.length > 0) {
+              slideHTML += `<div class="fc-button-group">`;
+              slide.buttons.forEach((button) => {
+                const btnClass =
+                  button.type === "suivant"
+                    ? "fc-btn-primary"
+                    : "fc-btn-secondary";
+                slideHTML += `<button type="button" class="fc-btn ${btnClass}" data-action="${button.type}">${button.text}</button>`;
+              });
+              slideHTML += `</div>`;
+            }
+          } else {
+            slideHTML += `<form class="fc-survey-form" id="fc-form-${slide.id}">`;
+            slide.fields.forEach((field) => {
+              slideHTML += this.renderField(field, slide.id);
+            });
+            slideHTML += `</form>`;
+
+            if (slide.buttons && slide.buttons.length > 0) {
+              slideHTML += `<div class="fc-button-group">`;
+              slide.buttons.forEach((button) => {
+                const btnClass =
+                  button.type === "suivant"
+                    ? "fc-btn-primary"
+                    : "fc-btn-secondary";
+                slideHTML += `<button type="button" class="fc-btn ${btnClass}" data-action="${button.type}">${button.text}</button>`;
+              });
+              slideHTML += `</div>`;
+            }
+          }
+        } else if (slide.buttons && slide.buttons.length > 0) {
+          slideHTML += `<div class="fc-button-group">`;
+          slide.buttons.forEach((button) => {
+            const btnClass =
+              button.type === "suivant" ? "fc-btn-primary" : "fc-btn-secondary";
+            slideHTML += `<button type="button" class="fc-btn ${btnClass}" data-action="${button.type}">${button.text}</button>`;
+          });
+          slideHTML += `</div>`;
+        }
+
+        if (slide.id === 4) {
+          slideHTML = `<div class="fc-thank-you-slide">${slideHTML}</div>`;
+        }
+
+        slideElement.innerHTML = slideHTML;
+        slidesContainer.appendChild(slideElement);
+      });
+
+      this.attachEventListeners();
+      this.initGoogleAutocomplete();
+    }
+
+    renderField(field, slideId) {
+      let fieldHTML = `<div class="fc-form-group">`;
+
+      if (field.type === "dropdown") {
+        fieldHTML += `<div id="${field.name}-group"><select class="fc-form-select" id="fc-${field.name}-${slideId}" name="${field.name}">`;
+        fieldHTML += `<option value="">${field.placeholder}</option>`;
+        if (field.options) {
+          field.options.forEach((option) => {
+            fieldHTML += `<option value="${option.value}">${option.label}</option>`;
+          });
+        }
+        fieldHTML += `</select></div>`;
+      } else {
+        const inputType =
+          field.type === "tel"
+            ? "tel"
+            : field.type === "email"
+            ? "email"
+            : field.type === "number"
+            ? "number"
+            : "text";
+        fieldHTML += `<div id="${field.name}-group">
+            <input type="${inputType}" class="fc-form-input" id="fc-${field.name}-${slideId}" name="${field.name}" placeholder="${field.placeholder}" autocomplete="off">
+          </div>`;
+      }
+
+      fieldHTML += `</div>`;
+      return fieldHTML;
+    }
+
+    attachEventListeners() {
+      const buttons = document.querySelectorAll(".fc-btn[data-action]");
+      buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const action = e.target.getAttribute("data-action");
+          if (action === "suivant") {
+            this.nextSlide();
+          } else if (action === "back") {
+            this.prevSlide();
+          }
+        });
+      });
+
+      // Save form data on input change
+      const inputs = document.querySelectorAll(
+        ".fc-form-input, .fc-form-select"
+      );
+      inputs.forEach((input) => {
+        input.addEventListener("change", (e) => {
+          this.formData[e.target.name] = e.target.value;
+        });
+      });
+    }
+
+    initGoogleAutocomplete() {
+      if (
+        typeof google === "undefined" ||
+        !google.maps ||
+        !google.maps.places
+      ) {
+        return;
+      }
+
+      // Initialize autocomplete on address field in slide 1
+      const addressInput = document.getElementById("fc-address-1");
+      if (addressInput && !this.autocomplete) {
+        this.autocomplete = new google.maps.places.Autocomplete(addressInput, {
+          types: ["address"],
+          componentRestrictions: { country: ["ca", "us", "fr"] },
+        });
+
+        this.autocomplete.addListener("place_changed", () => {
+          const place = this.autocomplete.getPlace();
+          if (place && place.geometry) {
+            this.formData.address = place.formatted_address;
+            addressInput.value = place.formatted_address;
+
+            // Parse address components to extract city, state, and postal code separately
+            if (place.address_components) {
+              place.address_components.forEach((component) => {
+                const types = component.types;
+
+                // Extract city (locality or administrative_area_level_1)
+                if (types.includes("locality")) {
+                  this.formData.city = component.long_name;
+                } else if (
+                  types.includes("administrative_area_level_2") &&
+                  !this.formData.city
+                ) {
+                  this.formData.city = component.long_name;
+                }
+
+                // Extract state (administrative_area_level_1)
+                if (types.includes("administrative_area_level_1")) {
+                  this.formData.state =
+                    component.short_name || component.long_name;
+                }
+
+                // Extract postal code
+                if (types.includes("postal_code")) {
+                  this.formData.postal_code = component.long_name;
+                }
+              });
+            }
+
+            // Store location coordinates for embedded map on slide 2
+            const lat = place.geometry.location.lat();
+            const lng = place.geometry.location.lng();
+            this.placeLocation = { lat, lng };
+
+            const apiKey = this.getGoogleAPIKey();
+
+            // Use Google Maps Static API for satellite imagery (fallback)
+            this.placeImage = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=20&size=800x600&maptype=satellite&key=${apiKey}`;
+
+            // Update slide 2 if it's already rendered
+            this.updateSlide2();
+          }
+        });
+      }
+    }
+
+    getGoogleAPIKey() {
+      // Google Maps API key
+      const GOOGLE_API_KEY = "AIzaSyArwnfE7CGPPmeZX7PIDZmEoJqEvMbw5qg";
+
+      if (GOOGLE_API_KEY) {
+        return GOOGLE_API_KEY;
+      }
+
+      // Alternative: Get API key from script tag data attribute
+      const surveyScript = document.querySelector('script[src*="app.js"]');
+      if (surveyScript && surveyScript.dataset.googleApiKey) {
+        return surveyScript.dataset.googleApiKey;
+      }
+
+      return "";
+    }
+
+    loadGoogleMapsAPI() {
+      // Check if Google Maps API is already loaded
+      if (typeof google !== "undefined" && google.maps && google.maps.places) {
+        this.initGoogleAutocomplete();
+        return;
+      }
+
+      const apiKey = this.getGoogleAPIKey();
+      if (!apiKey) {
+        console.warn(
+          "Google Maps API key not found. Please add your API key to enable address autocomplete."
+        );
+        return;
+      }
+
+      // Load Google Maps API with Places library
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGoogleMaps`;
+      script.async = true;
+      script.defer = true;
+
+      // Set up callback
+      window.initGoogleMaps = () => {
+        this.initGoogleAutocomplete();
+      };
+
+      document.head.appendChild(script);
+    }
+
+    collectAllFormData() {
+      // Collect all form data from all visible inputs
+      const allInputs = document.querySelectorAll(
+        ".fc-form-input, .fc-form-select"
+      );
+      allInputs.forEach((input) => {
+        if (input.value) {
+          this.formData[input.name] = input.value;
+        }
+      });
+      return this.formData;
+    }
+
+    nextSlide() {
+      const currentSlideId = survey_data[this.currentSlide].id;
+      const currentSlideEl = document.getElementById(
+        `fc-slide-${currentSlideId}`
+      );
+
+      const inputs = currentSlideEl.querySelectorAll(
+        ".fc-form-input, .fc-form-select"
+      );
+
+      let isValid = true;
+
+      // remove any previous error before validating
+      const existingErr = document.querySelector(".error-text");
+      if (existingErr) existingErr.remove();
+
+      for (const input of inputs) {
+        if (input.name === "apartment") continue;
+
+        inputs.forEach((input) => {
+          input.addEventListener("input", () => {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let oldError = currentInput.querySelector(".error-text");
+            if (oldError) oldError.remove();
+          });
+        });
+
+        if (input.name === "lead_phone") {
+          console.log(typeof input.value);
+          if (typeof +input.value !== "number" || isNaN(+input.value)) {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let errText = document.createElement("p");
+            errText.classList.add("error-text");
+            errText.innerText = "Please enter a valid phone number.";
+            currentInput.appendChild(errText);
+            isValid = false;
+            break;
+          }
+        }
+
+        if (input.name === "number_of_bedrooms") {
+          console.log(typeof input.value);
+          if (typeof +input.value !== "number" || isNaN(+input.value)) {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let errText = document.createElement("p");
+            errText.classList.add("error-text");
+            errText.innerText = "Please enter a valid phone number.";
+            currentInput.appendChild(errText);
+            isValid = false;
+            break;
+          }
+        }
+
+        if (input.name === "purchase_price") {
+          console.log(typeof input.value);
+          if (typeof +input.value !== "number" || isNaN(+input.value)) {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let errText = document.createElement("p");
+            errText.classList.add("error-text");
+            errText.innerText = "Please enter a valid phone number.";
+            currentInput.appendChild(errText);
+            isValid = false;
+            break;
+          }
+        }
+
+        if (input.name === "lead_email") {
+          const email = input.value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          if (!email || !emailRegex.test(email)) {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let errText = document.createElement("p");
+            errText.classList.add("error-text");
+            errText.innerText = "Please enter a valid email.";
+            currentInput.appendChild(errText);
+            isValid = false;
+            break;
+          }
+        } else {
+          if (!input.value || input.value.trim() === "") {
+            let currentInput = document.querySelector(`#${input.name}-group`);
+            let errText = document.createElement("p");
+            errText.classList.add("error-text");
+            errText.innerText = `Please fill out ${input.name} field.`;
+            currentInput.appendChild(errText);
+            isValid = false;
+            break;
+          }
+        }
+      }
+
+      if (!isValid) return;
+
+      if (this.currentSlide < survey_data.length - 1) {
+        const nextSlideIndex = this.currentSlide + 1;
+        const nextSlide = survey_data[nextSlideIndex];
+
+        if (nextSlide && nextSlide.id === 4) {
+          const allData = this.collectAllFormData();
+          console.log("Survey Data Submitted:", allData);
+        }
+
+        this.animateSlide("next");
+        this.currentSlide++;
+
+        setTimeout(() => {
+          this.updateSlideVisibility();
+        }, 500);
+      }
+    }
+
+    prevSlide() {
+      if (this.currentSlide > 0) {
+        this.animateSlide("prev");
+        this.currentSlide--;
+        setTimeout(() => {
+          this.updateSlideVisibility();
+        }, 500);
+      }
+    }
+
+    animateSlide(direction) {
+      const currentSlideEl = document.getElementById(
+        `fc-slide-${survey_data[this.currentSlide].id}`
+      );
+      const nextIndex =
+        direction === "next" ? this.currentSlide + 1 : this.currentSlide - 1;
+      const nextSlideEl = document.getElementById(
+        `fc-slide-${survey_data[nextIndex].id}`
+      );
+
+      if (currentSlideEl && nextSlideEl) {
+        // Remove active class and add slide-out animation
+        currentSlideEl.classList.remove("fc-active");
+        currentSlideEl.classList.add(
+          direction === "next" ? "fc-slide-out-left" : "fc-slide-out-right"
+        );
+
+        // Add slide-in animation to next slide
+        nextSlideEl.classList.add(
+          direction === "next" ? "fc-slide-in-right" : "fc-slide-in-left"
+        );
+      }
+    }
+
+    updateSlideVisibility() {
+      const slides = document.querySelectorAll(".fc-survey-slide");
+      slides.forEach((slide, index) => {
+        slide.classList.remove(
+          "fc-active",
+          "fc-slide-out-left",
+          "fc-slide-out-right",
+          "fc-slide-in-left",
+          "fc-slide-in-right"
+        );
+        if (index === this.currentSlide) {
+          slide.classList.add("fc-active");
+        }
+      });
+
+      // Update slide 2 map if we're on slide 2
+      if (this.currentSlide === 1 && survey_data[1].id === 2) {
+        this.updateSlide2();
+      }
+
+      // Re-initialize autocomplete if needed
+      this.initGoogleAutocomplete();
+    }
+
+    updateSlide2() {
+      if (!this.placeLocation) {
+        return;
+      }
+
+      const slide2 = document.getElementById("fc-slide-2");
+      if (!slide2) {
+        return;
+      }
+
+      const mapContainer = slide2.querySelector(".fc-slide-2-map-container");
+      if (mapContainer) {
+        const { lat, lng } = this.placeLocation;
+        const apiKey = this.getGoogleAPIKey();
+        const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${lat},${lng}&zoom=18&maptype=satellite`;
+
+        let mapIframe = mapContainer.querySelector("iframe");
+        if (mapIframe) {
+          mapIframe.src = mapUrl;
+        } else {
+          mapContainer.innerHTML = `<iframe src="${mapUrl}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+        }
+      }
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      new SurveyApp();
+    });
+  } else {
+    new SurveyApp();
+  }
+</script>

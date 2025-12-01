@@ -32,6 +32,10 @@ body {
   overflow: hidden;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body {
   overflow-x: hidden;
@@ -42,10 +46,8 @@ section {
 }
 
 section.start {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 section.carousel {
@@ -86,6 +88,18 @@ span.icon-font {
   padding: 16px;
   background-color: #fffefc;
   z-index: 99;
+  max-height: 188px;
+}
+
+.navigation .logo {
+  max-width: 1034px;
+  width: 100%;
+  height: auto;
+}
+
+.navigation > .of-h {
+  width: 100%;
+  height: auto;
 }
 
 .navigation .actions {
@@ -126,6 +140,7 @@ span.icon-font {
   align-items: flex-start;
   height: fit-content;
   gap: 192px;
+  margin-top: calc(240px + 188px);
 }
 
 .hero .right-content {
@@ -134,6 +149,7 @@ span.icon-font {
   justify-content: flex-end;
   position: relative;
   gap: 16px;
+  max-height: 652px;
 }
 
 .hero .right-content span {
@@ -143,103 +159,21 @@ span.icon-font {
   margin-top: 3px;
 }
 
-.hero .right-content .snake-text {
+.hero .right-content .hero-cta {
   position: absolute;
-  top: -30px;
-  left: -50px;
-  z-index: 99999;
-  display: flex;
-  gap: 4px;
-  rotate: -30deg;
+  top: -80px;
+  left: -30px;
+  width: 71px;
+  height: 84px;
+  cursor: pointer;
 }
 
-.snake-text svg {
-  display: inline-block;
-  vertical-align: middle;
+.hero .right-content .icon-font {
+  cursor: pointer;
 }
 
-.snake-text svg {
-  display: block;
-  animation: snakeMove 0.5s ease-in-out infinite alternate;
-  animation-play-state: paused;
-  transform: translateY(-10px);
-  position: relative;
-}
-
-.snake-text svg:nth-child(1) {
-  animation-delay: 0s;
-}
-.snake-text svg:nth-child(2) {
-  animation-delay: 0.05s;
-  left: -4px;
-  top: -6px;
-}
-.snake-text svg:nth-child(3) {
-  animation-delay: 0.1s;
-  left: -14px;
-  top: -10px;
-}
-.snake-text svg:nth-child(4) {
-  animation-delay: 0.15s;
-  left: -24px;
-  top: -20px;
-  rotate: 30deg;
-}
-.snake-text svg:nth-child(5) {
-  animation-delay: 0.2s;
-  left: -34px;
-  top: -26px;
-  rotate: 30deg;
-}
-.snake-text svg:nth-child(6) {
-  animation-delay: 0.25s;
-  left: -42px;
-  top: -34px;
-  rotate: 30deg;
-}
-.snake-text svg:nth-child(7) {
-  animation-delay: 0.3s;
-  left: -50px;
-  top: -42px;
-  rotate: 30deg;
-}
-.snake-text svg:nth-child(8) {
-  animation-delay: 0.35s;
-  left: -58px;
-  top: -50px;
-  rotate: 30deg;
-}
-.snake-text svg:nth-child(9) {
-  animation-delay: 0.4s;
-  left: -58px;
-  top: -55px;
-  rotate: 60deg;
-}
-.snake-text svg:nth-child(10) {
-  animation-delay: 0.45s;
-  left: -54px;
-  top: -43px;
-}
-.snake-text svg:nth-child(11) {
-  animation-delay: 0.5s;
-  left: -60px;
-  top: -38px;
-  rotate: 10deg;
-}
-.snake-text svg:nth-child(12) {
-  animation-delay: 0.55s;
-  left: -65px;
-  top: -32px;
-  rotate: 10deg;
-}
-
-@keyframes snakeMove {
-  0% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(10px);
-  }
+.hero .p {
+  white-space: nowrap;
 }
 
 .hero .p span {
@@ -310,6 +244,9 @@ span.icon-font {
 
 section.work {
   padding-top: 187px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 section.work h2 {
@@ -318,14 +255,15 @@ section.work h2 {
   font-size: 128px;
   font-style: normal;
   font-weight: 500;
-  line-height: 81px;
+  line-height: 102px;
   letter-spacing: -5.12px;
   text-transform: uppercase;
   margin-bottom: 32px;
+  max-height: 81px;
 }
 
 section.work .left {
-  margin-top: 54px;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
 }
@@ -394,6 +332,129 @@ section.work .work-headline {
   text-transform: uppercase;
 }
 
+section.work .right {
+  width: 100%;
+  position: relative;
+  max-width: 922px;
+  height: 930px;
+  margin-right: clamp(20px, 20vw, 188px);
+}
+
+section.work .right img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+section.work .right .banner {
+  top: 225px;
+  left: -90px;
+  z-index: 1;
+}
+
+section.work .right .cartoon-box {
+  top: 560px;
+  left: 18px;
+  z-index: 1;
+}
+
+section.work .right .cartoonish-sea-picture {
+  left: 429px;
+  top: 0;
+  z-index: 0;
+}
+
+section.work .right .magic-mind-bottle {
+  left: 193px;
+  top: 288px;
+  z-index: 0;
+}
+
+section.work .right .house-photo {
+  left: 465px;
+  top: 554px;
+}
+
+section.about .photos {
+  margin-top: 183px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+section.about .photos .photo {
+  flex-grow: 1;
+  flex: 1;
+  position: relative;
+  aspect-ratio: 1/1;
+  max-width: 460px;
+  max-height: 460px;
+  border-radius: 50%;
+}
+
+section.about .photos .photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+
+section.about .photos .photo svg {
+  position: absolute;
+}
+
+section.about .photos .photo.odd svg {
+  top: 12px;
+  left: 4px;
+}
+
+section.about .photos .photo.even svg {
+  bottom: 0px;
+  left: 30px;
+}
+
+section.about .extra-details {
+  margin-top: 160px;
+}
+
+section.about .row:has(.blank) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+
+section.about .row {
+  position: relative;
+}
+
+section.about .row .blank,
+section.about .row .full {
+  width: 50%;
+}
+
+section.about .row .full p {
+  max-width: 460px;
+  color: #000;
+  font-family: EditorialNewUltraLight;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 100%;
+  letter-spacing: -0.64px;
+}
+
+section.about .row:has(img) {
+  width: 100%;
+  height: 700px;
+}
+
+section.about .row:has(img) img {
+  position: absolute;
+  left: 52.5%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  top: 43%;
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -420,14 +481,457 @@ section.work .work-headline {
   position: relative;
 }
 
-@media only screen and (max-width: 1024px) {
+.mobile-product-image {
+  display: none;
+}
+
+.hero-image-mobile {
+  display: none;
+}
+
+.list-of-year {
+  display: flex;
+  margin-top: 160px;
+  animation: slideLeft 20s infinite linear;
+}
+
+.list-of-year h2 {
+  color: #000;
+  font-family: FoundersGroteskCondensedMedium;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 80%; /* 51.2px */
+  letter-spacing: -1.28px;
+  text-transform: uppercase;
+}
+
+.list-of-year h3 {
+  color: #000;
+  font-family: FoundersGroteskCondensedMedium;
+  font-size: 32px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 80%; /* 25.6px */
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+}
+
+.list-of-year p {
+  color: #000;
+  font-family: EditorialNewUltraLight;
+  margin-top: 16px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 110%; /* 16px */
+  letter-spacing: -0.32px;
+}
+
+.list-of-year-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.list-of-year-wrapper .list {
+  margin-right: 16px;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media only screen and (min-width: 1921px) {
+  /* base spacing switched to vw for ultra-wide layouts */
+  section {
+    padding: 0.833vw;
+  }
+
+  section.start {
+    display: flex;
+    flex-direction: column;
+  }
+
+  section.carousel {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0.521vw;
+  }
+
+  .navigation span {
+    font-family: FoundersGroteskMedium !important;
+    text-transform: uppercase;
+    font-size: 0.833vw;
+    font-weight: 500;
+  }
+
+  span.icon-font {
+    color: #000;
+    font-family: PPNeueMontrealBold !important;
+    font-size: 0.833vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -0.016vw;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.667vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.833vw;
+    background-color: #fffefc;
+    z-index: 99;
+    max-height: 9.792vw;
+  }
+
+  /* use vw here to scale logo proportionally on very large screens */
   .navigation .logo {
-    width: 530px;
+    max-width: 53.854vw;
+    width: 100%;
     height: auto;
   }
 
+  .navigation > .of-h {
+    width: 100%;
+  }
+
+  .navigation .actions {
+    display: flex;
+    gap: 1.667vw;
+    flex-shrink: 0;
+  }
+
+  .navigation .actions .action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.417vw;
+    cursor: pointer;
+  }
+
+  .navigation .actions .menu svg {
+    cursor: pointer;
+  }
+
+  .navigation .actions .action-button .of-h {
+    display: flex;
+    justify-content: flex-end;
+    width: 1.302vw;
+  }
+
+  .navigation .actions .action-button .of-h .mid {
+    color: white;
+  }
+
+  .navigation .actions .action-button:hover .of-h span {
+    transform: translateX(200%);
+    transition: 0.6s;
+  }
+
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: fit-content;
+    gap: 10vw;
+    margin-top: calc(12.5vw + 8.958333vw);
+  }
+
+  .hero .right-content {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    gap: 0.833vw;
+    max-height: 33.958333vw;
+  }
+
+  .hero .right-content span {
+    rotate: 90deg;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 0.156vw;
+  }
+
+  .hero .p {
+    white-space: nowrap;
+  }
+
+  .hero .p span {
+    color: #000;
+    font-family: EditorialNewUltralight;
+    font-size: 3.333vw;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: -0.1vw;
+    text-transform: capitalize;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+  }
+
   .hero .right-content img {
-    aspect-ratio: 1/1;
+    width: 48.75vw;
+    max-width: 48.75vw;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-wrapper {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .carousel-wrapper.mobile {
+    display: none;
+  }
+
+  .carousel-wrapper .text-carousel {
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .carousel-wrapper .text-carousel * {
+    display: inline-block;
+  }
+
+  .carousel-wrapper .text-carousel img {
+    margin-right: 0.417vw;
+    margin-left: 0.833vw;
+  }
+
+  .carousel-wrapper .text-carousel h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 6.667vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 85%;
+    letter-spacing: -0.267vw;
+    text-transform: uppercase;
+  }
+
+  .carousel-wrapper .text-carousel.right {
+    animation: scroll-right 60s linear infinite;
+  }
+
+  .carousel-wrapper .text-carousel.left {
+    animation: scroll-left 60s linear infinite;
+  }
+
+  section.work {
+    padding-top: 9.74vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  section.work h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 6.667vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 4.219vw;
+    letter-spacing: -0.267vw;
+    text-transform: uppercase;
+    margin-bottom: 1.667vw;
+  }
+
+  section.work .left {
+    margin-top: 2.813vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  section.work .work-left-content {
+    display: flex;
+    gap: 4.896vw;
+  }
+
+  section.work .work-left-content p:first-child {
+    width: 3.333vw;
+  }
+
+  section.work .work-left-content p {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 0.833vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.017vw;
+    text-transform: uppercase;
+  }
+
+  section.work .end-content {
+    margin-bottom: 10.417vw;
+  }
+
+  section.work .left .project-heading {
+    color: #000;
+    transform: rotate(15deg);
+    font-family: EditorialNewUltralight;
+    font-size: 3.333vw;
+    font-style: normal;
+    font-weight: 200;
+    width: fit-content;
+    line-height: 100%;
+    letter-spacing: -0.1vw;
+    text-transform: capitalize;
+  }
+
+  section.work .left .project-text {
+    color: #000;
+    font-family: EditorialNewUltralight;
+    font-size: 1.667vw;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: -0.033vw;
+    width: 100%;
+    max-width: 23.96vw;
+    margin-top: 1.667vw;
+    margin-left: 8.125vw;
+    margin-bottom: 15.78vw;
+  }
+
+  section.work .work-headline {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 12.5vw;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 10.313vw;
+    height: 8.125vw;
+    letter-spacing: -0.5vw;
+    text-transform: uppercase;
+  }
+
+  section.work .right {
+    width: 100%;
+    position: relative;
+    max-width: 48.02vw;
+    height: 48.438vw;
+    margin-right: 9.792vw;
+  }
+
+  section.work .right img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* convert the absolute offsets to vw-based offsets so they scale consistently */
+  section.work .right .banner {
+    top: 11.719vw;
+    left: -4.688vw;
+    z-index: 1;
+  }
+
+  section.work .right .cartoon-box {
+    top: 29.167vw;
+    left: 0.938vw;
+    z-index: 1;
+  }
+
+  section.work .right .cartoonish-sea-picture {
+    left: 22.344vw;
+    top: 0;
+    z-index: 0;
+  }
+
+  section.work .right .magic-mind-bottle {
+    left: 10.052vw;
+    top: 15vw;
+    z-index: 0;
+  }
+
+  section.work .right .house-photo {
+    left: 24.219vw;
+    top: 28.854vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .navigation {
+    max-height: 112px;
+  }
+
+  .navigation .logo {
+    max-width: 530px;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero {
+    margin-top: 675px;
+    gap: 0;
+    max-height: 525px;
+  }
+
+  section.about .row:has(img) img {
+    position: absolute;
+    height: 470px;
+    left: 51%;
+    transform: translate(-50%, -50%) rotate(30deg);
+    top: 29%;
+  }
+
+  section.about .row:has(img) {
+    width: 100%;
+    height: 620px;
+  }
+
+  section.about .row:has(.full) p {
+    max-width: 320px;
+    color: #000;
+    font-family: EditorialNewUltraLight;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: -0.48px;
+  }
+
+  section.work .mobile-product-image {
+    display: block;
+  }
+
+  .navigation > .of-h {
+    width: 100%;
+  }
+
+  .hero .right-content img {
+    display: none;
+  }
+
+  .hero .right-content .hero-image-mobile {
+    display: block;
+    width: 100%;
+    max-width: 488px;
+    max-height: 525px;
+    height: 100%;
+    aspect-ratio: 488/525;
   }
 
   .hero .p span {
@@ -435,10 +939,30 @@ section.work .work-headline {
     font-family: EditorialNewUltralight;
     font-size: 48px;
     font-weight: 200;
-    line-height: 100%;
+    line-height: 50px;
     letter-spacing: -1.44px;
     text-transform: capitalize;
     height: auto;
+  }
+
+  .work .left h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%;
+    letter-spacing: -4.8px;
+    text-transform: uppercase;
+  }
+
+  section.work .end-content {
+    margin-bottom: 0;
+  }
+
+  section.work .left .mobile-product-image {
+    margin: 32px auto;
+    width: 235.999px;
   }
 
   .carousel-wrapper .text-carousel img {
@@ -456,12 +980,98 @@ section.work .work-headline {
     letter-spacing: -3.2px;
     text-transform: uppercase;
   }
+
+  section.work .right {
+    margin-right: 16px;
+  }
+
+  section.work .right .banner {
+    top: 114px;
+    left: -40;
+    z-index: 1;
+    width: 213.696px;
+    height: 267.12px;
+  }
+
+  section.work .right .cartoon-box {
+    top: 560px;
+    left: 18px;
+    z-index: 1;
+  }
+
+  section.work .right .cartoonish-sea-picture {
+    left: 429px;
+    top: 0;
+    z-index: 0;
+  }
+
+  section.work .right .magic-mind-bottle {
+    left: 193px;
+    top: 288px;
+    z-index: 0;
+  }
+
+  section.work .right .house-photo {
+    left: 465px;
+    top: 554px;
+  }
+
+  section.about .photos .photo.odd svg,
+  section.about .photos .photo.even svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  section.about .photos .photo.even svg {
+    rotate: 0deg;
+    left: 0;
+    bottom: 0;
+  }
+
+  section.about .photos .photo.odd svg {
+    rotate: 0deg;
+    left: 0;
+    top: 0;
+  }
+
+  .list-of-year .list img {
+    max-width: 236px;
+  }
+
+  .list-of-year h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%;
+    letter-spacing: -0.8px;
+    text-transform: uppercase;
+  }
+
+  .list-of-year h3 {
+    font-family: FoundersGroteskCondensedMedium;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 12.8px */
+    letter-spacing: -0.32px;
+    text-transform: uppercase;
+  }
 }
 
 @media only screen and (max-width: 1023px) {
   .navigation .logo {
-    width: 530px;
+    max-width: 530px;
+    width: 100%;
     height: auto;
+  }
+
+  .navigation > .of-h {
+    width: 100%;
   }
 
   .hero .p span {
@@ -469,7 +1079,7 @@ section.work .work-headline {
     font-family: EditorialNewUltralight;
     font-size: 48px;
     font-weight: 200;
-    line-height: 100%;
+    line-height: 50px;
     letter-spacing: -1.44px;
     text-transform: capitalize;
     height: auto;
@@ -506,9 +1116,16 @@ section.work .work-headline {
     padding: 8px;
   }
 
+  .navigation {
+    padding: 8px;
+    align-items: center;
+    max-height: 46px;
+  }
+
   .navigation .logo {
-    width: 212px;
-    height: auto;
+    max-width: 212px;
+    width: 100%;
+    max-height: 30px;
   }
 
   .navigation .actions .button {
@@ -529,18 +1146,53 @@ section.work .work-headline {
     align-items: center;
   }
 
+  .navigation > .of-h {
+    width: 100%;
+    max-height: 30px;
+  }
+
+  .hero .right .of-h {
+    display: none;
+  }
+
   .hero {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    margin-top: 329px;
+    max-height: 507px;
+  }
+
+  .hero .right-content {
+    max-height: 377px;
+  }
+
+  .hero .right-content .hero-image-mobile {
+    aspect-ratio: 1/1;
   }
 
   .hero .p span {
     font-family: EditorialNewUltralight;
     font-size: 32px;
+    line-height: 33px;
+  }
+
+  .hero .p {
+    max-height: 122px;
+  }
+
+  section.carousel {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
   }
 
   .carousel-wrapper.mobile {
     display: flex;
+  }
+
+  .carousel-wrapper {
+    max-height: 40px;
   }
 
   .carousel-wrapper .text-carousel img {
@@ -555,8 +1207,148 @@ section.work .work-headline {
     font-family: FoundersGroteskCondensedMedium;
     font-size: 64px;
     font-weight: 500;
-    line-height: 85%;
+    line-height: 52px;
     letter-spacing: -2.56px;
     text-transform: uppercase;
+  }
+
+  .hero .right-content .icon-font {
+    display: none;
+  }
+
+  .work .left h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%;
+    letter-spacing: -2.56px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  section.work .left {
+    width: 100%;
+  }
+
+  section.work .right {
+    display: none;
+  }
+
+  section.work .left .work-left-content {
+    gap: 31px;
+  }
+
+  section.work .end-content {
+    margin-bottom: 16px;
+  }
+
+  section.work .left .project-heading {
+    color: #000;
+    font-family: EditorialNewUltralight;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%; /* 32px */
+    letter-spacing: -0.96px;
+    text-transform: capitalize;
+    margin-top: 32px;
+  }
+
+  section.work .left .project-text {
+    color: #000;
+    font-family: EditorialNewUltralight;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: -0.32px;
+    margin-top: 16px;
+    margin-left: auto;
+    max-width: 280px;
+    margin-bottom: 706px;
+  }
+
+  section.work .work-headline {
+    color: #000;
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 96px;
+    letter-spacing: -4.8px;
+    max-height: 76px;
+    text-transform: uppercase;
+  }
+
+  section.about .row:has(img) img {
+    position: absolute;
+    height: 290px;
+    left: 55%;
+    transform: translate(-50%, -50%) rotate(30deg);
+    top: 55%;
+  }
+
+  section.about .row:has(img) {
+    width: 100%;
+    height: 437px;
+  }
+
+  section.about .row:has(.full) p {
+    color: #000;
+    font-family: EditorialNewUltraLight;
+    max-width: 184px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%; /* 16px */
+    letter-spacing: -0.32px;
+  }
+
+  section.about .extra-details {
+    margin-top: 120px;
+  }
+
+  section.about .photos {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  section.about .photos .photo {
+    width: calc(50% - 4px);
+    max-width: calc(50% - 4px);
+    min-width: calc(50% - 4px);
+  }
+
+  section.about .photos .photo.odd svg,
+  section.about .photos .photo.even svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  section.about .photos .photo.odd svg {
+    left: -4px;
+    top: 0px;
+  }
+
+  section.about .photos .photo.even svg {
+    left: 3px;
+    bottom: 0;
+  }
+
+  section.about .row:has(p):last-child {
+    margin-bottom: 120px;
+  }
+
+  .list-of-year {
+    margin-top: 0;
+  }
+
+  .list-of-year .list {
+    margin-right: 8px;
+  }
+
+  .list-of-year .list img {
+    max-width: 185px;
   }
 }

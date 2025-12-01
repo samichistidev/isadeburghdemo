@@ -34,41 +34,64 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-gsap.to(".navigation .logo", {
-  width: "265px",
-  duration: 0.5,
-  ease: "power4.out",
-  scrollTrigger: {
-    trigger: ".work",
-    start: "top 100%",
-    scrub: true,
-  },
-});
+let navigationLogo = document.querySelector(".navigation .logo");
+let logoTween = null;
 
-gsap.to(".snake-text svg", {
-  left: 0,
-  top: 0,
-  rotate: 0,
-  duration: 0.5,
-  ease: "power4.out",
-  delay: 1.18,
-  stagger: 0.05,
-});
+function setLogoInlineMaxWidth(px) {
+  if (!navigationLogo) return;
+  if (px == null) return;
+  const value =
+    typeof px === "number" ? typeof px === "string" && /[a-z%]$/i.test(px) : px;
+  navigationLogo.style.maxWidth = value;
+}
 
-setTimeout(() => {
-  let snakeTextSvgs = document.querySelectorAll(".snake-text svg");
-  snakeTextSvgs.forEach((svg) => {
-    svg.style.animationPlayState = "running";
+function createLogoTween() {
+  if (logoTween) {
+    logoTween.kill();
+    logoTween = null;
+  }
+  const logoEl = document.querySelector(".navigation .logo");
+  if (!logoEl) return;
+  logoTween = gsap.to(logoEl, {
+    maxWidth:
+      window.innerWidth > 1920
+        ? "13.802vw"
+        : window.innerWidth > 600
+        ? "265px"
+        : "212px",
+    duration: 2,
+    ease: "power4.out",
+    scrollTrigger: {
+      trigger: ".carousel",
+      start: "top 50%",
+      scrub: true,
+    },
   });
+}
 
-  gsap.to(".snake-text", {
-    left: -window.innerWidth,
-    top: window.innerHeight,
-    duration: 4,
-    delay: 0.6,
-    ease: "linear",
-  });
-}, 1600);
+function applyResponsiveLogo() {
+  // refresh reference (in case DOM changed)
+  navigationLogo = document.querySelector(".navigation .logo");
+  const px =
+    window.innerWidth > 1920
+      ? "53.854vw"
+      : window.innerWidth > 1024
+      ? "1034px"
+      : window.innerWidth > 600
+      ? "530px"
+      : "212px";
+  setLogoInlineMaxWidth(px);
+  createLogoTween();
+  // refresh ScrollTrigger after layout change (Lenis doesn't expose update())
+  ScrollTrigger.refresh();
+}
+
+let resizeTimer = null;
+window.addEventListener("load", applyResponsiveLogo);
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(applyResponsiveLogo, 120);
+});
 
 gsap.from(".hero .p span", {
   bottom: "-300px",
@@ -78,7 +101,7 @@ gsap.from(".hero .p span", {
   stagger: 0.1,
 });
 
-gsap.from(".hero .right-content img", {
+gsap.from(".hero .right-content .hero-image", {
   delay: 0.3,
   scale: 1.5,
   rotate: "10deg",
@@ -101,4 +124,41 @@ gsap.from(".button.of-h span", {
   ease: "power4.out",
 });
 
-gsap.registerPlugin(ScrollTrigger);
+(function addHeroScrollHandlers() {
+  function scrollToWork() {
+    const workEl = document.querySelector(".work");
+    if (!workEl) return;
+
+    if (typeof lenis !== "undefined" && typeof lenis.scrollTo === "function") {
+      try {
+        lenis.scrollTo(workEl, { offset: 0, duration: 1.2 });
+      } catch (err) {
+        const top = workEl.getBoundingClientRect().top + window.pageYOffset;
+        lenis.scrollTo(top, { duration: 1.2 });
+      }
+      return;
+    }
+
+    const top = workEl.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  function attachListeners() {
+    const triggers = document.querySelectorAll(
+      ".hero-cta, .hero .right-content .icon-text"
+    );
+    if (!triggers || triggers.length === 0) return;
+    triggers.forEach((el) =>
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        scrollToWork();
+      })
+    );
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attachListeners);
+  } else {
+    attachListeners();
+  }
+})();
