@@ -50,20 +50,48 @@ function createLogoTween() {
     logoTween.kill();
     logoTween = null;
   }
+
   const logoEl = document.querySelector(".navigation .logo");
   if (!logoEl) return;
+
+  // Starting value (bigger)
+  const startWidth =
+    window.innerWidth > 1920
+      ? "53.854vw"
+      : window.innerWidth > 1024
+      ? "1034px"
+      : window.innerWidth > 600
+      ? "530px"
+      : "212px";
+
+  // Target value (smaller)
+  const endWidth =
+    window.innerWidth > 1920
+      ? "13.802vw"
+      : window.innerWidth > 600
+      ? "265px"
+      : "212px";
+
+  logoEl.style.maxWidth = startWidth;
+
   logoTween = gsap.to(logoEl, {
-    maxWidth:
-      window.innerWidth > 1920
-        ? "13.802vw"
-        : window.innerWidth > 600
-        ? "265px"
-        : "212px",
+    maxWidth: endWidth,
     duration: 2,
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".carousel",
-      start: "top 50%",
+      start: "top 100%",
+      scrub: true,
+    },
+  });
+
+  logoTween = gsap.to(logoEl, {
+    maxWidth: startWidth,
+    duration: 2,
+    ease: "power4.out",
+    scrollTrigger: {
+      trigger: ".work",
+      start: "top -50%",
       scrub: true,
     },
   });
@@ -162,3 +190,84 @@ gsap.from(".button.of-h span", {
     attachListeners();
   }
 })();
+
+const leftCarousels = document.querySelectorAll(".text-carousel.left");
+const rightCarousels = document.querySelectorAll(".text-carousel.right");
+
+window.addEventListener("wheel", (e) => {
+  if (e.deltaY > 0) {
+    leftCarousels.forEach((carousel) => {
+      gsap.to(carousel, {
+        animation: "scroll-right 30s linear infinite",
+      });
+    });
+    rightCarousels.forEach((carousel) => {
+      gsap.to(carousel, {
+        animation: "scroll-left 30s linear infinite",
+      });
+    });
+  } else {
+    leftCarousels.forEach((carousel) => {
+      gsap.to(carousel, {
+        animation: "scroll-left 30s linear infinite",
+      });
+    });
+    rightCarousels.forEach((carousel) => {
+      gsap.to(carousel, {
+        animation: "scroll-right 30s linear infinite",
+      });
+    });
+  }
+});
+
+const oddBoxes = document.querySelectorAll(
+  "section.about .photos .photo.odd img"
+);
+
+oddBoxes.forEach((box) => {
+  let hoverAnim = null;
+
+  box.addEventListener("mouseenter", () => {
+    if (hoverAnim) hoverAnim.kill(); // stop old anim
+    hoverAnim = gsap.to(box, {
+      rotate: 360,
+      duration: 30,
+      ease: "none",
+    });
+  });
+
+  box.addEventListener("mouseleave", () => {
+    if (hoverAnim) hoverAnim.kill(); // stop hover animation immediately
+    hoverAnim = gsap.to(box, {
+      rotate: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  });
+});
+
+const evenBoxes = document.querySelectorAll(
+  "section.about .photos .photo.even img"
+);
+
+evenBoxes.forEach((box) => {
+  let hoverAnim = null;
+
+  box.addEventListener("mouseenter", () => {
+    if (hoverAnim) hoverAnim.kill(); // stop old anim
+    hoverAnim = gsap.to(box, {
+      rotate: -360,
+      duration: 30,
+      ease: "none",
+    });
+  });
+
+  box.addEventListener("mouseleave", () => {
+    if (hoverAnim) hoverAnim.kill(); // stop hover animation immediately
+    hoverAnim = gsap.to(box, {
+      rotate: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  });
+});
