@@ -286,101 +286,130 @@ let aboutImage1 = document.querySelector(".abt-img-1");
 let aboutImage2 = document.querySelector(".abt-img-2");
 let aboutImage3 = document.querySelector(".abt-img-3");
 let aboutImage5 = document.querySelector(".abt-img-5");
-let aboutImage6 = document.querySelector(".abt-img-6");
 let aboutImage7 = document.querySelector(".abt-img-7");
 let aboutImage8 = document.querySelector(".abt-img-8");
 let aboutImage10 = document.querySelector(".abt-img-10");
 
-const isClicked = {};
-
-// Images with their click transforms and original zIndex
+// config
 const images = [
-  { el: aboutImage1, clickTransform: "-50px, -50px, 30deg", normalZ: 0 },
-  { el: aboutImage2, clickTransform: "-50px, -50px, -30deg", normalZ: 1 },
-  { el: aboutImage3, clickTransform: "-50px, -50px, -15deg", normalZ: 2 },
-  { el: aboutImage5, clickTransform: "95px, -140px, -30deg", normalZ: 2 },
-  { el: aboutImage7, clickTransform: "80px, -120px, -45deg", normalZ: 1 },
-  { el: aboutImage8, clickTransform: "90px, -220px, 0deg", normalZ: 0 },
-  { el: aboutImage10, clickTransform: "70px, 70px, 15deg", normalZ: 0 },
+  { el: aboutImage1, hoverTransform: "-50px, -50px, 30deg", normalZ: 0 },
+  { el: aboutImage2, hoverTransform: "-50px, -50px, -30deg", normalZ: 1 },
+  { el: aboutImage3, hoverTransform: "-50px, -50px, -15deg", normalZ: 2 },
+  { el: aboutImage5, hoverTransform: "95px, -140px, -30deg", normalZ: 2 },
+  { el: aboutImage7, hoverTransform: "80px, -120px, -45deg", normalZ: 1 },
+  { el: aboutImage8, hoverTransform: "90px, -220px, 0deg", normalZ: 0 },
+  { el: aboutImage10, hoverTransform: "70px, 70px, 15deg", normalZ: 0 },
 ];
 
-// Apply click + mouseleave to all images
 let activeCard = null;
+let isResetting = false;
 
 images.forEach((img) => {
-  const [x, y, deg] = img.clickTransform.split(",");
   const el = img.el;
-  isClicked[el.id] = false;
+  const [x, y, deg] = img.hoverTransform.split(",").map((s) => s.trim());
 
-  el.addEventListener("click", () => {
-    // CASE 1: Clicked the same active card → reset it
-    if (activeCard === el) {
-      gsap.to(el, {
-        duration: 0.1,
-        transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
-        ease: "power4.out",
-      });
-      gsap.to(el, {
-        delay: 0.1,
-        duration: 0.1,
-        zIndex: img.normalZ,
-      });
-      gsap.to(el, {
-        delay: 0.2,
-        duration: 0.1,
-        transform: `translateX(0) translateY(0) rotate(${deg})`,
-        ease: "power4.out",
-        onComplete: () => {
-          activeCard = null;
-        },
-      });
-      return;
-    }
+  function fullyResetCard(card, data) {
+    return new Promise((resolve) => {
+      const [rx, ry, rdeg] = data.hoverTransform
+        .split(",")
+        .map((s) => s.trim());
 
-    // CASE 2: Clicking a NEW card while another is active
-    if (activeCard && activeCard !== el) {
-      // Reset previous active card FIRST
+      gsap.killTweensOf(card);
+
+      gsap.to(card, {
+        duration: 0.12,
+        transform: `translateX(${rx}) translateY(${ry}) rotate(${rdeg})`,
+      });
+
+      gsap.to(card, {
+        delay: 0.12,
+        duration: 0.12,
+        zIndex: data.normalZ,
+      });
+
+      gsap.to(card, {
+        delay: 0.24,
+        duration: 0.12,
+        transform: `translateX(0) translateY(0) rotate(${rdeg})`,
+        onComplete: resolve,
+      });
+    });
+  }
+
+  function animateIn() {
+    gsap.killTweensOf(el);
+
+    gsap.to(el, {
+      duration: 0.12,
+      transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
+    });
+
+    gsap.to(el, {
+      delay: 0.12,
+      duration: 0.12,
+      zIndex: 5,
+      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
+    });
+
+    gsap.to(el, {
+      delay: 0.24,
+      duration: 0.12,
+      transform: `translateX(0) translateY(0) rotate(${deg})`,
+      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
+      onComplete: () => {
+        activeCard = el;
+      },
+    });
+  }
+
+  async function handleEnter() {
+    if (isResetting || activeCard === el) return;
+
+    if (activeCard) {
+      isResetting = true;
       const prev = activeCard;
       const prevData = images.find((i) => i.el === prev);
-      const [px, py, pdeg] = prevData.clickTransform.split(",");
 
-      gsap.to(prev, {
-        duration: 0.1,
-        transform: `translateX(${px}) translateY(${py}) rotate(${pdeg})`,
-      });
-      gsap.to(prev, {
-        delay: 0.1,
-        duration: 0.1,
-        zIndex: prevData.normalZ,
-      });
-      gsap.to(prev, {
-        delay: 0.2,
-        duration: 0.1,
-        transform: `translateX(0) translateY(0) rotate(${pdeg})`,
-      });
+      await fullyResetCard(prev, prevData); // <= FULL RESET FIRST
+      activeCard = null;
+      isResetting = false;
     }
 
-    // After resetting old card → animate NEW card
-    setTimeout(() => {
-      gsap.to(el, {
-        duration: 0.1,
-        transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
-      });
-      gsap.to(el, {
-        delay: 0.1,
-        duration: 0.1,
-        zIndex: 5,
-      });
-      gsap.to(el, {
-        delay: 0.2,
-        duration: 0.1,
-        transform: `translateX(0) translateY(0) rotate(${deg})`,
-        onComplete: () => {
-          activeCard = el;
-        },
-      });
-    }, 300);
-  });
+    animateIn(); // now animate new one
+  }
+
+  function handleLeave() {
+    if (activeCard !== el) return;
+
+    const [lx, ly, ldeg] = img.hoverTransform.split(",").map((s) => s.trim());
+
+    gsap.killTweensOf(el);
+
+    gsap.to(el, {
+      duration: 0.12,
+      transform: `translateX(${lx}) translateY(${ly}) rotate(${ldeg})`,
+      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
+    });
+
+    gsap.to(el, {
+      delay: 0.12,
+      duration: 0.12,
+      zIndex: img.normalZ,
+      boxShadow: "none",
+    });
+
+    gsap.to(el, {
+      delay: 0.24,
+      duration: 0.12,
+      transform: `translateX(0) translateY(0) rotate(${ldeg})`,
+      boxShadow: "none",
+      onComplete: () => {
+        if (activeCard === el) activeCard = null;
+      },
+    });
+  }
+  el.addEventListener("mouseenter", handleEnter);
+  el.addEventListener("mouseleave", handleLeave);
 });
 
 let menuLinks = document.querySelectorAll(".menu li");
@@ -463,3 +492,48 @@ menuItems.forEach((item) => {
     }
   });
 });
+
+//
+
+const products = document.querySelectorAll(".product");
+
+// attach click to ALL p elements inside product
+products.forEach((product) => {
+  const nextBtn = product.querySelector("p");
+  nextBtn.addEventListener("click", rotateProducts);
+});
+
+const prevBtn = document.querySelector(".previous-btn");
+prevBtn.addEventListener("click", goToPreviousCard);
+
+function rotateProducts() {
+  const active = document.querySelector(".product.active");
+  const next = document.querySelector(".product.next");
+  const afterNext = document.querySelector(".product.after-next");
+
+  // Remove old classes
+  active.classList.remove("active");
+  next.classList.remove("next");
+  afterNext.classList.remove("after-next");
+
+  // Add new classes (rotate)
+  active.classList.add("after-next");
+  next.classList.add("active");
+  afterNext.classList.add("next");
+}
+
+function goToPreviousCard() {
+  const active = document.querySelector(".product.active");
+  const next = document.querySelector(".product.next");
+  const afterNext = document.querySelector(".product.after-next");
+
+  // Remove old classes
+  active.classList.remove("active");
+  next.classList.remove("next");
+  afterNext.classList.remove("after-next");
+
+  // Add new classes (rotate)
+  active.classList.add("next");
+  next.classList.add("after-next");
+  afterNext.classList.add("active");
+}

@@ -482,13 +482,23 @@ section.work .products {
   right: 16px;
 }
 
-section.work .products .displayed-product {
+section.work .products .product.active {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-section.work .products .next-product {
+section.work .products .product.active h2 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+section.work .products .product.active p {
+  opacity: 0;
+  pointer-events: none;
+}
+
+section.work .products .product.next {
   position: absolute;
   bottom: 198px;
   right: 600px;
@@ -499,7 +509,7 @@ section.work .products .next-product {
   width: 100%;
 }
 
-section.work .products .next-product h2 {
+section.work .products .product.next h2 {
   color: #000;
   font-family: FoundersGroteskCondensedMedium;
   font-size: 64px;
@@ -514,7 +524,7 @@ section.work .products .next-product h2 {
   margin-bottom: 0;
 }
 
-section.work .products .after-next-product {
+section.work .products .product.after-next {
   position: absolute;
   bottom: 0;
   right: 160px;
@@ -525,7 +535,7 @@ section.work .products .after-next-product {
   width: 100%;
 }
 
-section.work .products .next-product p {
+section.work .products .product.next p {
   display: flex;
   gap: 16px;
   position: absolute;
@@ -543,7 +553,7 @@ section.work .products .next-product p {
   transform: rotate(15deg);
 }
 
-section.work .products .next-product p span:nth-child(1) {
+section.work .products .product.next p span:nth-child(1) {
   color: #000;
   font-family: FoundersGroteskMedium;
   font-size: 16px;
@@ -555,20 +565,29 @@ section.work .products .next-product p span:nth-child(1) {
   height: 16px;
 }
 
-section.work .products .next-product p span.icon-font {
+section.work .products .product.next p span.icon-font {
   line-height: 90%;
   height: 16px;
 }
 
-section.work .products .next-product img {
+section.work .products .product.next img {
   filter: blur(12px);
+  rotate: -15deg;
 }
 
-section.work .products .after-next-product img {
-  filter: blur(12px);
+section.work .products .product.active img {
+  rotate: 15deg;
+  position: relative;
+  left: 50px;
 }
 
-section.work .products .after-next-product h2 {
+section.work .products .product.after-next img {
+  filter: blur(12px);
+  rotate: 15deg;
+  height: 220px;
+}
+
+section.work .products .product.after-next h2 {
   font-family: FoundersGroteskCondensedMedium;
   font-size: 32px;
   font-style: normal;
@@ -580,6 +599,11 @@ section.work .products .after-next-product h2 {
   margin-bottom: 0;
   left: 0;
   text-transform: uppercase;
+}
+
+section.work .products .product.after-next p {
+  opacity: 0;
+  pointer-events: none;
 }
 
 section.about .row:has(.about-images) .work-text-1 {
