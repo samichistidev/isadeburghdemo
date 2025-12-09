@@ -80,7 +80,7 @@ function createLogoTween() {
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".carousel",
-      start: "top 100%",
+      start: "top 110%",
       scrub: true,
     },
   });
@@ -500,40 +500,41 @@ const products = document.querySelectorAll(".product");
 // attach click to ALL p elements inside product
 products.forEach((product) => {
   const nextBtn = product.querySelector("p");
-  nextBtn.addEventListener("click", rotateProducts);
+  nextBtn.addEventListener("click", goToPreviousCard);
 });
 
 const prevBtn = document.querySelector(".previous-btn");
-prevBtn.addEventListener("click", goToPreviousCard);
+prevBtn.addEventListener("click", rotateProducts);
 
 function rotateProducts() {
-  const active = document.querySelector(".product.active");
-  const next = document.querySelector(".product.next");
-  const afterNext = document.querySelector(".product.after-next");
+  const first = document.querySelector(".product.first");
+  const second = document.querySelector(".product.second");
+  const third = document.querySelector(".product.third");
 
-  // Remove old classes
-  active.classList.remove("active");
-  next.classList.remove("next");
-  afterNext.classList.remove("after-next");
+  gsap.to(first, {
+    duration: 1,
+    scale: 0.3,
+    ease: "expo.out",
+    top: 80,
+  });
 
-  // Add new classes (rotate)
-  active.classList.add("after-next");
-  next.classList.add("active");
-  afterNext.classList.add("next");
+  gsap.to(first, {
+    left: -800,
+    duration: 1.2,
+    ease: "power1.out",
+  });
+
+  gsap.to(first, {
+    right: 160,
+    bottom: 0,
+    delay: 2,
+    duration: 0,
+    ease: "power1.out",
+  });
 }
 
 function goToPreviousCard() {
-  const active = document.querySelector(".product.active");
-  const next = document.querySelector(".product.next");
-  const afterNext = document.querySelector(".product.after-next");
-
-  // Remove old classes
-  active.classList.remove("active");
-  next.classList.remove("next");
-  afterNext.classList.remove("after-next");
-
-  // Add new classes (rotate)
-  active.classList.add("next");
-  next.classList.add("after-next");
-  afterNext.classList.add("active");
+  const first = document.querySelector(".product.first");
+  const second = document.querySelector(".product.second");
+  const third = document.querySelector(".product.third");
 }

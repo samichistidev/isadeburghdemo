@@ -482,23 +482,27 @@ section.work .products {
   right: 16px;
 }
 
-section.work .products .product.active {
+section.work .products .product:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
+  max-width: 264px;
+  height: 440px;
 }
 
-section.work .products .product.active h2 {
+section.work .products .product:nth-child(1) h2 {
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
-section.work .products .product.active p {
+section.work .products .product:nth-child(1) p {
   opacity: 0;
   pointer-events: none;
+  display: none;
 }
 
-section.work .products .product.next {
+section.work .products .product:nth-child(2) {
   position: absolute;
   bottom: 198px;
   right: 600px;
@@ -509,7 +513,7 @@ section.work .products .product.next {
   width: 100%;
 }
 
-section.work .products .product.next h2 {
+section.work .products .product:nth-child(2) h2 {
   color: #000;
   font-family: FoundersGroteskCondensedMedium;
   font-size: 64px;
@@ -524,7 +528,7 @@ section.work .products .product.next h2 {
   margin-bottom: 0;
 }
 
-section.work .products .product.after-next {
+section.work .products .product:nth-child(3) {
   position: absolute;
   bottom: 0;
   right: 160px;
@@ -535,7 +539,7 @@ section.work .products .product.after-next {
   width: 100%;
 }
 
-section.work .products .product.next p {
+section.work .products .product:nth-child(2) p {
   display: flex;
   gap: 16px;
   position: absolute;
@@ -553,7 +557,7 @@ section.work .products .product.next p {
   transform: rotate(15deg);
 }
 
-section.work .products .product.next p span:nth-child(1) {
+section.work .products .product:nth-child(2) p span:nth-child(1) {
   color: #000;
   font-family: FoundersGroteskMedium;
   font-size: 16px;
@@ -565,29 +569,29 @@ section.work .products .product.next p span:nth-child(1) {
   height: 16px;
 }
 
-section.work .products .product.next p span.icon-font {
+section.work .products .product:nth-child(2) p span.icon-font {
   line-height: 90%;
   height: 16px;
 }
 
-section.work .products .product.next img {
+section.work .products .product:nth-child(2) img {
   filter: blur(12px);
   rotate: -15deg;
 }
 
-section.work .products .product.active img {
+section.work .products .product:nth-child(1) img {
   rotate: 15deg;
   position: relative;
   left: 50px;
 }
 
-section.work .products .product.after-next img {
+section.work .products .product:nth-child(3) img {
   filter: blur(12px);
   rotate: 15deg;
   height: 220px;
 }
 
-section.work .products .product.after-next h2 {
+section.work .products .product:nth-child(3) h2 {
   font-family: FoundersGroteskCondensedMedium;
   font-size: 32px;
   font-style: normal;
@@ -601,7 +605,7 @@ section.work .products .product.after-next h2 {
   text-transform: uppercase;
 }
 
-section.work .products .product.after-next p {
+section.work .products .product:nth-child(3) p {
   opacity: 0;
   pointer-events: none;
 }
