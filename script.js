@@ -121,13 +121,23 @@ window.addEventListener("resize", () => {
   resizeTimer = setTimeout(applyResponsiveLogo, 120);
 });
 
-gsap.from(".hero .p span", {
-  bottom: "-300px",
-  delay: 0.1,
-  duration: 1.5,
-  ease: "power4.out",
-  stagger: 0.1,
-});
+gsap.fromTo(
+  ".hero .p span",
+  {
+    bottom: "-300px",
+    delay: 0.1,
+    duration: 1.5,
+    ease: "power4.out",
+    stagger: 0.1,
+  },
+  {
+    bottom: "-2px",
+    delay: 0.1,
+    duration: 1.5,
+    ease: "power4.out",
+    stagger: 0.1,
+  }
+);
 
 gsap.from(".hero .right-content .hero-image", {
   delay: 0.3,
@@ -282,149 +292,25 @@ evenBoxes.forEach((box) => {
 
 //
 
-let aboutImage1 = document.querySelector(".abt-img-1");
-let aboutImage2 = document.querySelector(".abt-img-2");
-let aboutImage3 = document.querySelector(".abt-img-3");
-let aboutImage5 = document.querySelector(".abt-img-5");
-let aboutImage7 = document.querySelector(".abt-img-7");
-let aboutImage8 = document.querySelector(".abt-img-8");
-let aboutImage10 = document.querySelector(".abt-img-10");
-
-// config
-const images = [
-  { el: aboutImage1, hoverTransform: "-50px, -50px, 30deg", normalZ: 0 },
-  { el: aboutImage2, hoverTransform: "-50px, -50px, -30deg", normalZ: 1 },
-  { el: aboutImage3, hoverTransform: "-50px, -50px, -15deg", normalZ: 2 },
-  { el: aboutImage5, hoverTransform: "95px, -140px, -30deg", normalZ: 2 },
-  { el: aboutImage7, hoverTransform: "80px, -120px, -45deg", normalZ: 1 },
-  { el: aboutImage8, hoverTransform: "90px, -220px, 0deg", normalZ: 0 },
-  { el: aboutImage10, hoverTransform: "70px, 70px, 15deg", normalZ: 0 },
-];
-
-let activeCard = null;
-let isResetting = false;
-
-images.forEach((img) => {
-  const el = img.el;
-  const [x, y, deg] = img.hoverTransform.split(",").map((s) => s.trim());
-
-  function fullyResetCard(card, data) {
-    return new Promise((resolve) => {
-      const [rx, ry, rdeg] = data.hoverTransform
-        .split(",")
-        .map((s) => s.trim());
-
-      gsap.killTweensOf(card);
-
-      gsap.to(card, {
-        duration: 0.12,
-        transform: `translateX(${rx}) translateY(${ry}) rotate(${rdeg})`,
-      });
-
-      gsap.to(card, {
-        delay: 0.12,
-        duration: 0.12,
-        zIndex: data.normalZ,
-      });
-
-      gsap.to(card, {
-        delay: 0.24,
-        duration: 0.12,
-        transform: `translateX(0) translateY(0) rotate(${rdeg})`,
-        onComplete: resolve,
-      });
-    });
-  }
-
-  function animateIn() {
-    gsap.killTweensOf(el);
-
-    gsap.to(el, {
-      duration: 0.12,
-      transform: `translateX(${x}) translateY(${y}) rotate(${deg})`,
-    });
-
-    gsap.to(el, {
-      delay: 0.12,
-      duration: 0.12,
-      zIndex: 5,
-      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
-    });
-
-    gsap.to(el, {
-      delay: 0.24,
-      duration: 0.12,
-      transform: `translateX(0) translateY(0) rotate(${deg})`,
-      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
-      onComplete: () => {
-        activeCard = el;
-      },
-    });
-  }
-
-  async function handleEnter() {
-    if (isResetting || activeCard === el) return;
-
-    if (activeCard) {
-      isResetting = true;
-      const prev = activeCard;
-      const prevData = images.find((i) => i.el === prev);
-
-      await fullyResetCard(prev, prevData); // <= FULL RESET FIRST
-      activeCard = null;
-      isResetting = false;
-    }
-
-    animateIn(); // now animate new one
-  }
-
-  function handleLeave() {
-    if (activeCard !== el) return;
-
-    const [lx, ly, ldeg] = img.hoverTransform.split(",").map((s) => s.trim());
-
-    gsap.killTweensOf(el);
-
-    gsap.to(el, {
-      duration: 0.12,
-      transform: `translateX(${lx}) translateY(${ly}) rotate(${ldeg})`,
-      boxShadow: "4px 4px 120px rgba(0, 0, 0, 0.08)",
-    });
-
-    gsap.to(el, {
-      delay: 0.12,
-      duration: 0.12,
-      zIndex: img.normalZ,
-      boxShadow: "none",
-    });
-
-    gsap.to(el, {
-      delay: 0.24,
-      duration: 0.12,
-      transform: `translateX(0) translateY(0) rotate(${ldeg})`,
-      boxShadow: "none",
-      onComplete: () => {
-        if (activeCard === el) activeCard = null;
-      },
-    });
-  }
-  el.addEventListener("mouseenter", handleEnter);
-  el.addEventListener("mouseleave", handleLeave);
-});
-
 let menuLinks = document.querySelectorAll(".menu li");
+
+let notHD = window.innerWidth > 1920;
+
+window.addEventListener("resize", () => {
+  notHD = window.innerWidth > 1920;
+});
 
 menuLinks.forEach((link) => {
   link.addEventListener("mouseenter", () => {
     gsap.to(link, {
-      fontSize: 64,
+      fontSize: notHD ? "3.333vw" : 64,
       duration: 0.4,
       ease: "power4.out",
     });
   });
   link.addEventListener("mouseleave", () => {
     gsap.to(link, {
-      fontSize: 24,
+      fontSize: notHD ? "1.667vw" : 32,
       duration: 0.4,
       ease: "power4.out",
     });
@@ -452,89 +338,102 @@ menuBtn.addEventListener("click", () => {
 //   e.preventDefault();
 // });
 
-let scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
-
-scrollToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // Smooth scrolling
-  });
-});
-
-const copyBtn = document.getElementById("copyBtn");
-const textToCopy = document.getElementById("textToCopy").innerText;
 const popup = document.getElementById("popup");
+const copyBtn = document.getElementById("copyBtn");
+const textToCopy = document.getElementById("textToCopy");
 
 copyBtn.addEventListener("click", () => {
-  navigator.clipboard
-    .writeText(textToCopy)
-    .then(() => {
-      popup.classList.add("show");
-
-      setTimeout(() => {
-        popup.classList.remove("show");
-      }, 1500);
-    })
-    .catch((err) => {
-      console.error("Failed to copy text: ", err);
-    });
+  navigator.clipboard.writeText(textToCopy.textContent);
+  popup.classList.add("show");
+  setTimeout(() => {
+    popup.classList.remove("show");
+  }, 2000);
 });
 
-const menuItems = document.querySelectorAll(".menu li");
+const container = document.querySelector(".about-images");
+const images = container.querySelectorAll("img");
 
-menuItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const targetId = item.getAttribute("data-target");
-    const targetElement = document.getElementById(targetId);
+images.forEach((img) => {
+  img.style.position = "absolute";
+  img.style.cursor = "grab";
+  img.style.userSelect = "none";
 
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+  let newX = 0,
+    newY = 0,
+    startX = 0,
+    startY = 0;
+
+  function getClientXY(e) {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
     }
-  });
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function startDrag(e) {
+    e.preventDefault();
+
+    img.classList.remove("floating"); // stop animation while dragging
+
+    const pos = getClientXY(e);
+    startX = pos.x;
+    startY = pos.y;
+
+    img.style.cursor = "grabbing";
+
+    document.addEventListener("mousemove", moveDrag);
+    document.addEventListener("mouseup", stopDrag);
+
+    document.addEventListener("touchmove", moveDrag, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  }
+  function moveDrag(e) {
+    e.preventDefault();
+
+    const pos = getClientXY(e);
+
+    newX = startX - pos.x;
+    newY = startY - pos.y;
+
+    startX = pos.x;
+    startY = pos.y;
+
+    let newLeft = img.offsetLeft - newX;
+    let newTop = img.offsetTop - newY;
+
+    const rect = container.getBoundingClientRect();
+
+    // FIX: use offsetWidth/offsetHeight so transform does NOT affect size
+    const imgWidth = img.offsetWidth;
+    const imgHeight = img.offsetHeight;
+
+    const minLeft = 0;
+    const minTop = 0;
+    const maxLeft = rect.width - imgWidth;
+    const maxTop = rect.height - imgHeight;
+
+    newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
+    newTop = Math.max(minTop, Math.min(newTop, maxTop));
+
+    img.style.left = newLeft + "px";
+    img.style.top = newTop + "px";
+  }
+
+  function stopDrag() {
+    img.style.cursor = "grab";
+
+    document.removeEventListener("mousemove", moveDrag);
+    document.removeEventListener("mouseup", stopDrag);
+
+    document.removeEventListener("touchmove", moveDrag);
+    document.removeEventListener("touchend", stopDrag);
+
+    img.classList.add("floating"); // start animation again
+  }
+
+  // MOUSE SUPPORT
+  img.addEventListener("mousedown", startDrag);
+
+  // TOUCH SUPPORT
+  img.addEventListener("touchstart", startDrag, { passive: false });
 });
-
-//
-
-const products = document.querySelectorAll(".product");
-
-// attach click to ALL p elements inside product
-products.forEach((product) => {
-  const nextBtn = product.querySelector("p");
-  nextBtn.addEventListener("click", goToPreviousCard);
-});
-
-const prevBtn = document.querySelector(".previous-btn");
-prevBtn.addEventListener("click", rotateProducts);
-
-function rotateProducts() {
-  const first = document.querySelector(".product.first");
-  const second = document.querySelector(".product.second");
-  const third = document.querySelector(".product.third");
-
-  gsap.to(first, {
-    duration: 1,
-    scale: 0.3,
-    ease: "expo.out",
-    top: 80,
-  });
-
-  gsap.to(first, {
-    left: -800,
-    duration: 1.2,
-    ease: "power1.out",
-  });
-
-  gsap.to(first, {
-    right: 160,
-    bottom: 0,
-    delay: 2,
-    duration: 0,
-    ease: "power1.out",
-  });
-}
-
-function goToPreviousCard() {
-  const first = document.querySelector(".product.first");
-  const second = document.querySelector(".product.second");
-  const third = document.querySelector(".product.third");
-}
