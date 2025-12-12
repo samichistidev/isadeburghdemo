@@ -8,6 +8,10 @@ body,
   user-select: none;
 }
 
+.mh-effect {
+  cursor: url("./images/custom_hover_cursor.png"), pointer !important;
+}
+
 @font-face {
   font-family: PPNeueMontrealBold;
   src: url(./fonts/PP\ Neue\ Montreal/NeueMontreal-Bold.otf);
@@ -74,6 +78,7 @@ section.carousel {
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 span.icon-font {
@@ -154,6 +159,7 @@ span.icon-font {
 .navigation > .of-h {
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .navigation .actions {
@@ -172,6 +178,7 @@ span.icon-font {
   display: flex;
   justify-content: flex-end;
   width: 25px;
+  cursor: pointer;
 }
 
 .navigation .actions .action-button .of-h .mid {
@@ -205,11 +212,25 @@ span.icon-font {
   max-height: 652px;
 }
 
-.hero .right-content span {
+.hero .right-content .of-h:has(span) {
   rotate: 90deg;
   width: fit-content;
   height: fit-content;
   margin-top: 3px;
+  width: 25px;
+  display: flex;
+  justify-content: flex-end;
+  transform: translateX(0%);
+  cursor: pointer;
+}
+
+.hero .right-content .of-h .mid {
+  color: white;
+}
+
+.hero .right-content .hero-cta:hover ~ .of-h span {
+  transform: translateX(200%);
+  transition: 0.6s;
 }
 
 .hero .right-content .hero-cta {
@@ -269,6 +290,12 @@ span.icon-font {
 .carousel-wrapper .text-carousel {
   white-space: nowrap;
   display: inline-block;
+}
+
+.carousel-wrapper .text-part {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .carousel-wrapper .text-carousel * {
@@ -424,7 +451,7 @@ section.work .right {
   position: relative;
   max-width: 936px;
   height: 896.237px;
-  margin-top: 5.885vw;
+  margin-top: 112px;
 }
 
 section.work .right img {
@@ -838,7 +865,7 @@ section.about .row .about-images img:nth-child(10) {
 .list-of-year {
   display: flex;
   margin-top: 160px;
-  animation: slideLeft 20s infinite linear;
+  padding-bottom: 16px;
 }
 
 .list-of-year h2 {
@@ -1047,15 +1074,6 @@ section.about .row .about-images img:nth-child(10) {
   100% {
     transform: translate(0px, 0px);
     filter: drop-shadow(0 0 0px rgba(0, 0, 0, 0.2));
-  }
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
   }
 }
 
@@ -1347,6 +1365,7 @@ section.about .row .about-images img:nth-child(10) {
     position: relative;
     max-width: 48.02vw;
     height: 48.438vw;
+    margin-top: 5.885vw;
   }
 
   section.work .right img {
@@ -2150,8 +2169,8 @@ section.about .row .about-images img:nth-child(10) {
 
 @media only screen and (max-width: 1600px) {
   section.work .right {
-    margin-right: 16px;
     width: 488px;
+    margin-top: 260px;
     height: 467px;
   }
 
@@ -2281,6 +2300,7 @@ section.about .row .about-images img:nth-child(10) {
     top: 688px;
     left: 1100px;
     height: 263px;
+    width: auto;
     z-index: 0;
   }
 
@@ -2327,6 +2347,10 @@ section.about .row .about-images img:nth-child(10) {
     height: auto;
   }
 
+  .hero .p .of-h {
+    height: 52px;
+  }
+
   .work .left h2 {
     color: #000;
     font-family: FoundersGroteskCondensedMedium;
@@ -2345,6 +2369,71 @@ section.about .row .about-images img:nth-child(10) {
   section.work .left .mobile-product-image {
     margin: 32px auto;
     width: 235.999px;
+  }
+
+  section.work .products .product:nth-child(1) {
+    max-width: 84px;
+    height: 220px;
+  }
+
+  section.work .products .product:nth-child(1) img {
+    max-width: 100%;
+    height: 100%;
+  }
+
+  section.work .products .product:nth-child(2) {
+    height: 166px;
+    right: 318px;
+    width: 84px;
+    bottom: 124px;
+  }
+
+  section.work .products .product:nth-child(2) img {
+    height: 100%;
+  }
+
+  section.work .products .product:nth-child(2) h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 25.6px */
+    letter-spacing: -1.28px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 60px;
+    left: -35px;
+  }
+
+  section.work .products .product:nth-child(2) p {
+    left: -35px;
+    bottom: -20px;
+  }
+
+  section.work .products .product:nth-child(3) {
+    height: 172px;
+    right: 77px;
+    width: 84px;
+    bottom: 0;
+  }
+
+  section.work .products .product:nth-child(3) img {
+    height: 100%;
+    left: 20px;
+    position: absolute;
+  }
+
+  section.work .products .product:nth-child(3) h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 19.2px */
+    letter-spacing: -0.96px;
+    bottom: 34px;
+    text-transform: uppercase;
   }
 
   .carousel-wrapper .text-carousel img {
@@ -2791,7 +2880,8 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .right.mobile {
     display: block;
-    margin-bottom: 120px;
+    margin-top: 0;
+    margin-bottom: 746px;
   }
 
   section.work .right {
@@ -2853,7 +2943,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .end-content {
-    margin-bottom: 16px;
+    margin-bottom: 368px;
   }
 
   section.work .left .project-heading {
@@ -2926,6 +3016,89 @@ section.about .row .about-images img:nth-child(10) {
     letter-spacing: -0.32px;
     text-transform: uppercase;
     height: 16px;
+  }
+
+  .hero .right-content .of-h:has(span) {
+    display: none;
+  }
+
+  .hero .p .of-h {
+    height: 33px;
+  }
+
+  section.work .products {
+    height: 1776px;
+    width: calc(100% - 32px);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 126px;
+  }
+
+  section.work .products .product:nth-child(1) {
+    right: 0;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  section.work .products .product:nth-child(1) img {
+    height: 320px;
+    width: fit-content;
+    max-width: fit-content;
+    left: 0;
+  }
+
+  section.work .products .product:nth-child(2) {
+    left: 0;
+    width: 185px;
+    height: 362px;
+    bottom: 196px;
+  }
+
+  section.work .products .product:nth-child(2) img {
+    height: 100%;
+    width: fit-content;
+    position: absolute;
+    left: 35px;
+    max-width: fit-content;
+  }
+
+  section.work .products .product:nth-child(2) h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 38.4px */
+    letter-spacing: -1.92px;
+    text-transform: uppercase;
+    top: 172px;
+    left: 0;
+  }
+
+  section.work .products .product:nth-child(2) p {
+    top: 230px;
+    left: 0;
+  }
+
+  section.work .products .product:nth-child(3) {
+    right: 0;
+  }
+
+  section.work .products .product:nth-child(3) h2 {
+    color: #000;
+    font-family: FoundersGroteskCondensedMedium;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 25.6px */
+    bottom: 64px;
+    left: -50px;
+    letter-spacing: -1.28px;
+    text-transform: uppercase;
   }
 
   section.work h2 p span.icon-font {

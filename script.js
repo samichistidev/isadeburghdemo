@@ -87,11 +87,11 @@ function createLogoTween() {
 
   logoTween = gsap.to(logoEl, {
     maxWidth: startWidth,
-    duration: 2,
+    duration: 1,
     ease: "power4.out",
     scrollTrigger: {
       trigger: ".about",
-      start: "top 100%",
+      start: "top top",
       scrub: true,
     },
   });
@@ -164,42 +164,48 @@ gsap.from(".button.of-h span", {
 
 //
 
-(() => {
-  const rows = document.querySelectorAll(".text-carousel");
+let currentScroll = 0;
+let isScrollingDown = true;
 
-  rows.forEach((row) => {
-    const isLeft = row.classList.contains("left");
+let tween1 = gsap
+  .to(".text-carousel.left", {
+    xPercent: -100,
+    repeat: -1,
+    duration: 20,
+    ease: "linear",
+  })
+  .totalProgress(0.5);
 
-    if (isLeft) {
-      gsap.to(row, {
-        x: "-100%",
-        duration: 30,
-        ease: "linear",
-        repeat: -1,
-      });
-    } else {
-      gsap.fromTo(
-        row,
-        {
-          x: "-100%",
-          duration: 30,
-          ease: "linear",
-          repeat: -1,
-        },
-        {
-          x: "0%",
-          duration: 30,
-          ease: "linear",
-          repeat: -1,
-        }
-      );
-    }
+let tween2 = gsap
+  .to(".text-carousel.right", {
+    xPercent: -100,
+    repeat: -1,
+    duration: 20,
+    ease: "linear",
+    timeScale: -1,
+  })
+  .totalProgress(0.5);
+
+window.addEventListener("scroll", function () {
+  if (this.window.pageYOffset > currentScroll) {
+    isScrollingDown = true;
+  } else {
+    isScrollingDown = false;
+  }
+
+  gsap.to(tween1, {
+    timeScale: isScrollingDown ? 1 : -1,
   });
-})();
 
+  gsap.to(tween2, {
+    timeScale: isScrollingDown ? -1 : 1,
+  });
+
+  currentScroll = this.window.pageYOffset;
+});
 //
 
-(function addHeroScrollHandlers() {
+function addHeroScrollHandlers() {
   function scrollToWork() {
     const workEl = document.querySelector(".work");
     if (!workEl) return;
@@ -236,7 +242,7 @@ gsap.from(".button.of-h span", {
   } else {
     attachListeners();
   }
-})();
+}
 
 const oddBoxes = document.querySelectorAll(
   "section.about .photos .photo.odd img"
@@ -261,6 +267,13 @@ oddBoxes.forEach((box) => {
       duration: 0.5,
       ease: "power2.out",
     });
+  });
+});
+
+document.getElementById("goToTop").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
   });
 });
 
@@ -319,20 +332,38 @@ menuLinks.forEach((link) => {
 
 let menuBtn = document.querySelector(".menu-btn");
 let menu = document.querySelector(".menu");
+let autoCloseTimeout = null;
 
 menuBtn.addEventListener("click", () => {
+  // If menu is already active → turn off
   if (menu.classList.contains("active")) {
-    menu.classList.remove("active");
-    menuBtn.innerHTML = `<rect width="16" height="2" fill="black" />
-              <rect y="10" width="16" height="2" fill="black" />`;
+    closeMenu();
   } else {
-    menu.classList.add("active");
-    menuBtn.innerHTML = `
-      <rect width="15.0807" height="1.88508" transform="matrix(0.707272 0.706941 -0.707272 0.706941 1.33301 0)" fill="black"/>
-  <rect width="15.0807" height="1.88508" transform="matrix(0.707272 -0.706941 0.707272 0.706941 0 10.668)" fill="black"/>
-    `;
+    openMenu();
+
+    // Auto close after 6 seconds
+    clearTimeout(autoCloseTimeout);
+    autoCloseTimeout = setTimeout(() => {
+      closeMenu();
+    }, 6000);
   }
 });
+
+function openMenu() {
+  menu.classList.add("active");
+  menuBtn.innerHTML = `
+    <rect width="15.0807" height="1.88508" transform="matrix(0.707272 0.706941 -0.707272 0.706941 1.33301 0)" fill="black"/>
+    <rect width="15.0807" height="1.88508" transform="matrix(0.707272 -0.706941 0.707272 0.706941 0 10.668)" fill="black"/>
+  `;
+}
+
+function closeMenu() {
+  menu.classList.remove("active");
+  menuBtn.innerHTML = `
+    <rect width="16" height="2" fill="black"></rect>
+    <rect y="10" width="16" height="2" fill="black"></rect>
+  `;
+}
 
 // document.addEventListener("contextmenu", function (e) {
 //   e.preventDefault();
@@ -352,6 +383,7 @@ copyBtn.addEventListener("click", () => {
 
 const container = document.querySelector(".about-images");
 const images = container.querySelectorAll("img");
+let sections = gsap.utils.toArray(".list-of-year");
 
 images.forEach((img) => {
   img.style.position = "absolute";
@@ -436,4 +468,19 @@ images.forEach((img) => {
 
   // TOUCH SUPPORT
   img.addEventListener("touchstart", startDrag, { passive: false });
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".list-of-year-wrapper", {
+  xPercent: -100.5,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".list-of-year-wrapper",
+    scoller: "body",
+    start: "bottom bottom",
+    end: "+=3000",
+    scrub: 2,
+    pin: true,
+  },
 });
