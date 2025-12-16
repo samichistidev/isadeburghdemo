@@ -474,13 +474,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".list-of-year-wrapper", {
   xPercent: -100.5,
+  duration: 5,
   ease: "none",
   scrollTrigger: {
     trigger: ".list-of-year-wrapper",
     scoller: "body",
     start: "bottom bottom",
-    end: "+=3000",
-    scrub: 2,
+    scrub: 1,
     pin: true,
   },
 });
