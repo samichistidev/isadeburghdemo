@@ -176,7 +176,6 @@ function createLogoTween() {
     scrollTrigger: {
       trigger: ".footer",
       start: "top 110%",
-      markers: true,
       scrub: 0.1,
     },
     ease: "power4.out",
@@ -190,7 +189,6 @@ function createLogoTween() {
     scrollTrigger: {
       trigger: ".footer",
       start: "top 110%",
-      markers: true,
       scrub: 0.1,
     },
     ease: "power4.out",
