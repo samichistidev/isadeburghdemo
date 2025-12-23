@@ -1083,12 +1083,42 @@ section.about .row .about-images img:nth-child(10) {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   gap: 17px;
   rotate: 15deg;
 }
 
 .footer .contact-information h2 #copyBtn:hover {
   animation: jump 1.5s ease-in-out;
+}
+
+.footer .contact-information h2 #copyBtn span.liquid-bg {
+  height: 200px;
+  transition: 1s ease-in-out;
+}
+
+.footer .contact-information h2 #copyBtn p {
+  transition: 1s ease-in-out;
+}
+
+.footer .contact-information h2 #copyBtn:hover span.liquid-bg {
+  transform: translateY(0px) rotate(360deg);
+}
+
+.footer .contact-information h2 #copyBtn:hover p {
+  color: white;
+}
+
+.footer .contact-information h2 #copyBtn svg *,
+.footer .contact-information h2 #copyBtn svg {
+  transition: 1s ease-in-out;
+}
+.footer .contact-information h2 #copyBtn:hover svg path:first-child {
+  stroke: white;
+}
+
+.footer .contact-information h2 #copyBtn:hover svg path:last-child {
+  fill: white;
 }
 
 .footer .contact-information h2 #copyBtn p {
@@ -2294,7 +2324,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work .work-left-content {
-    gap: 62px;
+    gap: 3.229vw;
   }
 
   section.work .products {
@@ -2394,6 +2424,7 @@ section.about .row .about-images img:nth-child(10) {
     line-height: 100%;
     margin-bottom: 31.319vw;
     max-width: 23.611vw;
+    margin-left: 7.281vw;
     letter-spacing: -0.48px;
   }
 
