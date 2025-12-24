@@ -2632,6 +2632,18 @@ section.about .row .about-images img:nth-child(10) {
     height: 2.083vw;
     width: auto;
   }
+
+  section.work .right .cartoon-box {
+    height: 18.958vw;
+    border: 0.104vw solid black;
+    padding: 0.833vw;
+  }
+
+  section.work .right .cartoon-box img {
+    width: 100%;
+    max-width: 11.875vw;
+    height: 11.875vw;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -2718,12 +2730,20 @@ section.about .row .about-images img:nth-child(10) {
     height: 269.064px;
   }
 
-  section.about .row .about-images img:nth-child(8) {
+  section.about .row .about-images .little-saints {
     top: 688px;
     left: 1100px;
-    height: 263px;
-    width: auto;
+    height: 201px;
+    width: 165px;
     z-index: 0;
+    padding: 6px;
+    border: 1px solid black;
+  }
+
+  section.about .row .about-images .little-saints img {
+    width: 100%;
+    max-width: 157.11px;
+    height: 157.11px;
   }
 
   section.about .row:has(.full) p {
@@ -3313,19 +3333,22 @@ section.about .row .about-images img:nth-child(10) {
     flex-direction: column;
     gap: 10px;
     margin-top: 329px;
-    max-height: 507px;
+    max-height: unset;
   }
 
-  .hero .right-content {
-    max-height: 377px;
-  }
-
-  .hero .right-content .hero-image-mobile {
+  .hero .right-content .hero-image-mobile:not(.hero-cta) {
     aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
   }
 
   .hero .right-content .hero-cta {
     display: none;
+  }
+
+  .hero .right-content {
+    max-height: unset;
   }
 
   .hero .p span {
@@ -3802,7 +3825,11 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .list-of-year .list img {
-    max-width: 185px;
+    max-width: 47.074vw;
+  }
+
+  .list-of-year h2 {
+    height: auto;
   }
 
   .footer {
@@ -3810,7 +3837,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .footer .contact-information {
-    margin-bottom: 560px;
+    margin-bottom: 69.484vh;
   }
 
   .footer .contact-information h2 > #copyBtn {
