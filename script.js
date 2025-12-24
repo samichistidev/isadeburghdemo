@@ -64,6 +64,60 @@ function createTransformAnimations() {
           end: "top 30%",
           scrub: true,
         },
+        onComplete: function () {
+          gsap.to(logoEl, {
+            maxWidth: smallerSize,
+            ease: "power4.out",
+            duration: 0.5,
+            scrollTrigger: {
+              trigger: ".about",
+              start: "top top",
+              end: "+=300",
+              scrub: 1,
+            },
+            onComplete: function () {
+              gsap.to(logoEl, {
+                maxWidth: biggerSize,
+                ease: "power4.out",
+                duration: 0.5,
+                scrollTrigger: {
+                  trigger: ".footer",
+                  start: "top bottom",
+                  scrub: true,
+                },
+              });
+
+              gsap.to(".navigation .of-h .dot", {
+                opacity: 0,
+                pointerEvents: "none",
+                filter: "blur(10px)",
+                duration: 1,
+                scrollTrigger: {
+                  trigger: ".footer",
+                  start: "top bottom",
+                  end: "+=300",
+                  scrub: true,
+                },
+                ease: "power4.out",
+              });
+
+              gsap.to(".navigation .of-h .about-text", {
+                display: "none",
+                opacity: 0,
+                pointerEvents: "none",
+                filter: "blur(10px)",
+                duration: 1,
+                scrollTrigger: {
+                  trigger: ".footer",
+                  start: "top bottom",
+                  end: "+=300",
+                  scrub: true,
+                },
+                ease: "power4.out",
+              });
+            },
+          });
+        },
       });
     },
   });
@@ -153,70 +207,17 @@ function createTransformAnimations() {
     ease: "power4.out",
   });
 
-  gsap.to(logoEl, {
-    maxWidth: smallerSize,
+  gsap.to(".list-of-year", {
+    xPercent: -100.1,
     ease: "power4.out",
     scrollTrigger: {
-      trigger: ".about",
-      start: "top top",
+      trigger: ".list-of-year-wrapper",
+      scroller: "body",
+      start: "bottom bottom",
       pin: true,
-      scrub: true,
-      pinSpacing: true,
-    },
-    onComplete: function () {
-      gsap.to(logoEl, {
-        maxWidth: biggerSize,
-        ease: "power4.out",
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: ".footer",
-          start: "top bottom",
-          scrub: true,
-        },
-      });
-
-      gsap.to(".navigation .of-h .dot", {
-        opacity: 0,
-        pointerEvents: "none",
-        filter: "blur(10px)",
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".footer",
-          start: "top bottom",
-          scrub: true,
-        },
-        ease: "power4.out",
-      });
-
-      gsap.to(".navigation .of-h .about-text", {
-        display: "none",
-        opacity: 0,
-        pointerEvents: "none",
-        filter: "blur(10px)",
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".footer",
-          start: "top bottom",
-          scrub: true,
-        },
-        ease: "power4.out",
-      });
+      scrub: 1,
     },
   });
-
-  // gsap.to(".list-of-year", {
-  //   xPercent: -100.1,
-  //   ease: "power4.out",
-  //   scrollTrigger: {
-  //     trigger: ".list-of-year-wrapper",
-  //     scroller: "body",
-  //     start: "bottom bottom",
-  //     pin: true,
-  //     scrub: true,
-  //     pinSpacing: true,
-  //     anticipatePin: 1,
-  //   },
-  // });
 }
 
 function initCarouselScrollAnimation() {
@@ -240,6 +241,7 @@ function initCarouselScrollAnimation() {
       ease: "linear",
     })
     .totalProgress(0.5);
+  tween2.timeScale(-1);
 
   window.addEventListener("wheel", function (e) {
     const newScroll = e.deltaY;
@@ -704,10 +706,30 @@ function initCopySystem(modal, target, btn) {
   });
 }
 
+function reloadOnResize(delay = 300) {
+  let resizeTimer;
+  let lastWidth = window.innerWidth;
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth !== lastWidth) {
+        location.reload();
+      }
+    }, delay);
+  });
+}
+
 function initGsapAndLenis() {
   gsap.registerPlugin(ScrollTrigger);
 
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    lerp: 0.09,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 0.9,
+    smoothWheel: true,
+    smoothTouch: true,
+  });
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
@@ -775,6 +797,7 @@ window.addEventListener("DOMContentLoaded", () => {
   initButtonAnimation();
   initCarouselScrollAnimation();
   initScrollToTop();
+  reloadOnResize();
 });
 
 window.addEventListener("load", createTransformAnimations);

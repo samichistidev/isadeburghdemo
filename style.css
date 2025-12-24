@@ -105,6 +105,7 @@ span.icon-font {
   padding: 16px;
   z-index: 99;
   max-height: 188px;
+  z-index: 999999999;
   background: rgba(255, 254, 252, 0);
   backdrop-filter: blur(10px);
 }
@@ -447,7 +448,6 @@ span.liquid-bg {
 }
 
 section.work h2 p span:nth-child(1) {
-  color: #000;
   font-family: FoundersGroteskMedium;
   font-size: 16px;
   font-style: normal;
@@ -875,7 +875,7 @@ section.about .row:has(.about-images) {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999999999999;
+  z-index: 99999999;
 }
 
 section.about .row .about-images {
@@ -1014,16 +1014,6 @@ section.about .row .about-images img:nth-child(10) {
   display: flex;
   margin-top: 160px;
   padding-bottom: 16px;
-  animation: scrollLeft linear 20s infinite;
-}
-
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
 }
 
 .list-of-year h2 {
@@ -1141,14 +1131,15 @@ section.about .row .about-images img:nth-child(10) {
   transform: translateY(0px) rotate(360deg);
 }
 
-.footer .contact-information h2 #copyBtn:hover p {
-  color: white;
-}
-
 .footer .contact-information h2 #copyBtn svg *,
 .footer .contact-information h2 #copyBtn svg {
   transition: 1s ease-in-out;
 }
+
+.footer .contact-information h2 #copyBtn:hover p {
+  color: white;
+}
+
 .footer .contact-information h2 #copyBtn:hover svg path:first-child {
   stroke: white;
 }
@@ -1171,6 +1162,34 @@ section.about .row .about-images img:nth-child(10) {
 .footer .contact-information h2 #copyBtn img {
   width: 24px;
   height: 24px;
+}
+
+@media (hover: hover) {
+  .footer .contact-information h2 #copyBtn:hover p {
+    color: white;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover svg path:first-child {
+    stroke: white;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover svg path:last-child {
+    fill: white;
+  }
+}
+
+@media (hover: none) {
+  .footer .contact-information h2 #copyBtn:active p {
+    color: white;
+  }
+
+  .footer .contact-information h2 #copyBtn:active svg path:first-child {
+    stroke: white;
+  }
+
+  .footer .contact-information h2 #copyBtn:active svg path:last-child {
+    fill: white;
+  }
 }
 
 @keyframes jump {
@@ -1348,7 +1367,6 @@ section.about .row .about-images img:nth-child(10) {
     left: 0;
     width: 100%;
     padding: 0.833vw;
-    z-index: 99;
     max-height: 9.792vw;
     background: rgba(255, 254, 252, 0);
     backdrop-filter: blur(0.521vw);
@@ -1642,7 +1660,6 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work h2 p span:nth-child(1) {
-    color: #000;
     font-family: FoundersGroteskMedium;
     font-size: 0.833vw;
     font-style: normal;
@@ -2076,12 +2093,25 @@ section.about .row .about-images img:nth-child(10) {
     rotate: -45deg;
   }
 
-  section.about .row .about-images img:nth-child(8) {
-    top: 49.479vw;
-    left: 75.208vw;
+  section.about .row .about-images .little-saints {
+    position: absolute;
+    top: 49.48vw; /* 950 / 1920 */
+    left: 75.21vw; /* 1444 / 1920 */
     z-index: 0;
-    width: 15.625vw;
-    height: 18.958vw;
+    width: 15.63vw; /* 300 / 1920 */
+    height: 18.96vw; /* 364 / 1920 */
+    border: 0.104vw solid black; /* 2 / 1920 */
+    padding: 0.42vw; /* 8 / 1920 */
+  }
+
+  section.about .row .about-images .little-saints img {
+    position: relative;
+    rotate: 0deg;
+    width: 100%;
+    top: 0;
+    left: 0;
+    max-width: 14.79vw; /* 284 / 1920 */
+    height: 14.79vw; /* 284 / 1920 */
   }
 
   section.about .row .about-images img:nth-child(9) {
@@ -2147,6 +2177,15 @@ section.about .row .about-images img:nth-child(10) {
   .list-of-year-wrapper {
     display: flex;
     flex-wrap: nowrap;
+  }
+
+  section.work .right .cartoon-box {
+    padding: 0.833vw;
+  }
+
+  section.work .right .cartoon-box img {
+    max-width: 11.875vw;
+    height: 11.875vw;
   }
 
   .list-of-year-wrapper .list {
@@ -3392,11 +3431,18 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .right .cartoon-box {
     width: 104.72px;
-    height: auto;
+    height: 146px;
     z-index: 1;
     top: unset;
+    padding: 6px;
     bottom: 32px;
+    border: 1px solid black;
     left: 18px;
+  }
+
+  section.work .right .cartoon-box img {
+    max-width: 92px;
+    height: 92px;
   }
 
   section.work .right .cartoonish-sea-picture {
@@ -3495,7 +3541,6 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   section.work h2 p span:nth-child(1) {
-    color: #000;
     font-family: FoundersGroteskMedium;
     font-size: 16px;
     font-style: normal;
@@ -3681,7 +3726,7 @@ section.about .row .about-images img:nth-child(10) {
   section.about .row:has(.full) p {
     color: #000;
     font-family: EditorialNewUltraLight;
-    max-width: 184px;
+    max-width: 185px;
     font-size: 16px;
     font-style: normal;
     font-weight: 200;
@@ -3706,10 +3751,11 @@ section.about .row .about-images img:nth-child(10) {
 
   section.about .row:has(.about-images) .work-text-1 {
     position: absolute;
-    max-width: 117px;
-    rotate: 20deg;
+    max-width: 80px;
     top: 99px;
-    left: 276px;
+    rotate: -20deg;
+    top: 110px;
+    left: 290px;
   }
 
   section.about .row:has(.about-images) .work-text-2 {
