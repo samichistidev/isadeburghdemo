@@ -159,9 +159,9 @@ function createTransformAnimations() {
     scrollTrigger: {
       trigger: ".about",
       start: "top top",
-      end: "+=100%",
-      scrub: true,
       pin: true,
+      scrub: true,
+      pinSpacing: true,
     },
     onComplete: function () {
       gsap.to(logoEl, {
@@ -211,8 +211,10 @@ function createTransformAnimations() {
   //     trigger: ".list-of-year-wrapper",
   //     scroller: "body",
   //     start: "bottom bottom",
-  //     scrub: 1,
   //     pin: true,
+  //     scrub: true,
+  //     pinSpacing: true,
+  //     anticipatePin: 1,
   //   },
   // });
 }
@@ -444,7 +446,8 @@ function initAllLoadingAnimations() {
 
 function initAboutSectionDrag() {
   const container = document.querySelector(".about-images");
-  const images = container.querySelectorAll("img");
+  const images = document.querySelectorAll(".about-images > img");
+  const littleSaints = document.querySelector(".about-images .little-saints");
 
   images.forEach((img) => {
     img.style.position = "absolute";
@@ -529,6 +532,88 @@ function initAboutSectionDrag() {
 
     img.addEventListener("touchstart", startDrag, { passive: false });
   });
+
+  littleSaints.style.position = "absolute";
+  littleSaints.style.cursor = "grab";
+  littleSaints.style.userSelect = "none";
+
+  let newX = 0,
+    newY = 0,
+    startX = 0,
+    startY = 0;
+
+  function getClientXY(e) {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function startDrag(e) {
+    e.preventDefault();
+
+    littleSaints.classList.remove("floating"); // stop animation while dragging
+
+    const pos = getClientXY(e);
+    startX = pos.x;
+    startY = pos.y;
+
+    littleSaints.style.cursor = "grabbing";
+
+    document.addEventListener("mousemove", moveDrag);
+    document.addEventListener("mouseup", stopDrag);
+
+    document.addEventListener("touchmove", moveDrag, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  }
+
+  function moveDrag(e) {
+    e.preventDefault();
+
+    const pos = getClientXY(e);
+
+    newX = startX - pos.x;
+    newY = startY - pos.y;
+
+    startX = pos.x;
+    startY = pos.y;
+
+    let newLeft = littleSaints.offsetLeft - newX;
+    let newTop = littleSaints.offsetTop - newY;
+
+    const rect = container.getBoundingClientRect();
+
+    // FIX: use offsetWidth/offsetHeight so transform does NOT affect size
+    const imgWidth = littleSaints.offsetWidth;
+    const imgHeight = littleSaints.offsetHeight;
+
+    const minLeft = 0;
+    const minTop = 0;
+    const maxLeft = rect.width - imgWidth;
+    const maxTop = rect.height - imgHeight;
+
+    newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
+    newTop = Math.max(minTop, Math.min(newTop, maxTop));
+
+    littleSaints.style.left = newLeft + "px";
+    littleSaints.style.top = newTop + "px";
+  }
+
+  function stopDrag() {
+    littleSaints.style.cursor = "grab";
+
+    document.removeEventListener("mousemove", moveDrag);
+    document.removeEventListener("mouseup", stopDrag);
+
+    document.removeEventListener("touchmove", moveDrag);
+    document.removeEventListener("touchend", stopDrag);
+
+    littleSaints.classList.add("floating");
+  }
+
+  littleSaints.addEventListener("mousedown", startDrag);
+
+  littleSaints.addEventListener("touchstart", startDrag, { passive: false });
 }
 
 function initButtonAnimation() {

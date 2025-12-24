@@ -573,7 +573,19 @@ section.work .right .cartoon-box {
   z-index: 1;
   width: 260px;
   height: 364px;
+  border: 2px solid black;
+  padding: 16px;
   rotate: -15deg;
+  padding: 16px;
+  position: absolute;
+  background-color: white;
+}
+
+section.work .right .cartoon-box img {
+  position: relative;
+  max-width: 228px;
+  height: 228px;
+  width: 100%;
 }
 
 section.work .right .cartoonish-sea-picture {
@@ -863,6 +875,7 @@ section.about .row:has(.about-images) {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999999999999;
 }
 
 section.about .row .about-images {
@@ -942,12 +955,25 @@ section.about .row .about-images img:nth-child(7) {
   rotate: -45deg;
 }
 
-section.about .row .about-images img:nth-child(8) {
+section.about .row .about-images .little-saints {
   top: 950px;
   left: 1444px;
   z-index: 0;
   width: 300px;
   height: 364px;
+  position: absolute;
+  border: 2px solid black;
+  padding: 8px;
+}
+
+section.about .row .about-images .little-saints img {
+  position: relative;
+  rotate: 0deg;
+  width: 100%;
+  top: 0;
+  left: 0;
+  max-width: 284px;
+  height: 284px;
 }
 
 section.about .row .about-images img:nth-child(9) {
@@ -988,6 +1014,16 @@ section.about .row .about-images img:nth-child(10) {
   display: flex;
   margin-top: 160px;
   padding-bottom: 16px;
+  animation: scrollLeft linear 20s infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .list-of-year h2 {
@@ -1495,7 +1531,7 @@ section.about .row .about-images img:nth-child(10) {
     font-size: 3.333vw;
     font-style: normal;
     font-weight: 200;
-    line-height: 100%;
+    line-height: 110%;
     letter-spacing: -0.1vw;
     text-transform: capitalize;
     flex-shrink: 0;
@@ -1504,7 +1540,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .hero .p .of-h {
-    height: 3.542vw;
+    height: 3.5vw;
   }
 
   .hero .p .of-h:last-child {
@@ -1791,6 +1827,7 @@ section.about .row .about-images img:nth-child(10) {
     align-items: center;
     max-width: 17.251vw;
     width: 100%;
+    height: 22.917vw;
   }
 
   section.work .products .product:nth-child(2) h2 {
@@ -1827,6 +1864,9 @@ section.about .row .about-images img:nth-child(10) {
   section.work .products .product:nth-child(2) img {
     filter: blur(0.625vw);
     rotate: -15deg;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   section.work .products .product:nth-child(1) img {
@@ -2076,6 +2116,7 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 500;
     line-height: 80%;
     letter-spacing: -0.067vw;
+    height: 2.292vw;
     text-transform: uppercase;
   }
 
@@ -2151,6 +2192,76 @@ section.about .row .about-images img:nth-child(10) {
     font-weight: 300;
     line-height: 100%;
     letter-spacing: -0.1vw;
+  }
+
+  .footer .contact-information h2 > #copyBtn {
+    position: absolute;
+    top: -2.083vw; /* -40px */
+    right: -4.688vw; /* -90px */
+    display: flex;
+    padding: 0 0.833vw; /* 16px */
+    border: 0.104vw solid black; /* 2px */
+    border-radius: 50%;
+    height: 2.083vw; /* 40px */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    gap: 0.885vw; /* 17px */
+    rotate: 15deg;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover {
+    animation: jump 1.5s ease-in-out;
+  }
+
+  .footer .contact-information h2 #copyBtn span.liquid-bg {
+    height: 10.417vw; /* 200px */
+    transition: 1s ease-in-out;
+  }
+
+  .footer .contact-information h2 #copyBtn p {
+    transition: 1s ease-in-out;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover span.liquid-bg {
+    transform: translateY(0) rotate(360deg);
+  }
+
+  .footer .contact-information h2 #copyBtn:hover p {
+    color: white;
+  }
+
+  .footer .contact-information h2 #copyBtn svg,
+  .footer .contact-information h2 #copyBtn svg * {
+    transition: 1s ease-in-out;
+  }
+
+  .footer .contact-information h2 #copyBtn svg {
+    width: 1.25vw;
+    height: 1.25vw;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover svg path:first-child {
+    stroke: white;
+  }
+
+  .footer .contact-information h2 #copyBtn:hover svg path:last-child {
+    fill: white;
+  }
+
+  .footer .contact-information h2 #copyBtn p {
+    color: #000;
+    font-size: 0.833vw; /* 16px */
+    font-family: FoundersGroteskMedium;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.017vw; /* -0.32px */
+    text-transform: uppercase;
+  }
+
+  .footer .contact-information h2 #copyBtn img {
+    width: 1.25vw; /* 24px */
+    height: 1.25vw;
   }
 
   .footer .contact-information h2 > img {
