@@ -8,6 +8,10 @@ body,
   user-select: none;
 }
 
+.split-anim {
+  overflow: hidden;
+}
+
 .mh-effect {
   cursor: url("./images/cursor.png"), pointer !important;
 }
@@ -196,6 +200,7 @@ span.icon-font {
   font-style: normal;
   font-weight: 500;
   line-height: 80%;
+  cursor: pointer;
   letter-spacing: -0.48px;
   text-transform: uppercase;
   transform: translateX(200%);
@@ -492,10 +497,12 @@ section.work .left {
 section.work .work-left-content {
   display: flex;
   gap: 94px;
+  overflow: hidden;
 }
 
-section.work .work-left-content p:first-child {
+section.work .work-left-content p:first-child:not(.end-last) {
   width: 64px;
+  height: fit-content;
 }
 
 section.work .end-content {
@@ -511,6 +518,11 @@ section.work .work-left-content p {
   line-height: 100%;
   letter-spacing: -0.32px;
   text-transform: uppercase;
+  overflow: hidden;
+}
+
+section.work .work-left-content p span {
+  overflow: hidden;
 }
 
 section.work .left .project-heading {
@@ -1452,6 +1464,7 @@ section.about .row .about-images img:nth-child(10) {
     font-style: normal;
     font-weight: 500;
     line-height: 80%;
+    cursor: pointer;
     letter-spacing: -0.025vw;
     text-transform: uppercase;
   }
@@ -1583,7 +1596,7 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .hero .p .of-h {
-    height: 3.5vw;
+    height: 3.6vw;
   }
 
   .hero .p .of-h:last-child {
@@ -2220,6 +2233,8 @@ section.about .row .about-images img:nth-child(10) {
   .list-of-year-wrapper .list img {
     width: 15.677vw;
     height: 15.677vw;
+    max-width: 15.677vw;
+    min-width: 15.677vw;
   }
 
   .footer {

@@ -136,10 +136,10 @@
               <div class="line"></div>
             </div>
             <ul class="menu">
-              <li data-target="home">HOME</li>
-              <li data-target="about">ABOUT</li>
-              <li data-target="work">WORK</li>
-              <li data-target="contact">CONTACT</li>
+              <li data-target="home" class="mh-effect">HOME</li>
+              <li data-target="about" class="mh-effect">ABOUT</li>
+              <li data-target="work" class="mh-effect">WORK</li>
+              <li data-target="contact" class="mh-effect">CONTACT</li>
             </ul>
           </div>
         </div>
@@ -475,7 +475,7 @@
     <section class="work" id="work">
       <div class="left">
         <h2>
-          MAGIC MIND
+          <div class="split-anim">MAGIC MIND</div>
           <p class="previous-btn mh-effect">
             <span class="mh-effect">PREVIOUS PROJECT</span>
             <span class="icon-font mh-effect">→</span>
@@ -492,14 +492,14 @@
         </div>
         <div class="work-left-content disciplines end-content">
           <p>Disciplines</p>
-          <p>
-            art direction<br />
-            paid + organic digital creative strategy<br />
-            FIELD MARKETING DISPLAY DESIGN<br />
-            retail display design<br />
-            photography direction & styling<br />
-            digital communication strategy (email+ social)
-          </p>
+          <div>
+            <p class="end-last">art direction</p>
+            <p>paid + organic digital creative strategy</p>
+            <p>FIELD MARKETING DISPLAY DESIGN</p>
+            <p>retail display design</p>
+            <p>photography direction & styling</p>
+            <p>digital communication strategy (email+ social)</p>
+          </div>
         </div>
         <p class="project-heading">Project</p>
         <p class="project-text">
@@ -966,9 +966,10 @@
         />
       </div>
     </section>
-    <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
+    <script src="./libs/lenis_smoothscroll.js"></script>
     <script src="./libs/gsap.js"></script>
     <script src="./libs/gsap_scrolltrigger.js"></script>
+    <script src="/libs/gsap_splittext.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

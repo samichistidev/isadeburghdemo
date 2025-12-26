@@ -6,6 +6,33 @@ let menuBtn = document.querySelector(".menu-btn");
 let menu = document.querySelector(".menu");
 let logoTween = null;
 
+const workHeadingSplit = new SplitText(".work .left h2 div", { type: "lines" });
+const workProjectDetails = new SplitText(".work .left .work-left-content p", {
+  type: "lines",
+});
+
+gsap.from(workHeadingSplit.lines, {
+  yPercent: 300,
+  duration: 1,
+  ease: "power4.out",
+  stagger: 0.1,
+  scrollTrigger: {
+    trigger: ".work",
+    start: "top 50%",
+  },
+});
+
+gsap.from(workProjectDetails.lines, {
+  yPercent: 300,
+  duration: 1,
+  ease: "power4.out",
+  stagger: 0.1,
+  scrollTrigger: {
+    trigger: ".work",
+    start: "top 50%",
+  },
+});
+
 function createTransformAnimations() {
   const logoEl = document.querySelector(".navigation .logo");
   if (!logoEl) return;
@@ -727,23 +754,13 @@ function initGsapAndLenis() {
     lerp: 0.09,
     wheelMultiplier: 0.9,
     touchMultiplier: 0.9,
-    smoothWheel: true,
-    smoothTouch: true,
   });
-  lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
 
   gsap.ticker.lagSmoothing(0);
-
-  function raf(time) {
-    lenis.raf(time);
-    ScrollTrigger.update();
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
 }
 
 function openMenu() {
