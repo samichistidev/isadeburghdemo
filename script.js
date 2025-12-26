@@ -803,6 +803,14 @@ function initHandleMenu() {
   });
 }
 
+function scrollToTopOnRefresh() {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  window.scrollTo(0, 0);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   initGsapAndLenis();
   initAllLoadingAnimations();
@@ -815,6 +823,7 @@ window.addEventListener("DOMContentLoaded", () => {
   initCarouselScrollAnimation();
   initScrollToTop();
   reloadOnResize();
+  scrollToTopOnRefresh();
 });
 
 window.addEventListener("load", createTransformAnimations);
