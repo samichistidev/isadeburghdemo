@@ -40,7 +40,6 @@ function createTransformAnimations() {
   }
 
   updateSizes();
-  console.log(biggerSize, smallerSize);
 
   window.addEventListener("resize", updateSizes);
 
@@ -56,19 +55,18 @@ function createTransformAnimations() {
     onComplete: function () {
       gsap.to(logoEl, {
         maxWidth: biggerSize,
-        ease: "power4.out",
+        ease: "power2.out",
         duration: 0.5,
         scrollTrigger: {
           trigger: ".about",
-          start: "top bottom",
-          end: "top 30%",
+          start: "top 90%",
+          end: "+=300",
           scrub: true,
         },
         onComplete: function () {
           gsap.to(logoEl, {
             maxWidth: smallerSize,
             ease: "power4.out",
-            duration: 0.5,
             scrollTrigger: {
               trigger: ".about",
               start: "top top",
@@ -79,7 +77,6 @@ function createTransformAnimations() {
               gsap.to(logoEl, {
                 maxWidth: biggerSize,
                 ease: "power4.out",
-                duration: 0.5,
                 scrollTrigger: {
                   trigger: ".footer",
                   start: "top bottom",
@@ -139,6 +136,7 @@ function createTransformAnimations() {
   gsap.to(".navigation .of-h .work-text", {
     opacity: 1,
     display: "block",
+    transform: "translateY(0%)",
     pointerEvents: "auto",
     filter: "blur(0px)",
     ease: "power4.out",
@@ -166,6 +164,7 @@ function createTransformAnimations() {
         opacity: 0,
         pointerEvents: "none",
         filter: "blur(10px)",
+        transform: "translateY(-100%)",
         display: "none",
         ease: "power4.out",
         scrollTrigger: {
@@ -198,10 +197,11 @@ function createTransformAnimations() {
     opacity: 1,
     pointerEvents: "auto",
     filter: "blur(0px)",
+    transform: "translateY(0%)",
     duration: 1,
     scrollTrigger: {
       trigger: ".about",
-      start: "top top",
+      start: "top 10%",
       scrub: true,
     },
     ease: "power4.out",
@@ -294,16 +294,22 @@ function addHeroScrollHandlers() {
   }
 
   function attachListeners() {
-    const triggers = document.querySelectorAll(
-      ".hero-cta, .hero .right-content .icon-text"
+    const heroCta = document.querySelector(".hero-cta");
+    heroCta.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("ki>");
+      scrollToWork();
+    });
+
+    const heroCtaArrows = document.querySelectorAll(
+      ".right-content .arrows .icon-font"
     );
-    if (!triggers || triggers.length === 0) return;
-    triggers.forEach((el) =>
+    heroCtaArrows.forEach((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
         scrollToWork();
-      })
-    );
+      });
+    });
   }
 
   if (document.readyState === "loading") {
