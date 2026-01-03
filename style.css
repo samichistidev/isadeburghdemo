@@ -225,14 +225,14 @@ span.icon-font {
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
-  filter: blur(10px);
+  filter: blur(12px);
 }
 
 .navigation > .of-h .work-text {
   opacity: 0;
   pointer-events: none;
   display: none;
-  filter: blur(10px);
+  filter: blur(12px);
   transform: translateY(150%);
   height: 40px;
 }

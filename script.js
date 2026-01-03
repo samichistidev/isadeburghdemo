@@ -646,12 +646,6 @@ function initButtonAnimation() {
         x: -width,
         duration: 3,
         ease: "linear",
-        modifiers: {
-          x: (x) => {
-            const val = parseFloat(x);
-            return (val <= -width ? 0 : val) + "px";
-          },
-        },
         repeat: -1,
       });
     };
@@ -683,12 +677,6 @@ function initButtonAnimation() {
         x: -width + 32,
         duration: 3,
         ease: "linear",
-        modifiers: {
-          x: (x) => {
-            const val = parseFloat(x);
-            return (val <= -width ? 0 : val) + "px";
-          },
-        },
         repeat: -1,
       });
     });
@@ -907,39 +895,65 @@ function workSectionBottleAnimation() {
 
       currentFirstProduct.classList.remove("first");
       currentFirstProduct.classList.add("third");
-      currentSecondProduct.classList.remove("second");
-      currentSecondProduct.classList.add("first");
-      currentThirdProduct.classList.remove("third");
-      currentThirdProduct.classList.add("second");
-
-      // gsap.to(currentFirstProduct, {
-      //   top: 800,
-      //   left: 800,
-      //   opacity: 0,
-      //   duration: 0,
-      // });
-
-      // gsap.to(currentFirstProduct, {
-      //   delay: 1,
-      //   top: 0,
-      //   left: 0,
-      //   opacity: 1,
-      //   duration: 1,
-      //   ease: "power4.out",
-      // });
-
-      scrollToSection("#work", -240);
+      gsap.to(currentFirstProduct, {
+        opacity: 0,
+        pointerEvents: "none",
+      });
 
       let leftSideContent = document.querySelector("#work .left");
       let rightSideContents = document.querySelectorAll(
         "#work .right:not(.mobile) > *"
       );
 
-      // ✅ reset for every click
       hasRun = false;
 
+      let currentNextButton = currentSecondProduct.querySelector("p");
+      let currentHeading = currentSecondProduct.querySelector("h2");
+      let currentImage = currentSecondProduct.querySelector("img");
+
+      gsap.to([currentNextButton, currentHeading], {
+        opacity: 0,
+        pointerEvents: "none",
+        display: "none",
+        duration: 0.2,
+      });
+
+      gsap.to(currentImage, {
+        delay: 0.2,
+        rotate: 15,
+        duration: 0.2,
+      });
+
+      setTimeout(() => {
+        scrollToSection("#work", -100);
+
+        gsap.to(currentSecondProduct, {
+          top: 0,
+          left: 0,
+          right: "unset",
+          bottom: "unset",
+          rotate: 360,
+          duration: 1,
+        });
+
+        gsap.to(currentImage, {
+          filter: "blur(0px)",
+          duration: 1,
+          onComplete: () => {
+            currentSecondProduct.classList.remove("second");
+            currentSecondProduct.classList.add("first");
+            currentThirdProduct.classList.remove("third");
+            currentThirdProduct.classList.add("second");
+            gsap.to(currentFirstProduct, {
+              opacity: 1,
+              pointerEvents: "auto",
+            });
+          },
+        });
+      }, 400);
+
       let tween = gsap.from(leftSideContent, {
-        delay: 0.8,
+        delay: 1,
         duration: 1,
         left: "-150%",
         ease: "power4.out",
@@ -975,11 +989,10 @@ function workSectionBottleAnimation() {
       gsap.from(rightSideContents, {
         rotate: gsap.utils.random(-15, 15),
         scale: 0,
-        delay: 0.8,
+        delay: 1,
         filter: "blur(16px)",
         duration: 1,
         power: "power4.out",
-        onUpdate: () => {},
       });
     });
   });
