@@ -56,20 +56,27 @@ function createTransformAnimations() {
       gsap.to(logoEl, {
         maxWidth: biggerSize,
         ease: "power2.out",
-        duration: 0.5,
+        duration: 0.1,
         scrollTrigger: {
           trigger: ".about",
-          start: "top 90%",
-          end: "+=300",
+          start: "top 80%",
+          end: "+=400",
           scrub: true,
+          onUpdate(self) {
+            const progress = self.progress; // 0 → 1
+            const width = biggerSize - progress * (biggerSize - smallerSize);
+
+            gsap.set(".logo", { maxWidth: width });
+          },
         },
+
         onComplete: function () {
           gsap.to(logoEl, {
             maxWidth: smallerSize,
             ease: "power4.out",
             scrollTrigger: {
               trigger: ".about",
-              start: "top top",
+              start: "top -10%",
               end: "+=300",
               scrub: 1,
             },
@@ -297,7 +304,6 @@ function addHeroScrollHandlers() {
     const heroCta = document.querySelector(".hero-cta");
     heroCta.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log("ki>");
       scrollToWork();
     });
 
@@ -636,7 +642,7 @@ function initButtonAnimation() {
     const startInfinite = () => {
       if (infiniteTween) gsap.killTweensOf(groups);
 
-      infiniteTween = gsap.to(groups, {
+      infiniteTween = gsap.from(groups, {
         x: -width,
         duration: 3,
         ease: "linear",
@@ -670,13 +676,10 @@ function initButtonAnimation() {
         overwrite: "auto",
       });
 
-      // kill any temporary tween
       gsap.killTweensOf(groups);
-      // reset position to 0 to avoid slow start
       gsap.set(groups, { x: 0 });
 
-      // start infinite animation
-      infiniteTween = gsap.to(groups, {
+      infiniteTween = gsap.from(groups, {
         x: -width + 32,
         duration: 3,
         ease: "linear",
@@ -689,6 +692,7 @@ function initButtonAnimation() {
         repeat: -1,
       });
     });
+
     button.addEventListener("click", () => {
       // stop animation temporarily and move slightly left
       gsap.killTweensOf(groups);
@@ -789,6 +793,199 @@ function scrollToTopOnRefresh() {
 
   window.scrollTo(0, 0);
 }
+
+function scrollToSection(target, offset = 0, duration = 800) {
+  const element =
+    typeof target === "string" ? document.querySelector(target) : target;
+
+  if (!element) return;
+
+  const startY = window.pageYOffset;
+  const targetY =
+    element.getBoundingClientRect().top + window.pageYOffset - offset;
+
+  const startTime = performance.now();
+
+  function animateScroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // easeInOut
+    const ease =
+      progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+    window.scrollTo(0, startY + (targetY - startY) * ease);
+
+    if (progress < 1) requestAnimationFrame(animateScroll);
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+function workSectionBottleAnimation() {
+  let nextProjectBtns = document.querySelectorAll(".next-project");
+  let workContents = {
+    magic_mind: {
+      headline: "MAGIC MIND",
+      year: "2020-PRESENT",
+      client: "MAGIC MIND",
+      disciplines: [
+        "ART DIRECTION",
+        "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+        "FIELD MARKETING DISPLAY DESIGN",
+        "RETAIL DISPLAY DESIGN",
+        "PHOTOGRAPHY DIRECTION & STYLING",
+        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      ],
+      project_text:
+        "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+      bottle_image: "magic_mind_bottle.png",
+    },
+    little_saints: {
+      headline: "LITTLE SAINTS",
+      year: "2022-2023 ",
+      client: "LITTLE SAINTS",
+      disciplines: [
+        "PHOTO DIRECTION & STYLING",
+        "ART DIRECTION",
+        "ORGAMIC DIGITAL CREATIVE STRATEGY",
+        "GRAPHIC DESIGN",
+        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      ],
+      project_text:
+        "Little Saints combines fast-acting CBD, aromatic terpenes, and adaptogenic reishi to support relaxation, clarity, and emotional balance, naturally. The Paloma blend leans into the crisp zip of grapefruit and lime, softened with subtle herbal notes that linger just long enough to remind you to breathe deeper. It’s sugar-free, alcohol-free, and crafted for those who want the ritual of a drink without the crash that follows. Sip it after a long day, with friends at a gathering, or during your creative hours when you want your mind to flow without fog. Every can is a small ceremony—light, mindful, and modern—designed to help you tap into the best version of yourself.",
+      bottle_image: "little_saints_bottle.png",
+    },
+    sidedish: {
+      headline: "SIDEDISH",
+      year: "2020-PRESENT",
+      client: "SIDEDISH",
+      disciplines: [
+        "ART DIRECTION",
+        "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+        "FIELD MARKETING DISPLAY DESIGN",
+        "RETAIL DISPLAY DESIGN",
+        "PHOTOGRAPHY DIRECTION & STYLING",
+        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+      ],
+      project_text:
+        "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+      bottle_image: "sidedish.png",
+    },
+  };
+  let projectMainHeading = document.querySelector("#work h2");
+  let year = document.querySelector("#work .year p:last-child");
+  let client = document.querySelector("#work .client p:last-child");
+  let disciplines = document.querySelector("#work .disciplines div");
+  let projectText = document.querySelector("#work .project-text");
+
+  let currentBottle = 0;
+  let currentContent;
+  let hasRun = false;
+
+  nextProjectBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let currentFirstProduct = document.querySelector(".first");
+      let currentSecondProduct = document.querySelector(".second");
+      let currentThirdProduct = document.querySelector(".third");
+
+      if (currentBottle >= 2) {
+        currentBottle = 0;
+      } else {
+        currentBottle += 1;
+      }
+
+      if (currentBottle == 1) {
+        currentContent = workContents.little_saints;
+      } else if (currentBottle == 2) {
+        currentContent = workContents.sidedish;
+      } else {
+        currentContent = workContents.magic_mind;
+      }
+
+      currentFirstProduct.classList.remove("first");
+      currentFirstProduct.classList.add("third");
+      currentSecondProduct.classList.remove("second");
+      currentSecondProduct.classList.add("first");
+      currentThirdProduct.classList.remove("third");
+      currentThirdProduct.classList.add("second");
+
+      // gsap.to(currentFirstProduct, {
+      //   top: 800,
+      //   left: 800,
+      //   opacity: 0,
+      //   duration: 0,
+      // });
+
+      // gsap.to(currentFirstProduct, {
+      //   delay: 1,
+      //   top: 0,
+      //   left: 0,
+      //   opacity: 1,
+      //   duration: 1,
+      //   ease: "power4.out",
+      // });
+
+      scrollToSection("#work", -240);
+
+      let leftSideContent = document.querySelector("#work .left");
+      let rightSideContents = document.querySelectorAll(
+        "#work .right:not(.mobile) > *"
+      );
+
+      // ✅ reset for every click
+      hasRun = false;
+
+      let tween = gsap.from(leftSideContent, {
+        delay: 0.8,
+        duration: 1,
+        left: "-150%",
+        ease: "power4.out",
+        onUpdate: () => {
+          if (!hasRun && tween.progress() >= 0.1) {
+            hasRun = true;
+
+            projectMainHeading.innerHTML = `
+        ${currentContent.headline}
+        <p class="previous-btn mh-effect">
+          <span class="mh-effect">PREVIOUS PROJECT</span>
+          <span class="icon-font mh-effect">→</span>
+          <span class="liquid-bg"></span>
+        </p>
+      `;
+
+            year.innerHTML = currentContent.year;
+            client.innerHTML = currentContent.client;
+
+            disciplines.innerHTML = "";
+            currentContent.disciplines.forEach((text, i) => {
+              let textEl = document.createElement("p");
+              textEl.innerHTML = text;
+              if (i === 0) textEl.classList.add("end-last");
+              disciplines.appendChild(textEl);
+            });
+
+            projectText.innerHTML = currentContent.project_text;
+          }
+        },
+      });
+
+      gsap.from(rightSideContents, {
+        rotate: gsap.utils.random(-15, 15),
+        scale: 0,
+        delay: 0.8,
+        filter: "blur(16px)",
+        duration: 1,
+        power: "power4.out",
+        onUpdate: () => {},
+      });
+    });
+  });
+}
+
+workSectionBottleAnimation();
 
 window.addEventListener("DOMContentLoaded", () => {
   initGsapAndLenis();

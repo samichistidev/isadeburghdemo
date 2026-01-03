@@ -416,7 +416,7 @@ span.icon-font {
 }
 
 section.work {
-  padding-top: 187px;
+  padding-top: 320px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -487,6 +487,7 @@ section.work h2 p span.icon-font {
 }
 
 section.work .left {
+  position: relative;
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -650,7 +651,7 @@ section.work .products {
   right: 16px;
 }
 
-section.work .products .product:nth-child(1) {
+section.work .products .product.first {
   position: absolute;
   top: 0;
   left: 0;
@@ -658,14 +659,14 @@ section.work .products .product:nth-child(1) {
   height: 440px;
 }
 
-section.work .products .product:nth-child(1) h2 {
+section.work .products .product.first h2 {
   opacity: 0;
   pointer-events: none;
   display: none;
   overflow: hidden;
 }
 
-section.work .products .product:nth-child(1) p {
+section.work .products .product.first p {
   opacity: 0;
   pointer-events: none;
   display: none;
@@ -677,7 +678,7 @@ section.work h2 p:hover span {
   color: white;
 }
 
-section.work .products .product:nth-child(2) {
+section.work .products .product.second {
   position: absolute;
   bottom: 198px;
   right: 600px;
@@ -688,7 +689,7 @@ section.work .products .product:nth-child(2) {
   width: 100%;
 }
 
-section.work .products .product:nth-child(2) h2 {
+section.work .products .product.second h2 {
   color: #000;
   font-family: FoundersGroteskCondensedMedium;
   font-size: 64px;
@@ -703,7 +704,7 @@ section.work .products .product:nth-child(2) h2 {
   margin-bottom: 0;
 }
 
-section.work .products .product:nth-child(3) {
+section.work .products .product.third {
   position: absolute;
   bottom: 0;
   right: 160px;
@@ -714,7 +715,7 @@ section.work .products .product:nth-child(3) {
   width: 100%;
 }
 
-section.work .products .product:nth-child(2) p {
+section.work .products .product.second p {
   display: flex;
   gap: 16px;
   position: absolute;
@@ -735,11 +736,11 @@ section.work .products .product:nth-child(2) p {
   cursor: pointer;
 }
 
-section.work .products .product:nth-child(2) p span {
+section.work .products .product.second p span {
   transition: 2s linear;
 }
 
-section.work .products .product:nth-child(2) p span:nth-child(1) {
+section.work .products .product.second p span:nth-child(1) {
   color: #000;
   font-family: FoundersGroteskMedium;
   font-size: 16px;
@@ -751,37 +752,37 @@ section.work .products .product:nth-child(2) p span:nth-child(1) {
   height: 16px;
 }
 
-section.work .products .product:nth-child(2) p:hover span.liquid-bg {
+section.work .products .product.second p:hover span.liquid-bg {
   transform: translateY(0px) rotate(360deg);
 }
 
-section.work .products .product:nth-child(2) p:hover span {
+section.work .products .product.second p:hover span {
   color: white;
 }
 
-section.work .products .product:nth-child(2) p span.icon-font {
+section.work .products .product.second p span.icon-font {
   line-height: 90%;
   height: 16px;
 }
 
-section.work .products .product:nth-child(2) img {
+section.work .products .product.second img {
   filter: blur(12px);
   rotate: -15deg;
 }
 
-section.work .products .product:nth-child(1) img {
+section.work .products .product.first img {
   rotate: 15deg;
   position: relative;
   left: 50px;
 }
 
-section.work .products .product:nth-child(3) img {
+section.work .products .product.third img {
   filter: blur(12px);
   rotate: 15deg;
   height: 220px;
 }
 
-section.work .products .product:nth-child(3) h2 {
+section.work .products .product.third h2 {
   font-family: FoundersGroteskCondensedMedium;
   font-size: 32px;
   font-style: normal;
@@ -795,7 +796,7 @@ section.work .products .product:nth-child(3) h2 {
   text-transform: uppercase;
 }
 
-section.work .products .product:nth-child(3) p {
+section.work .products .product.third p {
   opacity: 0;
   pointer-events: none;
   cursor: pointer;
@@ -826,7 +827,7 @@ section.about .row:has(.about-images) .work-text-4 {
 }
 
 section.about .photos {
-  padding-top: 183px;
+  padding-top: 320px;
   display: flex;
   gap: 16px;
 }
@@ -1895,7 +1896,7 @@ section.about .row .about-images img:nth-child(10) {
     right: 0.833vw;
   }
 
-  section.work .products .product:nth-child(1) {
+  section.work .products .product.first {
     position: absolute;
     top: 0;
     left: 0;
@@ -1903,7 +1904,7 @@ section.about .row .about-images img:nth-child(10) {
     height: 22.917vw;
   }
 
-  section.work .products .product:nth-child(2) {
+  section.work .products .product.second {
     position: absolute;
     bottom: 10.313vw;
     right: 31.25vw;
@@ -1915,13 +1916,13 @@ section.about .row .about-images img:nth-child(10) {
     height: 22.917vw;
   }
 
-  section.work .products .product:nth-child(2) h2 {
+  section.work .products .product.second h2 {
     font-size: 3.333vw;
     letter-spacing: -0.133vw;
     bottom: 7.292vw;
   }
 
-  section.work .products .product:nth-child(3) {
+  section.work .products .product.third {
     position: absolute;
     bottom: 0;
     right: 8.333vw;
@@ -1932,7 +1933,7 @@ section.about .row .about-images img:nth-child(10) {
     width: 100%;
   }
 
-  section.work .products .product:nth-child(2) p {
+  section.work .products .product.second p {
     gap: 0.833vw;
     bottom: 3.333vw;
     padding: 0.625vw 0.833vw;
@@ -1941,12 +1942,12 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 10.365vw;
   }
 
-  section.work .products .product:nth-child(2) p span:nth-child(1) {
+  section.work .products .product.second p span:nth-child(1) {
     font-size: 0.833vw;
     height: 0.833vw;
   }
 
-  section.work .products .product:nth-child(2) img {
+  section.work .products .product.second img {
     filter: blur(0.625vw);
     rotate: -15deg;
     width: 100%;
@@ -1954,20 +1955,20 @@ section.about .row .about-images img:nth-child(10) {
     object-fit: contain;
   }
 
-  section.work .products .product:nth-child(1) img {
+  section.work .products .product.first img {
     rotate: 15deg;
     position: relative;
     height: 22.917vw;
     left: 2.604vw;
   }
 
-  section.work .products .product:nth-child(3) img {
+  section.work .products .product.third img {
     filter: blur(0.625vw);
     rotate: 15deg;
     height: 11.458vw;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     font-size: 1.667vw;
     letter-spacing: -0.067vw;
     bottom: 2.5vw;
@@ -2058,6 +2059,10 @@ section.about .row .about-images img:nth-child(10) {
 
   section.about .row {
     position: relative;
+  }
+
+  section.work .products .product.second p span.icon-font {
+    height: 0.6vw;
   }
 
   section.about .row .blank,
@@ -2556,7 +2561,7 @@ section.about .row .about-images img:nth-child(10) {
     font-size: 0.972vw;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     font-size: 1.667vw;
   }
 
@@ -2652,25 +2657,25 @@ section.about .row .about-images img:nth-child(10) {
     margin-bottom: 13.073vw;
   }
 
-  section.work .products .product:nth-child(1) {
+  section.work .products .product.first {
     height: 22.917vw;
   }
 
-  section.work .products .product:nth-child(1) img {
+  section.work .products .product.first img {
     height: 22.917vw;
   }
 
-  section.work .products .product:nth-child(2) {
+  section.work .products .product.second {
     bottom: 9.722vw;
     max-width: 17.222vw;
     right: 32.153vw;
   }
 
-  section.work .products .product:nth-child(2) img {
+  section.work .products .product.second img {
     height: 22.917vw;
   }
 
-  section.work .products .product:nth-child(2) h2 {
+  section.work .products .product.second h2 {
     color: #000;
     height: auto;
     font-size: 48px;
@@ -2681,12 +2686,12 @@ section.about .row .about-images img:nth-child(10) {
     text-transform: uppercase;
   }
 
-  section.work .products .product:nth-child(3) {
+  section.work .products .product.third {
     max-width: 7.014vw;
     right: 9.375vw;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     height: auto;
     left: -40px;
   }
@@ -2888,28 +2893,28 @@ section.about .row .about-images img:nth-child(10) {
     width: 235.999px;
   }
 
-  section.work .products .product:nth-child(1) {
+  section.work .products .product.first {
     max-width: 84px;
     height: 220px;
   }
 
-  section.work .products .product:nth-child(1) img {
+  section.work .products .product.first img {
     max-width: 100%;
     height: 100%;
   }
 
-  section.work .products .product:nth-child(2) {
+  section.work .products .product.second {
     height: 166px;
     right: 318px;
     width: 84px;
     bottom: 124px;
   }
 
-  section.work .products .product:nth-child(2) img {
+  section.work .products .product.second img {
     height: 100%;
   }
 
-  section.work .products .product:nth-child(2) h2 {
+  section.work .products .product.second h2 {
     color: #000;
     font-family: FoundersGroteskCondensedMedium;
     font-size: 32px;
@@ -2923,25 +2928,25 @@ section.about .row .about-images img:nth-child(10) {
     left: -35px;
   }
 
-  section.work .products .product:nth-child(2) p {
+  section.work .products .product.second p {
     left: -35px;
     bottom: -20px;
   }
 
-  section.work .products .product:nth-child(3) {
+  section.work .products .product.third {
     height: 172px;
     right: 77px;
     width: 84px;
     bottom: 0;
   }
 
-  section.work .products .product:nth-child(3) img {
+  section.work .products .product.third img {
     height: 100%;
     left: 20px;
     position: absolute;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     color: #000;
     font-family: FoundersGroteskCondensedMedium;
     font-size: 24px;
@@ -2977,7 +2982,7 @@ section.about .row .about-images img:nth-child(10) {
     font-size: 1.563vw;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     left: 0;
   }
 
@@ -3685,7 +3690,7 @@ section.about .row .about-images img:nth-child(10) {
     bottom: 126px;
   }
 
-  section.work .products .product:nth-child(1) {
+  section.work .products .product.first {
     right: 0;
     height: 320px;
     display: flex;
@@ -3695,21 +3700,21 @@ section.about .row .about-images img:nth-child(10) {
     transform: translate(-50%);
   }
 
-  section.work .products .product:nth-child(1) img {
+  section.work .products .product.first img {
     height: 320px;
     width: fit-content;
     max-width: fit-content;
     left: 0;
   }
 
-  section.work .products .product:nth-child(2) {
+  section.work .products .product.second {
     left: 0;
     width: 185px;
     height: 362px;
     bottom: 196px;
   }
 
-  section.work .products .product:nth-child(2) img {
+  section.work .products .product.second img {
     height: 100%;
     width: fit-content;
     position: absolute;
@@ -3717,7 +3722,7 @@ section.about .row .about-images img:nth-child(10) {
     max-width: fit-content;
   }
 
-  section.work .products .product:nth-child(2) h2 {
+  section.work .products .product.second h2 {
     color: #000;
     font-family: FoundersGroteskCondensedMedium;
     font-size: 48px;
@@ -3730,16 +3735,16 @@ section.about .row .about-images img:nth-child(10) {
     left: 0;
   }
 
-  section.work .products .product:nth-child(2) p {
+  section.work .products .product.second p {
     top: 230px;
     left: 0;
   }
 
-  section.work .products .product:nth-child(3) {
+  section.work .products .product.third {
     right: 8px;
   }
 
-  section.work .products .product:nth-child(3) h2 {
+  section.work .products .product.third h2 {
     color: #000;
     font-family: FoundersGroteskCondensedMedium;
     font-size: 32px;
@@ -3756,7 +3761,7 @@ section.about .row .about-images img:nth-child(10) {
     display: none;
   }
 
-  section.work .products .product:nth-child(3) img {
+  section.work .products .product.third img {
     left: -24px;
   }
 
