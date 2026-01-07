@@ -1008,19 +1008,14 @@ let workContents = {
   },
 };
 
+let is2k = window.innerWidth > 1920;
 let isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
-
-console.log(isTablet);
-// Optional: update on resize
-window.addEventListener("resize", () => {
-  isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
-  isMobile = window.innerWidth < 768;
-});
-
 let isMobile = window.innerWidth < 768;
 
 window.addEventListener("resize", () => {
   isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+  isMobile = window.innerWidth < 768;
+  is2k = window.innerWidth > 1920;
 });
 
 function workSectionBottleAnimation() {
@@ -1174,7 +1169,13 @@ function workSectionBottleAnimation() {
           left: 0,
           right: "unset",
           bottom: "unset",
-          width: isTablet ? "auto" : isMobile ? "100%" : "418px",
+          width: isTablet
+            ? "auto"
+            : isMobile
+            ? "100%"
+            : is2k
+            ? "21.771vw"
+            : "418px",
           maxWidth: isMobile ? "100%" : "",
           rotate: 360,
           duration: 2,
@@ -1258,8 +1259,8 @@ function workSectionBottleAnimation() {
 
     // third -> first
     gsap.set(second, {
-      left: "-1000px",
-      top: "-1000px",
+      left: is2k ? "-52.083vw" : "-1000px",
+      top: is2k ? "-52.083vw" : "-1000px",
       bottom: "unset",
       right: "unset",
       duration: 0,
@@ -1269,7 +1270,13 @@ function workSectionBottleAnimation() {
       top: "unset",
       left: isMobile ? "8px" : "unset",
       bottom: "180px",
-      right: isTablet ? "225px" : isMobile ? "unset" : "620px",
+      right: isTablet
+        ? "225px"
+        : isMobile
+        ? "unset"
+        : is2k
+        ? "32.292vw"
+        : "620px",
       width: isMobile ? "70%" : "fit-content",
       rotate: 360,
       duration: 2,
@@ -1290,7 +1297,13 @@ function workSectionBottleAnimation() {
       left: 0,
       right: "unset",
       bottom: "unset",
-      width: isTablet ? "auto" : isMobile ? "100%" : "418px",
+      width: isTablet
+        ? "auto"
+        : isMobile
+        ? "100%"
+        : is2k
+        ? "21.771vw"
+        : "418px",
       rotate: 360,
       duration: 2,
       ease: "power4.out",
