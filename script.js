@@ -193,7 +193,8 @@ function createTransformAnimations() {
     duration: 1,
     scrollTrigger: {
       trigger: ".about",
-      start: "top top",
+      start: "top -30%",
+      end: "+=200",
       scrub: true,
     },
     ease: "power4.out",
@@ -208,7 +209,8 @@ function createTransformAnimations() {
     duration: 1,
     scrollTrigger: {
       trigger: ".about",
-      start: "top 10%",
+      start: "top -30%",
+      end: "+=200",
       scrub: true,
     },
     ease: "power4.out",
@@ -812,216 +814,540 @@ function scrollToSection(target, offset = 0, duration = 800) {
   requestAnimationFrame(animateScroll);
 }
 
+let workContents = {
+  magic_mind: {
+    headline: "MAGIC MIND",
+    year: "2020-PRESENT",
+    client: "MAGIC MIND",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "magic_mind_bottle.png",
+  },
+  little_saints: {
+    headline: "LITTLE SAINTS",
+    year: "2022-2023 ",
+    client: "LITTLE SAINTS",
+    disciplines: [
+      "PHOTO DIRECTION & STYLING",
+      "ART DIRECTION",
+      "ORGAMIC DIGITAL CREATIVE STRATEGY",
+      "GRAPHIC DESIGN",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Little Saints combines fast-acting CBD, aromatic terpenes, and adaptogenic reishi to support relaxation, clarity, and emotional balance, naturally. The Paloma blend leans into the crisp zip of grapefruit and lime, softened with subtle herbal notes that linger just long enough to remind you to breathe deeper. It’s sugar-free, alcohol-free, and crafted for those who want the ritual of a drink without the crash that follows. Sip it after a long day, with friends at a gathering, or during your creative hours when you want your mind to flow without fog. Every can is a small ceremony—light, mindful, and modern—designed to help you tap into the best version of yourself.",
+    bottle_image: "little_saints.png",
+  },
+  sidedish: {
+    headline: "SIDEDISH",
+    year: "2020-PRESENT",
+    client: "SIDEDISH",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "sidedish.png",
+  },
+  wild_elements: {
+    headline: "WILD ELEMENTS",
+    year: "2020-PRESENT",
+    client: "WILD ELEMENTS",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "wild_elements.png",
+  },
+  de_soi: {
+    headline: "DE SOI",
+    year: "2020-PRESENT",
+    client: "DE SOI",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "de_soi.png",
+  },
+  earth_bar: {
+    headline: "EARTH BAR",
+    year: "2020-PRESENT",
+    client: "EARTH BAR",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "earth_bar.png",
+  },
+  symboime: {
+    headline: "SYMBOIME",
+    year: "2020-PRESENT",
+    client: "SYMBOIME",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "symboime.png",
+  },
+  fx_chocolate: {
+    headline: "FX CHOCOLATE",
+    year: "2020-PRESENT",
+    client: "FX CHOCOLATE",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "fx_chocolate.png",
+  },
+  brami: {
+    headline: "BRAMI",
+    year: "2020-PRESENT",
+    client: "BRAMI",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "brami.png",
+  },
+  quicksilver_scientific: {
+    headline: "QUICKSILVER SCIENTIFIC",
+    year: "2020-PRESENT",
+    client: "QUICKSILVER SCIENTIFIC",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "quicksilver_scientific.png",
+  },
+  faherty: {
+    headline: "FAHERTY",
+    year: "2020-PRESENT",
+    client: "FAHERTY",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "faherty.png",
+  },
+  colgate: {
+    headline: "COLGATE",
+    year: "2020-PRESENT",
+    client: "COLGATE",
+    disciplines: [
+      "ART DIRECTION",
+      "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
+      "FIELD MARKETING DISPLAY DESIGN",
+      "RETAIL DISPLAY DESIGN",
+      "PHOTOGRAPHY DIRECTION & STYLING",
+      "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
+    ],
+    project_text:
+      "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
+    bottle_image: "colgate.png",
+  },
+};
+
+let isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+
+console.log(isTablet);
+// Optional: update on resize
+window.addEventListener("resize", () => {
+  isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+  isMobile = window.innerWidth < 768;
+});
+
+let isMobile = window.innerWidth < 768;
+
+window.addEventListener("resize", () => {
+  isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+});
+
 function workSectionBottleAnimation() {
-  let nextProjectBtns = document.querySelectorAll(".next-project");
-  let workContents = {
-    magic_mind: {
-      headline: "MAGIC MIND",
-      year: "2020-PRESENT",
-      client: "MAGIC MIND",
-      disciplines: [
-        "ART DIRECTION",
-        "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-        "FIELD MARKETING DISPLAY DESIGN",
-        "RETAIL DISPLAY DESIGN",
-        "PHOTOGRAPHY DIRECTION & STYLING",
-        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-      ],
-      project_text:
-        "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-      bottle_image: "magic_mind_bottle.png",
-    },
-    little_saints: {
-      headline: "LITTLE SAINTS",
-      year: "2022-2023 ",
-      client: "LITTLE SAINTS",
-      disciplines: [
-        "PHOTO DIRECTION & STYLING",
-        "ART DIRECTION",
-        "ORGAMIC DIGITAL CREATIVE STRATEGY",
-        "GRAPHIC DESIGN",
-        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-      ],
-      project_text:
-        "Little Saints combines fast-acting CBD, aromatic terpenes, and adaptogenic reishi to support relaxation, clarity, and emotional balance, naturally. The Paloma blend leans into the crisp zip of grapefruit and lime, softened with subtle herbal notes that linger just long enough to remind you to breathe deeper. It’s sugar-free, alcohol-free, and crafted for those who want the ritual of a drink without the crash that follows. Sip it after a long day, with friends at a gathering, or during your creative hours when you want your mind to flow without fog. Every can is a small ceremony—light, mindful, and modern—designed to help you tap into the best version of yourself.",
-      bottle_image: "little_saints_bottle.png",
-    },
-    sidedish: {
-      headline: "SIDEDISH",
-      year: "2020-PRESENT",
-      client: "SIDEDISH",
-      disciplines: [
-        "ART DIRECTION",
-        "PAID + ORGANIC DIGITAL CREATIVE STRATEGY",
-        "FIELD MARKETING DISPLAY DESIGN",
-        "RETAIL DISPLAY DESIGN",
-        "PHOTOGRAPHY DIRECTION & STYLING",
-        "DIGITAL COMMUNICATION STRATEGY (EMAIL+SOCIAL)",
-      ],
-      project_text:
-        "Magic Mind approached me ahead of their 2020 launch to help bring their brand to life digitally. What began as digital brand support evolved into a long-term creative partnership spanning print design, art direction, and marketing creative direction. Over time, I helped shape the visual and strategic foundation behind their direct-to-consumer growth—now serving over 35,000 daily customers—and their retail expansion into 800+ stores nationwide. The collaboration has been rooted in elevating Magic Mind’s mission through consistent, cohesive, and emotionally resonant creative.",
-      bottle_image: "sidedish.png",
-    },
-  };
-  let projectMainHeading = document.querySelector("#work h2");
-  let year = document.querySelector("#work .year p:last-child");
-  let client = document.querySelector("#work .client p:last-child");
-  let disciplines = document.querySelector("#work .disciplines div");
-  let projectText = document.querySelector("#work .project-text");
+  const nextProjectBtns = document.querySelectorAll(".next-project");
 
-  let currentBottle = 0;
-  let currentContent;
-  let hasRun = false;
+  const projectKeys = Object.keys(workContents);
+  let activeIndex = 0;
+  let isAnimating = false;
 
+  const projectMainHeading = document.querySelector("#work h2");
+  const year = document.querySelector("#work .year p:last-child");
+  const client = document.querySelector("#work .client p:last-child");
+  const disciplines = document.querySelector("#work .disciplines div");
+  const projectText = document.querySelector("#work .project-text");
+
+  // MAIN IMAGE (LEFT SIDE)
+  const mainBottleImage = document.querySelector("#work .left > img");
+
+  function getProject(index) {
+    return workContents[
+      projectKeys[(index + projectKeys.length) % projectKeys.length]
+    ];
+  }
+
+  /* ---------------- CONTENT ---------------- */
+  function updateProjectContent(content) {
+    projectMainHeading.innerHTML = `
+      ${content.headline}
+      <p class="previous-btn mh-effect">
+        <span class="mh-effect">PREVIOUS PROJECT</span>
+        <span class="icon-font mh-effect">→</span>
+        <span class="liquid-bg"></span>
+      </p>
+    `;
+
+    year.innerHTML = content.year;
+    client.innerHTML = content.client;
+
+    disciplines.innerHTML = "";
+    content.disciplines.forEach((text, i) => {
+      const p = document.createElement("p");
+      p.innerHTML = text;
+      if (i === 0) p.classList.add("end-last");
+      disciplines.appendChild(p);
+    });
+
+    projectText.innerHTML = content.project_text;
+  }
+
+  /* ---------------- MAIN IMAGE ---------------- */
+  function updateMainImage(content) {
+    if (!mainBottleImage || !content?.bottle_image) return;
+
+    gsap.killTweensOf(mainBottleImage);
+
+    gsap.fromTo(
+      mainBottleImage,
+      { opacity: 0, filter: "blur(16px)" },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.6,
+        ease: "power4.out",
+        onStart: () => {
+          mainBottleImage.src = `./images/${content.bottle_image}`;
+        },
+      }
+    );
+  }
+
+  /* ---------------- CARD HELPERS ---------------- */
+  function resetProduct(product) {
+    if (!product) return;
+
+    gsap.set(product, { clearProps: "all" });
+
+    const btnP = product.querySelector("p");
+    const heading = product.querySelector("h2");
+    const img = product.querySelector("img");
+
+    if (btnP && heading) {
+      gsap.set([btnP, heading], {
+        opacity: 1,
+        display: "flex",
+        pointerEvents: "auto",
+      });
+    }
+
+    if (img) gsap.set(img, { filter: "blur(16px)" });
+  }
+
+  function updateCard(card, content) {
+    if (!card || !content) return;
+
+    const img = card.querySelector("img");
+    const heading = card.querySelector("h2");
+
+    if (img) img.src = `./images/${content.bottle_image}`;
+    if (heading) heading.textContent = content.headline;
+    if (content.card_width) card.style.width = content.card_width;
+  }
+
+  /* ---------------- NEXT PROJECT ---------------- */
   nextProjectBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const currentFirstProduct = document.querySelector(".first");
-      const currentSecondProduct = document.querySelector(".second");
-      const currentThirdProduct = document.querySelector(".third");
+      if (isAnimating) return;
+      isAnimating = true;
 
-      currentBottle = (currentBottle + 1) % 3;
+      gsap.killTweensOf("#work .left");
+      gsap.killTweensOf("#work .right:not(.mobile) > *");
 
-      if (currentBottle === 1) currentContent = workContents.little_saints;
-      else if (currentBottle === 2) currentContent = workContents.sidedish;
-      else currentContent = workContents.magic_mind;
+      activeIndex = (activeIndex + 1) % projectKeys.length;
 
-      function resetProduct(product) {
-        if (!product) return;
-        gsap.set(product, { clearProps: "all" });
-        const btnP = product.querySelector("p");
-        const heading = product.querySelector("h2");
-        const img = product.querySelector("img");
+      const firstContent = getProject(activeIndex);
+      const secondContent = getProject(activeIndex + 1);
+      const thirdContent = getProject(activeIndex + 2);
 
-        if (btnP && heading) {
-          gsap.set([btnP, heading], {
-            opacity: 1,
-            pointerEvents: "auto",
-            display: "flex",
-          });
-        }
+      updateProjectContent(firstContent);
+      updateMainImage(firstContent);
 
-        if (img) {
-          gsap.set(img, {
-            filter: "blur(16px)",
-          });
-        }
-      }
+      const first = document.querySelector(".first");
+      const second = document.querySelector(".second");
+      const third = document.querySelector(".third");
 
-      resetProduct(currentFirstProduct);
-      resetProduct(currentSecondProduct);
-      resetProduct(currentThirdProduct);
+      resetProduct(first);
+      resetProduct(second);
+      resetProduct(third);
 
-      currentFirstProduct.classList.remove("first");
-      currentFirstProduct.classList.add("third");
+      first.classList.replace("first", "third");
+      updateCard(first, thirdContent);
 
-      gsap.to(currentFirstProduct, {
+      gsap.set(first, { opacity: 0, display: "none" });
+
+      const secondImg = second.querySelector("img");
+      const secondBtn = second.querySelector("p");
+      const secondHeading = second.querySelector("h2");
+
+      gsap.to([secondBtn, secondHeading], {
         opacity: 0,
-        duration: 0,
-        display: "none",
-        pointerEvents: "none",
-      });
-
-      const leftSideContent = document.querySelector("#work .left");
-      const rightSideContents = document.querySelectorAll(
-        "#work .right:not(.mobile) > *"
-      );
-
-      const currentNextButton = currentSecondProduct.querySelector("p");
-      const currentHeading = currentSecondProduct.querySelector("h2");
-      const currentImage = currentSecondProduct.querySelector("img");
-
-      gsap.to([currentNextButton, currentHeading], {
-        opacity: 0,
-        pointerEvents: "none",
         display: "none",
         duration: 0.2,
       });
 
-      gsap.to(currentImage, {
-        delay: 0.2,
-        rotate: 15,
-        duration: 0.2,
-      });
+      gsap.to(secondImg, { rotate: 15, duration: 0.2, delay: 0.2 });
 
       setTimeout(() => {
         scrollToSection("#work", -100);
 
-        gsap.to(currentSecondProduct, {
+        gsap.to(second, {
           top: 0,
           left: 0,
           right: "unset",
           bottom: "unset",
+          width: isTablet ? "auto" : isMobile ? "100%" : "418px",
+          maxWidth: isMobile ? "100%" : "",
           rotate: 360,
-          duration: 1,
+          duration: 2,
+          ease: "power4.out",
         });
 
-        gsap.to(currentImage, {
+        gsap.to(secondImg, {
           filter: "blur(0px)",
           duration: 1,
           onComplete: () => {
-            // swap roles
-            currentSecondProduct.classList.remove("second");
-            currentSecondProduct.classList.add("first");
+            second.classList.replace("second", "first");
+            third.classList.replace("third", "second");
 
-            currentThirdProduct.classList.remove("third");
-            currentThirdProduct.classList.add("second");
+            updateCard(second, firstContent);
+            resetProduct(third);
+            updateCard(third, secondContent);
 
-            resetProduct(currentFirstProduct);
-            resetProduct(currentImage);
-
-            gsap.to(currentFirstProduct, {
+            gsap.to(first, {
               opacity: 1,
-              pointerEvents: "auto",
+              display: "flex",
               duration: 0.3,
             });
+
+            isAnimating = false;
           },
         });
       }, 400);
 
-      hasRun = false;
-      const tween = gsap.from(leftSideContent, {
+      const left = document.querySelector("#work .left");
+      const rightItems = document.querySelectorAll(
+        "#work .right:not(.mobile) > *"
+      );
+
+      gsap.from(left, {
+        left: "-150%",
         delay: 1,
         duration: 1,
-        left: "-150%",
         ease: "power4.out",
-        onUpdate: () => {
-          if (!hasRun && tween.progress() >= 0.1) {
-            hasRun = true;
-
-            projectMainHeading.innerHTML = `
-          ${currentContent.headline}
-          <p class="previous-btn mh-effect">
-            <span class="mh-effect">PREVIOUS PROJECT</span>
-            <span class="icon-font mh-effect">→</span>
-            <span class="liquid-bg"></span>
-          </p>
-        `;
-
-            year.innerHTML = currentContent.year;
-            client.innerHTML = currentContent.client;
-
-            disciplines.innerHTML = "";
-            currentContent.disciplines.forEach((text, i) => {
-              let textEl = document.createElement("p");
-              textEl.innerHTML = text;
-              if (i === 0) textEl.classList.add("end-last");
-              disciplines.appendChild(textEl);
-            });
-
-            projectText.innerHTML = currentContent.project_text;
-          }
-        },
       });
 
-      gsap.from(rightSideContents, {
-        rotate: gsap.utils.random(-15, 15),
+      gsap.from(rightItems, {
         scale: 0,
-        delay: 1,
         filter: "blur(16px)",
         duration: 1,
+        delay: 1,
         ease: "power4.out",
       });
     });
+  });
+
+  /* ---------------- PREVIOUS PROJECT ---------------- */
+  document.addEventListener("click", (e) => {
+    const prevBtn = e.target.closest(".previous-btn");
+    if (!prevBtn || isAnimating) return;
+
+    isAnimating = true;
+
+    gsap.killTweensOf("#work .left");
+    gsap.killTweensOf("#work .right:not(.mobile) > *");
+
+    // move index backward
+    activeIndex = (activeIndex - 1 + projectKeys.length) % projectKeys.length;
+
+    const firstContent = getProject(activeIndex);
+    const secondContent = getProject(activeIndex + 1);
+    const thirdContent = getProject(activeIndex + 2);
+
+    // update text + main image
+    updateProjectContent(firstContent);
+    updateMainImage(firstContent);
+
+    const first = document.querySelector(".first");
+    const second = document.querySelector(".second");
+    const third = document.querySelector(".third");
+
+    resetProduct(first);
+    resetProduct(second);
+    resetProduct(third);
+
+    /* -------- BACKWARD CARD ROTATION -------- */
+
+    // third -> first
+    gsap.set(second, {
+      left: "-1000px",
+      top: "-1000px",
+      bottom: "unset",
+      right: "unset",
+      duration: 0,
+    });
+
+    gsap.to(first, {
+      top: "unset",
+      left: isMobile ? "8px" : "unset",
+      bottom: "180px",
+      right: isTablet ? "225px" : isMobile ? "unset" : "620px",
+      width: isMobile ? "70%" : "fit-content",
+      rotate: 360,
+      duration: 2,
+      ease: "power4.out",
+    });
+
+    gsap.to(first.querySelector("img"), {
+      rotate: -15,
+    });
+
+    setTimeout(() => {
+      first.classList.replace("first", "second");
+      resetProduct(first);
+    }, [1800]);
+
+    gsap.to(second, {
+      top: 0,
+      left: 0,
+      right: "unset",
+      bottom: "unset",
+      width: isTablet ? "auto" : isMobile ? "100%" : "418px",
+      rotate: 360,
+      duration: 2,
+      ease: "power4.out",
+    });
+
+    const secondImg = second.querySelector("img");
+    const secondBtn = second.querySelector("p");
+    const secondHeading = second.querySelector("h2");
+
+    gsap.to([secondBtn, secondHeading], {
+      opacity: 0,
+      display: "none",
+      duration: 0.2,
+    });
+
+    gsap.to(secondImg, {
+      rotate: 15,
+      filter: "blur(0px)",
+      duration: 0.2,
+      delay: 0.2,
+    });
+
+    updateCard(third, thirdContent);
+
+    // // first -> second
+    updateCard(first, secondContent);
+
+    // // second -> third
+    updateCard(second, firstContent);
+
+    /* -------- LEFT / RIGHT CONTENT ANIMATION -------- */
+
+    const left = document.querySelector("#work .left");
+    const rightItems = document.querySelectorAll("#work .right *");
+
+    gsap.set(left, { left: "-150%" });
+    gsap.set(rightItems, { scale: 0, filter: "blur(16px)" });
+
+    gsap.to(left, {
+      left: "0%",
+      delay: 1,
+      duration: 1,
+      ease: "power4.out",
+    });
+
+    gsap.to(rightItems, {
+      scale: 1,
+      filter: "blur(0px)",
+      delay: 1,
+      duration: 1,
+      ease: "power4.out",
+      onComplete: () => {
+        isAnimating = false;
+      },
+    });
+
+    second.classList.replace("second", "first");
   });
 }
 
@@ -1047,3 +1373,25 @@ window.addEventListener("load", createTransformAnimations);
 // document.addEventListener("contextmenu", function (e) {
 //   e.preventDefault();
 // });
+
+// Function to disable dragging for images
+function disableImageDrag(img) {
+  img.setAttribute("draggable", "false");
+}
+
+// Initially disable for all existing images
+document.querySelectorAll("img").forEach(disableImageDrag);
+
+// Observe the document for new images
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    mutation.addedNodes.forEach((node) => {
+      if (node.tagName === "IMG") disableImageDrag(node);
+      else if (node.querySelectorAll) {
+        node.querySelectorAll("img").forEach(disableImageDrag);
+      }
+    });
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
