@@ -148,6 +148,10 @@ span.icon-font {
   width: 16px;
 }
 
+.navigation .menu-btn:active {
+  scale: 0.7;
+}
+
 .navigation .menu-btn .line {
   width: 16px;
   height: 2px;
@@ -828,10 +832,6 @@ section.work .products .product.third p {
   cursor: pointer;
 }
 
-section.work .products .product.second:hover img {
-  filter: blur(0) !important;
-}
-
 section.about .row:has(.about-images) .work-text-1 {
   position: absolute;
   top: 250px;
@@ -1284,7 +1284,7 @@ section.about .row .about-images img:nth-child(10) {
   align-items: center;
 }
 
-.footer .contact-information .social-ctas .social-div img {
+.footer .contact-information .social-ctas .social-div svg {
   height: 80px;
 }
 
@@ -1383,6 +1383,18 @@ section.about .row .about-images img:nth-child(10) {
   display: none;
 }
 
+.icon-stroke path {
+  stroke-dasharray: 1000; /* পাথের দৈর্ঘ্য অনুযায়ী একটি বড় ভ্যালু */
+  stroke: 1px solid black;
+  stroke-dashoffset: 950; /* শুরুতে পাথটি লুকিয়ে থাকবে */
+  transition: stroke-dashoffset 1.5s linear, opacity;
+}
+
+/* হোভার করলে ড্রয়িং শুরু হবে */
+.social-div:hover .icon-stroke path {
+  stroke-dashoffset: 0;
+}
+
 .floating {
   animation: floatAnim 4s linear infinite;
 }
@@ -1427,6 +1439,42 @@ section.about .row .about-images img:nth-child(10) {
   section.start {
     display: flex;
     flex-direction: column;
+  }
+  .footer .footer-content #goToTop {
+    width: 2.0833vw; /* 40px */
+    height: 2.0833vw; /* 40px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1042vw solid black; /* 2px */
+    color: black;
+    border-radius: 50%;
+  }
+
+  .footer .footer-content #goToTop .of-h {
+    rotate: -90deg;
+    display: flex;
+    flex-direction: row;
+    width: 1.4583vw; /* 28px */
+    height: 0.9375vw; /* 18px */
+  }
+
+  .footer .footer-content #goToTop .of-h span {
+    transform: translateX(-200%);
+    display: flex;
+  }
+
+  .footer .footer-content #goToTop:hover .of-h span {
+    animation: infiniteArrows 1.5s infinite linear;
+  }
+
+  @keyframes infiniteArrows {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
   }
 
   section.carousel {
@@ -2447,7 +2495,7 @@ section.about .row .about-images img:nth-child(10) {
     align-items: center;
   }
 
-  .footer .contact-information .social-ctas .social-div img {
+  .footer .contact-information .social-ctas .social-div svg {
     height: 4.167vw;
   }
 
@@ -2605,7 +2653,7 @@ section.about .row .about-images img:nth-child(10) {
     position: relative;
     width: 48.333vw;
     height: 46.667vw;
-    margin-top: 8.833vw;
+    margin-top: 6.167vw;
   }
 
   section.work .right img {
@@ -2694,7 +2742,6 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work .products .product.second {
     bottom: 9.722vw;
-    max-width: 17.222vw;
     right: 32.153vw;
   }
 
@@ -2711,6 +2758,7 @@ section.about .row .about-images img:nth-child(10) {
     line-height: 80%; /* 38.4px */
     letter-spacing: -1.92px;
     text-transform: uppercase;
+    bottom: 9.375vw;
   }
 
   section.work .products .product.third {
@@ -3216,7 +3264,7 @@ section.about .row .about-images img:nth-child(10) {
     align-items: center;
   }
 
-  .footer .contact-information .social-ctas .social-div img {
+  .footer .contact-information .social-ctas .social-div svg {
     width: 60px;
     height: 60px;
   }

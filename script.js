@@ -6,6 +6,21 @@ let menuBtn = document.querySelector(".menu-btn");
 let menu = document.querySelector(".menu");
 let logoTween = null;
 
+const product = document.querySelector(
+  "section.work .products .product.second p"
+);
+const img = document.querySelector(
+  "section.work .products .product.second img"
+);
+
+product.addEventListener("mouseenter", () => {
+  img.style.filter = "blur(0)";
+});
+
+product.addEventListener("mouseleave", () => {
+  img.style.filter = "";
+});
+
 function createTransformAnimations() {
   const logoEl = document.querySelector(".navigation .logo");
   if (!logoEl) return;
@@ -212,13 +227,11 @@ function createTransformAnimations() {
 
   gsap.to(".list-of-year", {
     xPercent: -100.1,
-    ease: "power4.out",
     scrollTrigger: {
       trigger: ".list-of-year-wrapper",
       scroller: "body",
       start: "bottom bottom",
       pin: true,
-      end: "+=2000",
       scrub: 1,
     },
   });
@@ -1170,7 +1183,7 @@ function workSectionBottleAnimation() {
             ? "100%"
             : is2k
             ? "21.771vw"
-            : "418px",
+            : "21.771vw",
           maxWidth: isMobile ? "100%" : "",
           rotate: 360,
           duration: 2,
@@ -1264,14 +1277,14 @@ function workSectionBottleAnimation() {
     gsap.to(first, {
       top: "unset",
       left: isMobile ? "8px" : "unset",
-      bottom: "180px",
+      bottom: "9.375vw",
       right: isTablet
         ? "225px"
         : isMobile
         ? "unset"
         : is2k
         ? "32.292vw"
-        : "620px",
+        : "32.292vw",
       width: isMobile ? "70%" : "fit-content",
       rotate: 360,
       duration: 2,
@@ -1298,7 +1311,7 @@ function workSectionBottleAnimation() {
         ? "100%"
         : is2k
         ? "21.771vw"
-        : "418px",
+        : "21.771vw",
       rotate: 360,
       duration: 2,
       ease: "power4.out",
