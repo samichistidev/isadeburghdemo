@@ -147,8 +147,7 @@ span.icon-font {
   height: 12px;
   width: 16px;
 }
-
-.navigation .menu-btn:active {
+.navigation .menu-btn:hover {
   scale: 0.7;
 }
 
@@ -727,7 +726,7 @@ section.work .products .product.second h2 {
   letter-spacing: -2.56px;
   text-transform: uppercase;
   position: absolute;
-  bottom: 180px;
+  bottom: 154px;
   left: 0;
   margin-bottom: 0;
   white-space: nowrap;
@@ -1386,13 +1385,20 @@ section.about .row .about-images img:nth-child(10) {
 .icon-stroke path {
   stroke-dasharray: 1000; /* পাথের দৈর্ঘ্য অনুযায়ী একটি বড় ভ্যালু */
   stroke: 1px solid black;
-  stroke-dashoffset: 950; /* শুরুতে পাথটি লুকিয়ে থাকবে */
-  transition: stroke-dashoffset 1.5s linear, opacity;
+  stroke-dashoffset: 0; /* শুরুতে পাথটি লুকিয়ে থাকবে */
 }
 
-/* হোভার করলে ড্রয়িং শুরু হবে */
 .social-div:hover .icon-stroke path {
-  stroke-dashoffset: 0;
+  animation: stroke_offset 2s linear infinite;
+}
+
+@keyframes stroke_offset {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 .floating {
@@ -4033,11 +4039,11 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .footer {
-    padding-top: 160px;
+    padding-top: 614px;
   }
 
   .footer .contact-information {
-    margin-bottom: 69.484vh;
+    margin-bottom: 120px;
   }
 
   .footer .contact-information h2 > #copyBtn {
@@ -4051,6 +4057,7 @@ section.about .row .about-images img:nth-child(10) {
     font-size: 16px;
     line-height: 80%;
     letter-spacing: -2%;
+    margin-bottom: 8px;
     text-transform: uppercase;
   }
 
@@ -4080,7 +4087,7 @@ section.about .row .about-images img:nth-child(10) {
     align-items: center;
   }
 
-  .footer .contact-information .social-ctas .social-div img {
+  .footer .contact-information .social-ctas .social-div svg {
     width: 32px;
     height: 32px;
   }
