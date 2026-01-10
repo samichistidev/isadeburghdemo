@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Home
+RewriteRule ^$ index.html [L]
+
+# Pages
+RewriteRule ^about/?$ about.html [L]
+RewriteRule ^work/?$ work.html [L]
+RewriteRule ^contact/?$ contact.html [L]

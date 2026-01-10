@@ -1,310 +1,324 @@
-const copyPopup = document.getElementById("popup");
-const copyBtn = document.getElementById("copyBtn");
-const textToCopy = document.getElementById("textToCopy");
-let navigationLogo = document.querySelector(".navigation .logo");
-let menuBtn = document.querySelector(".menu-btn");
-let menu = document.querySelector(".menu");
-let logoTween = null;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preload" as="image" href="images/ls-feet.gif" />
+    <link rel="preload" as="image" href="images/OG-Unboxing-GIF-OPT.gif" />
+    <link rel="preload" as="script" href="libs/gsap.js" />
+    <link rel="preload" as="script" href="libs/gsap_scrolltrigger.js" />
+    <link rel="preload" as="script" href="libs/gsap_splittext.js" />
+    <link rel="preload" as="script" href="libs/lenis_smoothscroll.js" />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Bold.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Heavy.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Light.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Medium.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Regular.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Thin.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Ultrabold.otf"
+    />
+    <link
+      rel="preload"
+      as="file"
+      href="fonts/EditorialNew/EditorialNew-Ultralight.otf"
+    />
+    <title>Isa De Burgh</title>
+  </head>
+  <body>
+    <section class="start" id="home">
+      <div class="navigation">
+        <div class="of-h">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1034 156"
+            fill="none"
+            class="about-logo"
+          >
+            <path d="M24.468 2.4V153.6H0V2.4H24.468Z" fill="black" />
+            <path
+              d="M32.2023 42.72C32.2023 17.52 49.4738 0 77.0602 0C109.684 0 125.037 20.64 125.037 47.76V53.28H103.207V48.24C103.207 30.96 94.8115 18.96 77.0602 18.96C63.3869 18.96 55.4708 27.36 55.4708 40.8C55.4708 51.6 61.4679 57.6 72.0227 61.92L92.8924 69.84C114.962 78.48 127.435 90.24 127.435 113.04C127.435 139.2 108.965 156 81.1382 156C48.5143 156 30.2832 137.52 30.2832 105.84V101.52H52.3524V105.12C52.3524 126.24 62.9072 137.04 80.8983 137.04C95.0514 137.04 103.687 129.36 103.687 115.2C103.687 102.96 96.9704 96.72 84.2567 91.92L64.3465 84.72C44.916 77.52 32.2023 66.24 32.2023 42.72Z"
+              fill="black"
+            />
+            <path
+              d="M195.71 2.4L240.088 153.6H215.38L203.866 112.56H156.369L144.855 153.6H122.066L166.204 2.4H195.71ZM162.126 92.88H198.349L180.837 30.24H179.878L162.126 92.88Z"
+              fill="black"
+            />
+            <path
+              d="M272.013 2.4H313.753C353.573 2.4 372.763 25.44 372.763 73.44V82.56C372.763 130.56 353.573 153.6 313.753 153.6H272.013V2.4ZM311.594 133.68C335.822 133.68 347.816 122.64 347.816 86.64V69.36C347.816 33.36 335.822 22.32 311.594 22.32H296.481V133.68H311.594Z"
+              fill="black"
+            />
+            <path
+              d="M465.386 153.6H381.187V2.4H464.426V22.8H405.176V66H451.713V85.92H405.176V133.2H465.386V153.6Z"
+              fill="black"
+            />
+            <path
+              d="M595.415 111.6C595.415 138 579.583 153.6 545.28 153.6H501.381V2.4H544.8C579.583 2.4 591.817 18.72 591.817 42.48C591.817 61.2 581.262 72.48 564.95 75.36C582.701 77.76 595.415 90.48 595.415 111.6ZM524.89 66.48H542.881C562.072 66.48 568.069 57.6 568.069 44.64C568.069 31.44 562.072 22.32 542.881 22.32H524.89V66.48ZM524.89 85.44V133.68H544.8C564.23 133.68 571.907 125.28 571.907 109.68C571.907 94.32 564.23 85.44 544.8 85.44H524.89Z"
+              fill="black"
+            />
+            <path
+              d="M651.053 156C621.307 156 600.678 138.24 600.678 101.28V2.4H625.146V100.08C625.146 124.08 633.302 135.6 651.053 135.6C669.044 135.6 677.2 124.08 677.2 100.08V2.4H701.668V101.28C701.668 138.24 681.038 156 651.053 156Z"
+              fill="black"
+            />
+            <path
+              d="M786.809 153.6C783.691 146.88 782.011 138.48 780.812 119.04C779.852 101.04 775.535 93.36 758.263 93.36H737.393V153.6H713.405V2.4H759.942C794.245 2.4 810.318 20.16 810.318 46.8C810.318 68.16 798.563 81.12 783.691 84.48C799.043 88.8 803.841 99.6 804.8 117.84C806.24 137.04 807.439 145.68 811.997 153.6H786.809ZM758.743 74.16C778.413 74.16 785.85 65.52 785.85 48.24C785.85 32.16 778.413 22.32 758.743 22.32H737.393V74.16H758.743Z"
+              fill="black"
+            />
+            <path
+              d="M864.186 156C832.042 156 812.851 130.08 812.851 83.28V73.2C812.851 26.16 832.042 0 866.585 0C901.368 0 916.72 24.72 916.72 61.2V63.12H893.452V61.2C893.452 36.72 886.015 20.16 866.825 20.16C847.154 20.16 838.039 37.92 838.039 69.36V86.64C838.039 118.08 847.874 135.84 867.544 135.84C885.536 135.84 894.651 122.4 894.651 100.08V96.96H871.143V78.48H917.68V153.6H899.449L897.05 135.84C892.492 148.8 881.218 156 864.186 156Z"
+              fill="black"
+            />
+            <path
+              d="M929.411 153.6V2.4H953.879V66H1009.53V2.4H1034V153.6H1009.53V85.92H953.879V153.6H929.411Z"
+              fill="black"
+            />
+          </svg>
+          <div class="about-dot"></div>
+          <div class="of-h section-label">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="121"
+              height="40"
+              viewBox="0 0 121 40"
+              fill="none"
+              class="about-page-text"
+            >
+              <path
+                d="M113.868 39.3825L103.899 22.5825L100.576 27.5056V39.3825H94.2986V0.613281H100.576V20.121L113.499 0.613281H120.206L108.514 17.9056L120.883 39.3825H113.868Z"
+                fill="black"
+              />
+              <path
+                d="M86.264 39.3825C85.464 37.6594 85.0333 35.5056 84.7256 30.521C84.4794 25.9056 83.3717 23.9364 78.941 23.9364H73.5871V39.3825H67.4333V0.613281H79.3717C88.1717 0.613281 92.2948 5.16713 92.2948 11.9979C92.2948 17.4748 89.2794 20.7979 85.464 21.6594C89.4025 22.7671 90.6333 25.5364 90.8794 30.2133C91.2487 35.1364 91.5564 37.3517 92.7256 39.3825H86.264ZM79.064 19.0133C84.1102 19.0133 86.0179 16.7979 86.0179 12.3671C86.0179 8.24405 84.1102 5.72097 79.064 5.72097H73.5871V19.0133H79.064Z"
+                fill="black"
+              />
+              <path
+                d="M65.3424 21.1077C65.3424 33.1692 60.6039 40 51.5577 40C42.5116 40 37.7116 33.1692 37.7116 21.1077V18.8923C37.7116 6.83077 42.5116 0 51.5577 0C60.6039 0 65.3424 6.83077 65.3424 18.8923V21.1077ZM58.8808 17.9077C58.8808 9.84616 56.6654 5.16923 51.5577 5.16923C46.3885 5.16923 44.1731 9.84616 44.1731 17.9077V22.0923C44.1731 30.1539 46.3885 34.8308 51.5577 34.8308C56.6654 34.8308 58.8808 30.1539 58.8808 22.0923V17.9077Z"
+                fill="black"
+              />
+              <path
+                d="M22.4615 0.613281L27.5692 28.8594H27.8154L32.8615 0.613281H38.8308L31.1385 39.3825H24.6769L19.5077 10.2748H19.2615L14.0923 39.3825H7.63077L0 0.613281H6.21538L11.2 28.8594H11.4462L16.6154 0.613281H22.4615Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+        </div>
 
-const product = document.querySelector(
-  "section.work .products .product.second p"
-);
-const img = document.querySelector(
-  "section.work .products .product.second img"
-);
+        <div class="actions">
+          <div class="action-button button of-h mh-effect">
+            <div class="group">
+              <span class="mh-effect">Schedule a call</span>
+              <div class="of-h mh-effect">
+                <span class="icon-font">→→</span>
+                <span class="icon-font mid">→→</span>
+                <span class="icon-font">→→</span>
+              </div>
+            </div>
+            <div class="group">
+              <span class="mh-effect">Schedule a call</span>
+              <div class="of-h mh-effect">
+                <span class="icon-font">→→</span>
+                <span class="icon-font mid">→→</span>
+                <span class="icon-font">→→</span>
+              </div>
+            </div>
+          </div>
+          <div class="action-button menu-wrapper">
+            <div class="menu-btn mh-effect">
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+            <ul class="menu">
+              <li data-target="home" class="mh-effect">
+                <a href="/index.html">HOME</a>
+              </li>
+              <li data-target="about" class="mh-effect">
+                <a href="about.html">ABOUT</a>
+              </li>
+              <li data-target="work" class="mh-effect">
+                <a href="work.html">WORK</a>
+              </li>
+              <li data-target="contact" class="mh-effect">
+                <a href="contact.html">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <section class="work work-page" id="work">
+      <div class="left">
+        <h2>
+          MAGIC MIND
+          <p class="previous-btn mh-effect">
+            <span class="mh-effect">PREVIOUS PROJECT</span>
+            <span class="icon-font mh-effect">→</span>
+            <span class="liquid-bg"></span>
+          </p>
+        </h2>
+        <div class="work-left-content year">
+          <p>YEAR</p>
+          <p>2020-present</p>
+        </div>
+        <div class="work-left-content client">
+          <p>Client</p>
+          <p>magic mind</p>
+        </div>
+        <div class="work-left-content disciplines end-content">
+          <p>Disciplines</p>
+          <div>
+            <p class="end-last">art direction</p>
+            <p>paid + organic digital creative strategy</p>
+            <p>FIELD MARKETING DISPLAY DESIGN</p>
+            <p>retail display design</p>
+            <p>photography direction & styling</p>
+            <p>digital communication strategy (email+ social)</p>
+          </div>
+        </div>
+        <p class="project-heading">Project</p>
+        <p class="project-text">
+          Magic Mind approached me ahead of their 2020 launch to help bring
+          their brand to life digitally. What began as digital brand support
+          evolved into a long-term creative partnership spanning print design,
+          art direction, and marketing creative direction. Over time, I helped
+          shape the visual and strategic foundation behind their
+          direct-to-consumer growth—now serving over 35,000 daily customers—and
+          their retail expansion into 800+ stores nationwide. The collaboration
+          has been rooted in elevating Magic Mind’s mission through consistent,
+          cohesive, and emotionally resonant creative.
+        </p>
+        <div class="right mobile">
+          <img src="./images/banner.png" alt="1" class="banner" />
+          <div class="cartoon-box">
+            <img src="./images/OG-Unboxing-GIF-OPT.gif" alt="cartoon-box" />
+          </div>
+          <img
+            src="./images/cartoonish_sea_picture.png"
+            alt="3"
+            class="cartoonish-sea-picture"
+          />
+          <img
+            src="./images/multiple_bottle.png"
+            alt="4"
+            class="multiple-bottle"
+          />
+          <img
+            src="./images/magic_mind_bottle_picture.png"
+            alt="5"
+            class="magic-mind-bottle-picture"
+          />
+        </div>
+        <h1 class="work-headline"></h1>
+      </div>
+      <div class="right">
+        <img src="./images/banner.png" alt="1" class="banner" />
+        <div class="cartoon-box">
+          <img src="./images/OG-Unboxing-GIF-OPT.gif" alt="cartoon-box" />
+        </div>
+        <img
+          src="./images/cartoonish_sea_picture.png"
+          alt="3"
+          class="cartoonish-sea-picture"
+        />
+        <img
+          src="./images/multiple_bottle.png"
+          alt="4"
+          class="multiple-bottle"
+        />
+        <img
+          src="./images/magic_mind_bottle_picture.png"
+          alt="5"
+          class="magic-mind-bottle-picture"
+        />
+      </div>
+      <div class="products">
+        <div class="product first">
+          <img src="./images/magic_mind_bottle.png" alt="magic_mind_bottle" />
+          <h2>MAGIC MIND</h2>
+          <p class="mh-effect">
+            <span class="mh-effect next-project">NEXT PROJECT</span>
+            <span class="icon-font mh-effect">→</span>
+            <span class="liquid-bg"></span>
+          </p>
+        </div>
 
-product.addEventListener("mouseenter", () => {
-  img.style.filter = "blur(0)";
-});
+        <div class="product second">
+          <img src="./images/little_saints.png" alt="little_saints_bottle" />
+          <h2>LITTLESAINTS</h2>
+          <p class="mh-effect">
+            <span class="mh-effect next-project">NEXT PROJECT</span>
+            <span class="icon-font mh-effect">→</span>
+            <span class="liquid-bg"></span>
+          </p>
+        </div>
 
-product.addEventListener("mouseleave", () => {
-  img.style.filter = "";
-});
+        <div class="product third">
+          <img src="./images/sidedish.png" alt="sidedish" />
+          <h2>SIDEDISH</h2>
+          <p class="mh-effect">
+            <span class="mh-effect next-project">NEXT PROJECT</span>
+            <span class="icon-font mh-effect">→</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <script src="./libs/lenis_smoothscroll.js"></script>
+    <script src="./libs/gsap.js"></script>
+    <script src="./libs/gsap_scrolltrigger.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+    <script>
 
-function createTransformAnimations() {
-  const logoEl = document.querySelector(".navigation .logo");
-  if (!logoEl) return;
 
-  let biggerSize = 1056;
-  let smallerSize = 256;
+let menuLinks = document.querySelectorAll(".menu li");
 
-  function updateSizes() {
-    const w = window.innerWidth;
+      let notHD = window.innerWidth > 1920;
 
-    if (w > 1921) {
-      biggerSize = "53.854vw";
-      smallerSize = "13.333vw";
-    } else if (w < 601) {
-      biggerSize = "160px";
-      smallerSize = "160px";
-    } else if (w < 825) {
-      biggerSize = "424px";
-      smallerSize = "212px";
-    } else if (w < 1024) {
-      biggerSize = "530px";
-      smallerSize = "265px";
-    } else if (w < 1711) {
-      biggerSize = "53.854vw";
-      smallerSize = "13.333vw";
-    } else if (w < 1921) {
-      biggerSize = "1056px";
-      smallerSize = "256px";
-    } else {
-      return;
-    }
-  }
+      window.addEventListener("resize", () => {
+        notHD = window.innerWidth > 1920;
+      });
 
-  updateSizes();
-
-  window.addEventListener("resize", updateSizes);
-
-  gsap.to(logoEl, {
-    maxWidth: smallerSize,
-    ease: "power4.out",
-    duration: 0.5,
-    scrollTrigger: {
-      trigger: ".carousel",
-      start: "bottom bottom",
-      scrub: true,
-    },
-    onComplete: function () {
-      gsap.to(logoEl, {
-        maxWidth: biggerSize,
-        ease: "power2.out",
-        duration: 0.1,
-        scrollTrigger: {
-          trigger: ".about",
-          start: "top 80%",
-          end: "+=400",
-          scrub: true,
-        },
-
-        onComplete: function () {
-          gsap.to(logoEl, {
-            maxWidth: smallerSize,
+      menuLinks.forEach((link) => {
+        link.addEventListener("mouseenter", () => {
+          gsap.to(link, {
+            fontSize: notHD ? "3.333vw" : 64,
+            duration: 0.4,
             ease: "power4.out",
-            scrollTrigger: {
-              trigger: ".about",
-              start: "top -10%",
-              end: "+=400",
-              scrub: true,
-            },
-            onComplete: function () {
-              gsap.to(logoEl, {
-                maxWidth: biggerSize,
-                ease: "power4.out",
-                scrollTrigger: {
-                  trigger: ".footer",
-                  start: "top bottom",
-                  scrub: true,
-                },
-              });
-
-              gsap.to(".navigation .of-h .dot", {
-                opacity: 0,
-                pointerEvents: "none",
-                filter: "blur(10px)",
-                duration: 1,
-                scrollTrigger: {
-                  trigger: ".footer",
-                  start: "top bottom",
-                  end: "+=300",
-                  scrub: true,
-                },
-                ease: "power4.out",
-              });
-
-              gsap.to(".navigation .of-h .about-text", {
-                display: "none",
-                opacity: 0,
-                pointerEvents: "none",
-                filter: "blur(10px)",
-                duration: 1,
-                scrollTrigger: {
-                  trigger: ".footer",
-                  start: "top bottom",
-                  end: "+=300",
-                  scrub: true,
-                },
-                ease: "power4.out",
-              });
-            },
           });
-        },
+        });
+        link.addEventListener("mouseleave", () => {
+          gsap.to(link, {
+            fontSize: notHD ? "1.667vw" : 32,
+            duration: 0.4,
+            ease: "power4.out",
+          });
+        });
       });
-    },
-  });
-
-  gsap.to(".navigation .of-h .dot", {
-    opacity: 1,
-    pointerEvents: "auto",
-    filter: "blur(0px)",
-    duration: 1,
-    scrollTrigger: {
-      trigger: ".carousel",
-      start: "top top",
-      scrub: true,
-    },
-    ease: "power4.out",
-  });
-
-  // SHOW work-text on carousel
-  gsap.to(".navigation .of-h .work-text", {
-    opacity: 1,
-    display: "block",
-    transform: "translateY(0%)",
-    pointerEvents: "auto",
-    filter: "blur(0px)",
-    ease: "power4.out",
-    scrollTrigger: {
-      trigger: ".carousel",
-      start: "top top",
-      scrub: true,
-    },
-    onComplete: function () {
-      gsap.to(".navigation .of-h .dot", {
-        opacity: 0,
-        pointerEvents: "none",
-        filter: "blur(10px)",
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".about",
-          start: "top bottom",
-          end: "top center",
-          scrub: true,
-        },
-      });
-
-      // HIDE work-text on about
-      gsap.to(".navigation .of-h .work-text", {
-        opacity: 0,
-        pointerEvents: "none",
-        filter: "blur(10px)",
-        transform: "translateY(-100%)",
-        display: "none",
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".about",
-          start: "top bottom",
-          end: "top center",
-          scrub: true,
-        },
-      });
-    },
-  });
-
-  // HIDE dot on about
-
-  gsap.to(".navigation .of-h .dot", {
-    opacity: 1,
-    pointerEvents: "auto",
-    filter: "blur(0px)",
-    duration: 1,
-    scrollTrigger: {
-      trigger: ".about",
-      start: "top -30%",
-      end: "+=200",
-      scrub: true,
-    },
-    ease: "power4.out",
-  });
-
-  gsap.to(".navigation .of-h .about-text", {
-    display: "block",
-    opacity: 1,
-    pointerEvents: "auto",
-    filter: "blur(0px)",
-    transform: "translateY(0%)",
-    duration: 1,
-    scrollTrigger: {
-      trigger: ".about",
-      start: "top -30%",
-      end: "+=200",
-      scrub: true,
-    },
-    ease: "power4.out",
-  });
-
-  gsap.to(".list-of-year", {
-    xPercent: -100.1,
-    scrollTrigger: {
-      trigger: ".list-of-year-wrapper",
-      scroller: "body",
-      start: "bottom bottom",
-      pin: true,
-      scrub: 1,
-    },
-  });
-}
-
-function initCarouselScrollAnimation() {
-  let lastScrollPos = window.pageYOffset;
-  let isScrollingDown = true;
-
-  const tween1 = gsap
-    .to(".text-carousel.left", {
-      xPercent: -100,
-      repeat: -1,
-      duration: 35,
-      ease: "linear",
-    })
-    .totalProgress(0.5);
-
-  const tween2 = gsap
-    .to(".text-carousel.right", {
-      xPercent: -100,
-      repeat: -1,
-      duration: 35,
-      ease: "linear",
-    })
-    .totalProgress(0.5);
-
-  tween2.timeScale(-1);
-
-  function updateDirection(currentPos) {
-    const scrollingDown = currentPos > lastScrollPos;
-
-    if (scrollingDown !== isScrollingDown) {
-      tween1.timeScale(scrollingDown ? 1 : -1);
-      tween2.timeScale(scrollingDown ? -1 : 1);
-      isScrollingDown = scrollingDown;
-    }
-
-    lastScrollPos = currentPos;
-  }
-
-  // Desktop
-  window.addEventListener(
-    "wheel",
-    () => {
-      updateDirection(window.pageYOffset);
-    },
-    { passive: true }
-  );
-
-  // Mobile
-  let touchStartY = 0;
-
-  window.addEventListener(
-    "touchstart",
-    (e) => {
-      touchStartY = e.touches[0].clientY;
-    },
-    { passive: true }
-  );
-
-  window.addEventListener(
-    "touchmove",
-    (e) => {
-      const touchCurrentY = e.touches[0].clientY;
-      const fakeScrollPos = touchStartY - touchCurrentY;
-
-      updateDirection(lastScrollPos + fakeScrollPos);
-    },
-    { passive: true }
-  );
-}
-
+      
 function scrollToSection(target) {
   const section = document.querySelector(target);
   if (!section) return;
@@ -315,550 +329,88 @@ function scrollToSection(target) {
   });
 }
 
-function addHeroScrollHandlers() {
-  function scrollToWork() {
-    const workEl = document.querySelector(".work");
-    if (!workEl) return;
 
-    if (typeof lenis !== "undefined" && typeof lenis.scrollTo === "function") {
-      try {
-        lenis.scrollTo(workEl, { offset: 0, duration: 1.2 });
-      } catch (err) {
-        const top = workEl.getBoundingClientRect().top + window.pageYOffset;
-        lenis.scrollTo(top, { duration: 1.2 });
+      let menuBtn = document.querySelector(".menu-btn");
+      let menu = document.querySelector(".menu");
+
+      function openMenu() {
+        menuBtn.classList.add("active");
+        gsap.to(".menu", {
+          display: "flex",
+          transform: "translateX(0%)",
+        });
+        gsap.to(".menu li", {
+          transform: "translateX(0%)",
+          stagger: 0.1,
+        });
       }
-      return;
-    }
 
-    const top = workEl.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo({ top, behavior: "smooth" });
-  }
-
-  function attachListeners() {
-    const heroCta = document.querySelector(".hero-cta");
-    heroCta.addEventListener("click", (e) => {
-      e.preventDefault();
-      scrollToWork();
-    });
-
-    const heroCtaArrows = document.querySelectorAll(
-      ".right-content .arrows .icon-font"
-    );
-    heroCtaArrows.forEach((el) => {
-      el.addEventListener("click", (e) => {
-        e.preventDefault();
-        scrollToWork();
-      });
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", attachListeners);
-  } else {
-    attachListeners();
-  }
-}
-
-function initScrollToTop() {
-  document.getElementById("goToTop").addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-}
-
-function initAboutImageAnimation() {
-  const evenBoxes = document.querySelectorAll(
-    "section.about .photos .photo.even img"
-  );
-
-  evenBoxes.forEach((box) => {
-    let hoverAnim = null;
-
-    box.addEventListener("mouseenter", () => {
-      if (hoverAnim) hoverAnim.kill(); // stop old anim
-      hoverAnim = gsap.to(box, {
-        rotate: -360,
-        duration: 30,
-        ease: "none",
-      });
-    });
-
-    box.addEventListener("mouseleave", () => {
-      if (hoverAnim) hoverAnim.kill(); // stop hover animation immediately
-      hoverAnim = gsap.to(box, {
-        rotate: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      });
-    });
-  });
-
-  const oddBoxes = document.querySelectorAll(
-    "section.about .photos .photo.odd img"
-  );
-
-  oddBoxes.forEach((box) => {
-    let hoverAnim = null;
-
-    box.addEventListener("mouseenter", () => {
-      if (hoverAnim) hoverAnim.kill(); // stop old anim
-      hoverAnim = gsap.to(box, {
-        rotate: 360,
-        duration: 30,
-        ease: "none",
-      });
-    });
-
-    box.addEventListener("mouseleave", () => {
-      if (hoverAnim) hoverAnim.kill(); // stop hover animation immediately
-      hoverAnim = gsap.to(box, {
-        rotate: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      });
-    });
-  });
-}
-
-function initMenuLinksHoverAnimation() {
-  let menuLinks = document.querySelectorAll(".menu li");
-
-  let notHD = window.innerWidth > 1920;
-
-  window.addEventListener("resize", () => {
-    notHD = window.innerWidth > 1920;
-  });
-
-  menuLinks.forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-      gsap.to(link, {
-        fontSize: notHD ? "3.333vw" : 64,
-        duration: 0.4,
-        ease: "power4.out",
-      });
-    });
-    link.addEventListener("mouseleave", () => {
-      gsap.to(link, {
-        fontSize: notHD ? "1.667vw" : 32,
-        duration: 0.4,
-        ease: "power4.out",
-      });
-    });
-  });
-}
-
-function initAllLoadingAnimations() {
-  gsap.fromTo(
-    ".hero .p span",
-    {
-      bottom: "-300px",
-      delay: 0.1,
-      duration: 1.5,
-      ease: "power4.out",
-      stagger: 0.1,
-    },
-    {
-      bottom: "-2px",
-      delay: 0.1,
-      duration: 1.5,
-      ease: "power4.out",
-      stagger: 0.1,
-    }
-  );
-
-  gsap.from(".hero .right-content .hero-image", {
-    delay: 0.3,
-    scale: 1.5,
-    rotate: "10deg",
-    duration: 1.8,
-    ease: "power4.out",
-    stagger: 0.1,
-  });
-
-  gsap.from(".navigation .logo", {
-    bottom: "-300px",
-    delay: 0.1,
-    duration: 1.5,
-    ease: "power4.out",
-  });
-
-  gsap.from(".button.of-h span", {
-    bottom: "-100px",
-    delay: 0.1,
-    duration: 1.5,
-    ease: "power4.out",
-  });
-}
-
-function initAboutSectionDrag() {
-  const container = document.querySelector(".about-images");
-  const images = document.querySelectorAll(".about-images > img");
-  const littleSaints = document.querySelector(".about-images .little-saints");
-
-  images.forEach((img) => {
-    img.style.position = "absolute";
-    img.style.cursor = "grab";
-    img.style.userSelect = "none";
-
-    let newX = 0,
-      newY = 0,
-      startX = 0,
-      startY = 0;
-
-    function getClientXY(e) {
-      if (e.touches && e.touches.length > 0) {
-        return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      function closeMenu() {
+        menuBtn.classList.remove("active");
+        gsap.to(".menu", {
+          transform: "translateX(200%)",
+        });
+        gsap.to(".menu li", {
+          transform: "translateX(200%)",
+          stagger: 0.1,
+        });
       }
-      return { x: e.clientX, y: e.clientY };
-    }
 
-    function startDrag(e) {
-      e.preventDefault();
-
-      img.classList.remove("floating"); // stop animation while dragging
-
-      const pos = getClientXY(e);
-      startX = pos.x;
-      startY = pos.y;
-
-      img.style.cursor = "grabbing";
-
-      document.addEventListener("mousemove", moveDrag);
-      document.addEventListener("mouseup", stopDrag);
-
-      document.addEventListener("touchmove", moveDrag, { passive: false });
-      document.addEventListener("touchend", stopDrag);
-    }
-
-    function moveDrag(e) {
-      e.preventDefault();
-
-      const pos = getClientXY(e);
-
-      newX = startX - pos.x;
-      newY = startY - pos.y;
-
-      startX = pos.x;
-      startY = pos.y;
-
-      let newLeft = img.offsetLeft - newX;
-      let newTop = img.offsetTop - newY;
-
-      const rect = container.getBoundingClientRect();
-
-      // FIX: use offsetWidth/offsetHeight so transform does NOT affect size
-      const imgWidth = img.offsetWidth;
-      const imgHeight = img.offsetHeight;
-
-      const minLeft = 0;
-      const minTop = 0;
-      const maxLeft = rect.width - imgWidth;
-      const maxTop = rect.height - imgHeight;
-
-      newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
-      newTop = Math.max(minTop, Math.min(newTop, maxTop));
-
-      img.style.left = newLeft + "px";
-      img.style.top = newTop + "px";
-    }
-
-    function stopDrag() {
-      img.style.cursor = "grab";
-
-      document.removeEventListener("mousemove", moveDrag);
-      document.removeEventListener("mouseup", stopDrag);
-
-      document.removeEventListener("touchmove", moveDrag);
-      document.removeEventListener("touchend", stopDrag);
-
-      img.classList.add("floating");
-    }
-
-    img.addEventListener("mousedown", startDrag);
-
-    img.addEventListener("touchstart", startDrag, { passive: false });
-  });
-
-  littleSaints.style.position = "absolute";
-  littleSaints.style.cursor = "grab";
-  littleSaints.style.userSelect = "none";
-
-  let newX = 0,
-    newY = 0,
-    startX = 0,
-    startY = 0;
-
-  function getClientXY(e) {
-    if (e.touches && e.touches.length > 0) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    }
-    return { x: e.clientX, y: e.clientY };
-  }
-
-  function startDrag(e) {
-    e.preventDefault();
-
-    littleSaints.classList.remove("floating"); // stop animation while dragging
-
-    const pos = getClientXY(e);
-    startX = pos.x;
-    startY = pos.y;
-
-    littleSaints.style.cursor = "grabbing";
-
-    document.addEventListener("mousemove", moveDrag);
-    document.addEventListener("mouseup", stopDrag);
-
-    document.addEventListener("touchmove", moveDrag, { passive: false });
-    document.addEventListener("touchend", stopDrag);
-  }
-
-  function moveDrag(e) {
-    e.preventDefault();
-
-    const pos = getClientXY(e);
-
-    newX = startX - pos.x;
-    newY = startY - pos.y;
-
-    startX = pos.x;
-    startY = pos.y;
-
-    let newLeft = littleSaints.offsetLeft - newX;
-    let newTop = littleSaints.offsetTop - newY;
-
-    const rect = container.getBoundingClientRect();
-
-    // FIX: use offsetWidth/offsetHeight so transform does NOT affect size
-    const imgWidth = littleSaints.offsetWidth;
-    const imgHeight = littleSaints.offsetHeight;
-
-    const minLeft = 0;
-    const minTop = 0;
-    const maxLeft = rect.width - imgWidth;
-    const maxTop = rect.height - imgHeight;
-
-    newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
-    newTop = Math.max(minTop, Math.min(newTop, maxTop));
-
-    littleSaints.style.left = newLeft + "px";
-    littleSaints.style.top = newTop + "px";
-  }
-
-  function stopDrag() {
-    littleSaints.style.cursor = "grab";
-
-    document.removeEventListener("mousemove", moveDrag);
-    document.removeEventListener("mouseup", stopDrag);
-
-    document.removeEventListener("touchmove", moveDrag);
-    document.removeEventListener("touchend", stopDrag);
-
-    littleSaints.classList.add("floating");
-  }
-
-  littleSaints.addEventListener("mousedown", startDrag);
-
-  littleSaints.addEventListener("touchstart", startDrag, { passive: false });
-}
-
-function initButtonAnimation() {
-  const buttons = document.querySelectorAll(".action-button.button");
-
-  buttons.forEach((button) => {
-    const groups = document.querySelectorAll(".group");
-    const width = groups[0].offsetWidth;
-
-    let infiniteTween;
-
-    const startInfinite = () => {
-      if (infiniteTween) gsap.killTweensOf(groups);
-
-      infiniteTween = gsap.from(groups, {
-        x: -width,
-        duration: 3,
-        ease: "linear",
-        repeat: -1,
-      });
-    };
-
-    startInfinite();
-
-    button.addEventListener("mouseenter", () => {
-      gsap.killTweensOf(groups);
-      gsap.to(groups, {
-        x: -width,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    });
-
-    button.addEventListener("mouseleave", () => {
-      let tl = gsap.timeline();
-      tl.to(groups, {
-        x: +32,
-      }).to(groups, {
-        x: -width,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-      gsap.to(groups, {
-        x: -width,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-
-      gsap.killTweensOf(groups);
-      gsap.set(groups, { x: 0 });
-
-      infiniteTween = gsap.from(groups, {
-        x: -width,
-        duration: 3,
-        ease: "linear",
-        repeat: -1,
-      });
-    });
-
-    button.addEventListener("click", () => {
-      isClick = true;
-      // stop animation temporarily and move slightly left
-      gsap.killTweensOf(groups);
-      gsap.to(groups, {
-        x: -width + 32,
-        duration: 0.5,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", initButtonAnimation);
-
-function initCopySystem(modal, target, btn) {
-  btn.addEventListener("click", () => {
-    navigator.clipboard.writeText(target.textContent);
-    modal.classList.add("show");
-    setTimeout(() => {
-      modal.classList.remove("show");
-    }, 2000);
-  });
-}
-
-function reloadOnResize(delay = 300) {
-  let resizeTimer;
-  let lastWidth = window.innerWidth;
-
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (window.innerWidth !== lastWidth) {
-        location.reload();
+      function disableImageDrag(img) {
+        img.setAttribute("draggable", "false");
       }
-    }, delay);
-  });
-}
 
-function initGsapAndLenis() {
-  gsap.registerPlugin(ScrollTrigger);
+      // Initially disable for all existing images
+      document.querySelectorAll("img").forEach(disableImageDrag);
 
-  const lenis = new Lenis({
-    lerp: 0.09,
-    wheelMultiplier: 0.9,
-    touchMultiplier: 0.9,
-  });
+      // Observe the document for new images
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.tagName === "IMG") disableImageDrag(node);
+            else if (node.querySelectorAll) {
+              node.querySelectorAll("img").forEach(disableImageDrag);
+            }
+          });
+        });
+      });
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+      observer.observe(document.body, { childList: true, subtree: true });
 
-  gsap.ticker.lagSmoothing(0);
-}
+      let autoCloseTimeout = null;
 
-function openMenu() {
-  menuBtn.classList.add("active");
-  gsap.to(".menu", {
-    display: "flex",
-    transform: "translateX(0%)",
-  });
-  gsap.to(".menu li", {
-    transform: "translateX(0%)",
-    stagger: 0.1,
-  });
-}
+      menuBtn.addEventListener("click", () => {
+        if (menuBtn.classList.contains("active")) {
+          closeMenu();
+        } else {
+          openMenu();
 
-function closeMenu() {
-  menuBtn.classList.remove("active");
-  gsap.to(".menu", {
-    transform: "translateX(200%)",
-  });
-  gsap.to(".menu li", {
-    transform: "translateX(200%)",
-    stagger: 0.1,
-  });
-}
+          clearTimeout(autoCloseTimeout);
+          autoCloseTimeout = setTimeout(() => {
+            closeMenu();
+          }, 6000);
+        }
+      });
 
-function initHandleMenu() {
-  let autoCloseTimeout = null;
+      gsap.registerPlugin(ScrollTrigger);
 
-  menuBtn.addEventListener("click", () => {
-    if (menuBtn.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
+      const lenis = new Lenis({
+        lerp: 0.09,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 0.9,
+      });
 
-      clearTimeout(autoCloseTimeout);
-      autoCloseTimeout = setTimeout(() => {
-        closeMenu();
-      }, 6000);
-    }
-  });
-}
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
 
-function scrollToTopOnRefresh() {
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
+      gsap.ticker.lagSmoothing(0);
 
-  window.scrollTo(0, 0);
-}
 
-function scrollToSection(target, offset = 0, duration = 800) {
-  const element =
-    typeof target === "string" ? document.querySelector(target) : target;
 
-  if (!element) return;
+      // Main animation
 
-  const startY = window.pageYOffset;
-  const targetY =
-    element.getBoundingClientRect().top + window.pageYOffset - offset;
-
-  const startTime = performance.now();
-
-  function animateScroll(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    // easeInOut
-    const ease =
-      progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-    window.scrollTo(0, startY + (targetY - startY) * ease);
-
-    if (progress < 1) requestAnimationFrame(animateScroll);
-  }
-
-  requestAnimationFrame(animateScroll);
-}
-
-let workContents = {
+      let workContents = {
   magic_mind: {
     headline: "MAGIC MIND",
     year: "2020-PRESENT",
@@ -1409,43 +961,6 @@ function workSectionBottleAnimation() {
 }
 
 workSectionBottleAnimation();
-
-window.addEventListener("DOMContentLoaded", () => {
-  initGsapAndLenis();
-  initAllLoadingAnimations();
-  initAboutSectionDrag();
-  initHandleMenu();
-  initMenuLinksHoverAnimation();
-  initCopySystem(copyPopup, textToCopy, copyBtn);
-  initAboutImageAnimation();
-  initButtonAnimation();
-  initCarouselScrollAnimation();
-  initScrollToTop();
-  reloadOnResize();
-  scrollToTopOnRefresh();
-});
-
-window.addEventListener("load", createTransformAnimations);
-
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
-
-function disableImageDrag(img) {
-  img.setAttribute("draggable", "false");
-}
-
-document.querySelectorAll("img").forEach(disableImageDrag);
-
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    mutation.addedNodes.forEach((node) => {
-      if (node.tagName === "IMG") disableImageDrag(node);
-      else if (node.querySelectorAll) {
-        node.querySelectorAll("img").forEach(disableImageDrag);
-      }
-    });
-  });
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
+</html>

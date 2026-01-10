@@ -205,6 +205,11 @@ span.icon-font {
   transform: translateX(200%);
 }
 
+.navigation .menu li a {
+  color: #000;
+  text-decoration: none;
+}
+
 .navigation .logo {
   max-width: 1034px;
   width: 100%;
@@ -252,6 +257,13 @@ span.icon-font {
   border-radius: 50%;
 }
 
+.navigation > .of-h .about-dot {
+  width: 16px;
+  height: 16px;
+  background-color: black;
+  border-radius: 50%;
+}
+
 .navigation > .of-h .work-text {
   opacity: 0;
   pointer-events: none;
@@ -267,6 +279,10 @@ span.icon-font {
   transform: translateY(150%);
   display: none;
   filter: blur(10px);
+  height: 40px;
+}
+
+.navigation > .of-h .about-page-text {
   height: 40px;
 }
 
@@ -441,6 +457,14 @@ span.icon-font {
 
 section.work {
   padding-top: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+section.work.work-page {
+  padding-top: 100px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1122,8 +1146,21 @@ section.about .row .about-images img:nth-child(10) {
   aspect-ratio: 1/1;
 }
 
+.start.footer-page {
+  padding: 0;
+}
+
 .footer {
   padding-top: 477px;
+}
+
+.footer.footer-page {
+  padding-top: unset;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .footer .contact-information {
@@ -1609,11 +1646,24 @@ section.about .row .about-images img:nth-child(10) {
     filter: blur(0.521vw);
   }
 
+  .navigation > .of-h .about-dot {
+    width: 0.833vw;
+    height: 0.833vw;
+    background-color: black;
+    border-radius: 50%;
+  }
+
   .navigation > .of-h .work-text,
   .navigation > .of-h .about-text {
     opacity: 0;
     pointer-events: none;
     display: none;
+    filter: blur(0.521vw);
+    width: auto;
+    height: 2.083vw;
+  }
+
+  .navigation > .of-h .about-page-text {
     filter: blur(0.521vw);
     width: auto;
     height: 2.083vw;
@@ -1760,6 +1810,14 @@ section.about .row .about-images img:nth-child(10) {
 
   section.work {
     padding-top: 9.74vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  section.work.work-page {
+    padding-top: 5.208vw;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -2614,6 +2672,10 @@ section.about .row .about-images img:nth-child(10) {
     max-width: 53.854vw;
   }
 
+  .navigation .about-logo {
+    max-width: 53.854vw;
+  }
+
   section.work h2 {
     font-size: 6.667vw;
     line-height: 80%;
@@ -2789,6 +2851,11 @@ section.about .row .about-images img:nth-child(10) {
     width: auto;
   }
 
+  .navigation > .of-h .about-page-text {
+    height: 2.083vw;
+    width: auto;
+  }
+
   section.work .right .cartoon-box {
     height: 18.958vw;
     border: 0.104vw solid black;
@@ -2832,7 +2899,18 @@ section.about .row .about-images img:nth-child(10) {
     height: auto;
   }
 
+  .navigation .about-logo {
+    max-width: 530px;
+    width: 100%;
+    height: auto;
+  }
+
   .navigation > .of-h .dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .navigation > .of-h .about-dot {
     width: 12px;
     height: 12px;
   }
@@ -3339,6 +3417,12 @@ section.about .row .about-images img:nth-child(10) {
     height: auto;
   }
 
+  .navigation .about-logo {
+    max-width: 530px;
+    width: 100%;
+    height: auto;
+  }
+
   .navigation > .of-h {
     width: 100%;
   }
@@ -3391,6 +3475,11 @@ section.about .row .about-images img:nth-child(10) {
   }
 
   .navigation .logo {
+    width: 53.711vw;
+    max-width: 424px;
+  }
+
+  .navigation .about-logo {
     width: 53.711vw;
     max-width: 424px;
   }
@@ -3481,6 +3570,12 @@ section.about .row .about-images img:nth-child(10) {
     max-height: 30px;
   }
 
+  .navigation .about-logo {
+    max-width: 160px;
+    width: 100%;
+    max-height: 30px;
+  }
+
   .navigation .actions .button {
     display: none;
   }
@@ -3517,8 +3612,17 @@ section.about .row .about-images img:nth-child(10) {
     height: 8px;
   }
 
+  .navigation > .of-h .about-dot {
+    width: 8px;
+    height: 8px;
+  }
+
   .navigation > .of-h .work-text,
   .navigation > .of-h .about-text {
+    height: 24px;
+  }
+
+  .navigation > .of-h .about-page-text {
     height: 24px;
   }
 

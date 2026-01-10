@@ -159,10 +159,18 @@
               <div class="line"></div>
             </div>
             <ul class="menu">
-              <li data-target="home" class="mh-effect">HOME</li>
-              <li data-target="about" class="mh-effect">ABOUT</li>
-              <li data-target="work" class="mh-effect">WORK</li>
-              <li data-target="contact" class="mh-effect">CONTACT</li>
+              <li data-target="home" class="mh-effect">
+                <a href="/index.html">HOME</a>
+              </li>
+              <li data-target="about" class="mh-effect">
+                <a href="about.html">ABOUT</a>
+              </li>
+              <li data-target="work" class="mh-effect">
+                <a href="work.html">WORK</a>
+              </li>
+              <li data-target="contact" class="mh-effect">
+                <a href="contact.html">CONTACT</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -487,6 +495,31 @@
     <script src="./libs/gsap_scrolltrigger.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
     <script>
+      let menuLinks = document.querySelectorAll(".menu li");
+
+      let notHD = window.innerWidth > 1920;
+
+      window.addEventListener("resize", () => {
+        notHD = window.innerWidth > 1920;
+      });
+
+      menuLinks.forEach((link) => {
+        link.addEventListener("mouseenter", () => {
+          gsap.to(link, {
+            fontSize: notHD ? "3.333vw" : 64,
+            duration: 0.4,
+            ease: "power4.out",
+          });
+        });
+        link.addEventListener("mouseleave", () => {
+          gsap.to(link, {
+            fontSize: notHD ? "1.667vw" : 32,
+            duration: 0.4,
+            ease: "power4.out",
+          });
+        });
+      });
+
       gsap.to(".list-of-year", {
         xPercent: -100.1,
         ease: "power4.out",
