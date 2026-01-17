@@ -7,10 +7,10 @@ let menu = document.querySelector(".menu");
 let logoTween = null;
 
 const product = document.querySelector(
-  "section.work .products .product.second p"
+  "section.work .products .product.second p",
 );
 const img = document.querySelector(
-  "section.work .products .product.second img"
+  "section.work .products .product.second img",
 );
 
 product.addEventListener("mouseenter", () => {
@@ -279,7 +279,7 @@ function initCarouselScrollAnimation() {
     () => {
       updateDirection(window.pageYOffset);
     },
-    { passive: true }
+    { passive: true },
   );
 
   // Mobile
@@ -290,7 +290,7 @@ function initCarouselScrollAnimation() {
     (e) => {
       touchStartY = e.touches[0].clientY;
     },
-    { passive: true }
+    { passive: true },
   );
 
   window.addEventListener(
@@ -301,7 +301,7 @@ function initCarouselScrollAnimation() {
 
       updateDirection(lastScrollPos + fakeScrollPos);
     },
-    { passive: true }
+    { passive: true },
   );
 }
 
@@ -342,7 +342,7 @@ function addHeroScrollHandlers() {
     });
 
     const heroCtaArrows = document.querySelectorAll(
-      ".right-content .arrows .icon-font"
+      ".right-content .arrows .icon-font",
     );
     heroCtaArrows.forEach((el) => {
       el.addEventListener("click", (e) => {
@@ -370,7 +370,7 @@ function initScrollToTop() {
 
 function initAboutImageAnimation() {
   const evenBoxes = document.querySelectorAll(
-    "section.about .photos .photo.even img"
+    "section.about .photos .photo.even img",
   );
 
   evenBoxes.forEach((box) => {
@@ -396,7 +396,7 @@ function initAboutImageAnimation() {
   });
 
   const oddBoxes = document.querySelectorAll(
-    "section.about .photos .photo.odd img"
+    "section.about .photos .photo.odd img",
   );
 
   oddBoxes.forEach((box) => {
@@ -465,7 +465,7 @@ function initAllLoadingAnimations() {
       duration: 1.5,
       ease: "power4.out",
       stagger: 0.1,
-    }
+    },
   );
 
   gsap.from(".hero .right-content .hero-image", {
@@ -1126,7 +1126,7 @@ function workSectionBottleAnimation() {
         onStart: () => {
           mainBottleImage.src = `./images/${content.bottle_image}`;
         },
-      }
+      },
     );
   }
 
@@ -1216,10 +1216,10 @@ function workSectionBottleAnimation() {
           width: isTablet
             ? "auto"
             : isMobile
-            ? "100%"
-            : is2k
-            ? "21.771vw"
-            : "21.771vw",
+              ? "100%"
+              : is2k
+                ? "21.771vw"
+                : "21.771vw",
           maxWidth: isMobile ? "100%" : "",
           rotate: 360,
           duration: 2,
@@ -1250,7 +1250,7 @@ function workSectionBottleAnimation() {
 
       const left = document.querySelector("#work .left");
       const rightItems = document.querySelectorAll(
-        "#work .right:not(.mobile) > *"
+        "#work .right:not(.mobile) > *",
       );
 
       gsap.from(left, {
@@ -1317,10 +1317,10 @@ function workSectionBottleAnimation() {
       right: isTablet
         ? "225px"
         : isMobile
-        ? "unset"
-        : is2k
-        ? "32.292vw"
-        : "32.292vw",
+          ? "unset"
+          : is2k
+            ? "32.292vw"
+            : "32.292vw",
       width: isMobile ? "70%" : "fit-content",
       rotate: 360,
       duration: 2,
@@ -1344,10 +1344,10 @@ function workSectionBottleAnimation() {
       width: isTablet
         ? "auto"
         : isMobile
-        ? "100%"
-        : is2k
-        ? "21.771vw"
-        : "21.771vw",
+          ? "100%"
+          : is2k
+            ? "21.771vw"
+            : "21.771vw",
       rotate: 360,
       duration: 2,
       ease: "power4.out",

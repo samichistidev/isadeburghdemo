@@ -1407,7 +1407,9 @@ section.about .row .about-images img:nth-child(10) {
   font-size: 24px;
   z-index: 1000;
   opacity: 0;
-  transition: opacity 0.3s, bottom 0.3s;
+  transition:
+    opacity 0.3s,
+    bottom 0.3s;
 }
 
 #popup.show {
@@ -1418,16 +1420,6 @@ section.about .row .about-images img:nth-child(10) {
 
 .right.mobile {
   display: none;
-}
-
-.icon-stroke path {
-  stroke-dasharray: 1000; /* পাথের দৈর্ঘ্য অনুযায়ী একটি বড় ভ্যালু */
-  stroke: 1px solid black;
-  stroke-dashoffset: 0; /* শুরুতে পাথটি লুকিয়ে থাকবে */
-}
-
-.social-div:hover .icon-stroke path {
-  animation: stroke_offset 2s linear infinite;
 }
 
 @keyframes stroke_offset {
@@ -2562,7 +2554,7 @@ section.about .row .about-images img:nth-child(10) {
 
   .footer .contact-information .social-ctas .social-div {
     display: flex;
-    gap: 1.667vw;
+    gap: 0.833vw;
     align-items: center;
   }
 
@@ -2620,7 +2612,9 @@ section.about .row .about-images img:nth-child(10) {
     font-size: 1.25vw;
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s, bottom 0.3s;
+    transition:
+      opacity 0.3s,
+      bottom 0.3s;
   }
 
   #popup.show {
